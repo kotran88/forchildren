@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "979267287895",
+    "firebase_url": "https://samchully2-75f40-default-rtdb.firebaseio.com",
+    "project_id": "samchully2-75f40",
+    "storage_bucket": "samchully2-75f40.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:979267287895:android:c6efbab9923861a5179c12",
+        "android_client_info": {
+          "package_name": "io.ionic.onoff.sirnet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "979267287895-2hk3m7b00l7enmfbpf45jbs9ja884rgj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEQ1dp7MnSlCnnBptm9uedNWcdpGm1Fzw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "979267287895-2hk3m7b00l7enmfbpf45jbs9ja884rgj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
