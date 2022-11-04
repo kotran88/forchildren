@@ -1,16 +1,119 @@
-<ion-content>
-  <div id="div1" drop="drop(event)" dragover="allowDrop(event)"></div>
-  <img id="drag1" src="/src/assets/imgs/img" draggable="true" dragstart="drag(event)" width="336" height="69">
-  <ion-slides paginationType="bullets" slidesPerView="1" pager="true">
-    <ion-slide>
-      <span>111</span>
-      <span>2222</span>
-    </ion-slide>
-    <ion-slide>
-      <h1>Slide 2</h1>
-    </ion-slide>
-    <ion-slide>
-      <h1>Slide 3</h1>
-    </ion-slide>
-  </ion-slides>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Devdactic Eisenhower
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content forceOverscroll="false">
+  <ion-grid>
+
+    <ion-row align-items-center>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label position="fixed">New Todo:</ion-label>
+          <ion-input [(ngModel)]="todo.value"></ion-input>
+        </ion-item>
+
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Quadrant:</ion-label>
+          <ion-select [(ngModel)]="selectedQuadrant">
+            <ion-option value="q1">Do</ion-option>
+            <ion-option value="q2">Schedule</ion-option>
+            <ion-option value="q3">Delegate</ion-option>
+            <ion-option value="q4">Dont do</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+
+    </ion-row>
+
+    <button ion-button expand="block" fill="outline" (click)="addTodo()">
+      <ion-icon name="add" slot="start"></ion-icon>
+      Add Todo
+    </button>
+
+    <ion-row no-padding class="matrix">
+      <ion-col size="6" class="q1">
+        <div class="q-header">Do</div>
+        <ion-list dragula="bag" [(dragulaModel)]="q1" lines="none">
+          <ion-item *ngFor="let item of q1" [color]="item.color" expand="block" text-wrap>
+            {{ item.value }}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+
+      <ion-col size="6" class="q2">
+        <div class="q-header">Schedule</div>
+        <ion-list dragula="bag" [(dragulaModel)]="q2" lines="none">
+          <ion-item *ngFor="let item of q2" [color]="item.color" expand="block" text-wrap>
+            {{ item.value }}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+
+      <ion-col size="6" class="q3">
+        <div class="q-header">Delegate</div>
+        <ion-list dragula="bag" [(dragulaModel)]="q3" lines="none">
+          <ion-item *ngFor="let item of q3" [color]="item.color" expand="block" text-wrap>
+            {{ item.value }}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+
+      <ion-col size="6" class="q4">
+        <div class="q-header">Don't do</div>
+        <ion-list dragula="bag" [(dragulaModel)]="q4" lines="none">
+          <ion-item *ngFor="let item of q4" [color]="item.color" expand="block" text-wrap>
+            {{ item.value }}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-row class="delete-area" align-items-center justify-content-center>
+    <ion-icon name="trash" color="medium"></ion-icon>
+  </ion-row>
+
 </ion-content>
+<!-- <ion-header>
+  <ion-navbar>
+    <ion-title>
+      서명을 해주세요
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding forceOverscroll="false">
+  <img src="../../assets/imgs/logo.png"/>
+  <div #fixedContainer>
+		<ion-row>
+		  <ion-col *ngFor="let color of colors" [style.background]="color" class="color-block" tappable (click)="selectColor(color)"></ion-col>
+		</ion-row>
+
+		<ion-row radio-group [(ngModel)]="selectedColor">
+		  <ion-col *ngFor="let color of colors" text-center>
+			<ion-radio [value]="color"></ion-radio>
+		  </ion-col>
+		</ion-row>
+
+		<canvas  id="canvas" style="     width: 380px;
+    height: 400px;
+    position: absolute;
+    border: solid 1px;
+    margin: auto;
+    text-align: center;
+    left: 5%;
+    right: 5%;" #imageCanvas (touchstart)="startDrawing(event);" (touchmove)="moved($event)"></canvas>
+
+		<p  style="
+		margin-top: 450px;" ></p>
+		<button ion-button full (click)="saveCanvasImage()">서명 완료 </button>
+
+	  </div>
+</ion-content> -->
