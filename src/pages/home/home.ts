@@ -1,5 +1,5 @@
 import { Component,ViewChild } from '@angular/core';
-import { NavController, ViewController,NavParams,LoadingController, ModalController } from 'ionic-angular';
+import { NavController, ViewController,NavParams,LoadingController } from 'ionic-angular';
 import * as $ from 'jquery';
 import firebase from 'firebase';
 import { OnoffutilProvider } from '../../providers/onoffutil/onoffutil';
@@ -17,6 +17,9 @@ export class HomePage {
   constructor(public firebaseAuth: AngularFireAuth,
     public view:ViewController,public loading:LoadingController,
     public navCtrl: NavController, public navParams: NavParams, public util: OnoffutilProvider) {
+      this.firemain.once('value').then((snap)=>{
+        console.log(snap.val());
+      })
   }
 
   ionViewDidLoad() {

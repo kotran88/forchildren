@@ -19,15 +19,15 @@ import { DrawingPage } from '../pages/drawing/drawing';
 import { HomePage } from '../pages/home/home';
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
 
-var firebaseConfig = {
-  apiKey: "AIzaSyDtpcTlphU26s7cct2G3TcXEr96TbPCDs8",
-  authDomain: "samchully2-75f40.firebaseapp.com",
-  databaseURL: "https://samchully2-75f40-default-rtdb.firebaseio.com",
-  projectId: "samchully2-75f40",
-  storageBucket: "samchully2-75f40.appspot.com",
-  messagingSenderId: "979267287895",
-  appId: "1:979267287895:web:2d2abbcf439aaba2179c12",
-  measurementId: "G-J9K6NFCNCQ"
+const firebaseConfig = {
+  apiKey: "AIzaSyDnAhTYDrVx_1hqwChoD44C5SbCl97soGA",
+  authDomain: "forch-74f10.firebaseapp.com",
+  databaseURL: "https://forch-74f10-default-rtdb.firebaseio.com",
+  projectId: "forch-74f10",
+  storageBucket: "forch-74f10.appspot.com",
+  messagingSenderId: "164203318212",
+  appId: "1:164203318212:web:1d553bebd574632a92b291",
+  measurementId: "G-46Y6GB6FHV"
 };
 firebase.initializeApp(firebaseConfig);
 
