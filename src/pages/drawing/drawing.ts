@@ -136,13 +136,13 @@ ctx3.drawImage(this.canvasElement, 0, 0);
     this.canvasElement.width=400;
     this.canvasElement.height=400;
 
-   
+
     // this.canvasElement2=this.canvas2.nativeElement;
     // this._Canvas=this.canvasElement2;
     // this._Canvas.width=500;
     // this._Canvas.height=500;
     this.ctx=this.canvasElement.getContext('2d');
-    
+
 
 
   //   $("#canvas").mousedown(function (e) {
@@ -185,7 +185,7 @@ ctx3.drawImage(this.canvasElement, 0, 0);
       e.stopPropagation();
       var mx=((e.clientX)-BB.x);
       var my=(e.clientY-BB.y-50);
-     
+
       if(this.shapes[0].width){
         console.log("rec")
         console.log(e.clientX+",,"+e.clientY)
@@ -205,12 +205,12 @@ ctx3.drawImage(this.canvasElement, 0, 0);
 
   console.log(e);
   // get the current mouse position
- 
+
 
   this.startX=mx;
   this.startY=my;
     });
-    
+
     // this.canvasElement.addEventListener('mousemove', e => {
     //   console.log("Move")
     //   if(this.dragok){
@@ -218,7 +218,7 @@ ctx3.drawImage(this.canvasElement, 0, 0);
     //     my=(e.clientY-BB.y-50);
     //     var dx=mx-this.startX;
     //     var dy=my-this.startY;
-   
+
     //     var s=this.shapes[0];
     //     s.x+=dx;
     //     s.y+=dy;
@@ -226,7 +226,7 @@ ctx3.drawImage(this.canvasElement, 0, 0);
     //     this.startX=mx;
     //     this.startY=my;
     //   }
-   
+
     //   // if (isDrawing === true) {
     //   //   drawLine(context, x, y, e.offsetX, e.offsetY);
     //   //   x = e.offsetX;
@@ -243,7 +243,7 @@ ctx3.drawImage(this.canvasElement, 0, 0);
     //   //   y = e.offsetY;
     //   // }
     // });
-    
+
     // this.draw();
     // this.canvasElement3=this.canvas3.nativeElement;
     // setTimeout(()=>{
@@ -251,7 +251,7 @@ ctx3.drawImage(this.canvasElement, 0, 0);
     //     this._Context=this._Canvas.getContext("2d");
     //     this.image.src="assets/imgs/ctshow.jpg";
     //     this.image.onload = () =>{
-    
+
     //       this._Context.drawImage(this.image,0,0,500,500)
 
 
@@ -261,7 +261,7 @@ ctx3.drawImage(this.canvasElement, 0, 0);
 
     //   }
     // },500)
-   
+
     // var canvas = document.getElementById('canvas2');
     // // var context = canvas.getContext('2d');
     // var ctx = this.canvasElement2.getContext("2d");
@@ -284,7 +284,7 @@ ctx3.drawImage(this.canvasElement, 0, 0);
 
 
 
-    
+
     var dy = ey - cy;
     var dx = ex - cx;
     var theta = Math.atan2(dy, dx); // range (-PI, PI]
@@ -292,16 +292,16 @@ ctx3.drawImage(this.canvasElement, 0, 0);
     //if (theta < 0) theta = 360 + theta; // range [0, 360)
     return theta;
   }
-  
+
   startDrawing(ev){
     console.log("start drawing come...."+this.selectedFlag+",,,"+this.evenflag)
-    
+
     if($('input').is(":checked")==true){
       this.checked=false;
     }
     console.log(this.checked);
     console.log(this.selectedFlag);
-    
+
     if(!this.checked){
       if(this.selectedFlag=="1"){
         var canvasPosition = this.canvasElement.getBoundingClientRect();
@@ -314,7 +314,7 @@ ctx3.drawImage(this.canvasElement, 0, 0);
 
         console.log("increase eeeeventflag "+this.evenflag);
         //직선
-        //짝수면 마무리, 홀수면 시작점. 
+        //짝수면 마무리, 홀수면 시작점.
         var canvasPosition = this.canvasElement.getBoundingClientRect();
         let ctx=this.canvasElement.getContext('2d');
         if(this.evenflag%2==0){
@@ -322,7 +322,7 @@ ctx3.drawImage(this.canvasElement, 0, 0);
           console.log("even!")
           this.endX=ev.touches[0].pageX - canvasPosition.x;
           this.endY=ev.touches[0].pageY - canvasPosition.y;
-      
+
           this.endXarray.push(this.endX)
           this.endYarray.push(this.endY)
           console.log("end is ")
@@ -330,18 +330,18 @@ ctx3.drawImage(this.canvasElement, 0, 0);
           console.log(this.endXarray+"??"+this.endYarray);
           this.middleX=(Number(this.startX)+Number(this.endX)) /2
           this.middleY=(Number(this.startY)+Number(this.endY)) /2
-  
+
           this.middleXarray.push(this.middleX)
-  
+
           this.middleYarray.push(this.middleY)
-  
+
           if(this.middleXarray.length%2==0){
-  
+
             this.middleflag++;
-    
+
             //짝수
             console.log("ev")
-  
+
             console.log(this.startXarray);
             console.log(this.endXarray)
             console.log(this.startYarray);
@@ -352,14 +352,14 @@ ctx3.drawImage(this.canvasElement, 0, 0);
             var dy2=this.endYarray[(this.startXarray.length-1)]-this.endYarray[(this.startXarray.length-2)];
             var a1=Math.atan2(dy1,dx1);
             var a2=Math.atan2(dy2,dx2);
-  
+
             var a = Number((a2 - a1) * 180 / Math.PI + 360) % 360;
-  
-  
+
+
             // var angle = this.angle(this.middleXarray[0],this.middleYarray[0],this.middleXarray[1],this.middleYarray[1]);
-  
+
             // window.alert(angle);
-  
+
             ctx.save();
             ctx.beginPath();
             ctx.moveTo(this.endXarray[(this.startXarray.length-2)],this.endYarray[(this.startYarray.length-2)]);
@@ -368,51 +368,51 @@ ctx3.drawImage(this.canvasElement, 0, 0);
             ctx.fillStyle="red";
             ctx.globalAlpha=0.25;
             ctx.fill();
-  
+
             ctx.font='italic 20pt Calibri';
-        
+
             ctx.fillStyle="blue";
             ctx.fillText(a.toFixed(0),this.endXarray[(this.startXarray.length-2)]+25,this.endYarray[(this.startXarray.length-2)]);
-  
+
             ctx.restore();
-  
-  
+
+
           }
-          
-        
+
+
           console.log("middle issssss ")
           console.log(this.middleX+","+this.middleY)
-  
+
           ctx.lineTo(this.endX,this.endY);
           ctx.closePath();
           ctx.stroke();
         }else{
           //홀수
-       
+
           this.startX=ev.touches[0].pageX - canvasPosition.x;
           this.startY=ev.touches[0].pageY - canvasPosition.y;
           this.startXarray.push(this.startX);
           this.startYarray.push(this.startY);
-      
-          
+
+
           console.log("start is : ");
           console.log(this.startX+",,"+this.startY);
-      
+
           ctx.lineJoin='round';
           ctx.strokeStyle=this.selectedColor;
           ctx.lineWidth=5;
           ctx.beginPath();
           ctx.moveTo(this.startX,this.startY);
         }
-  
-  
+
+
       }else{
-  
-  
+
+
           this.evenflag++;
-        
+
           //직선
-          //짝수면 마무리, 홀수면 시작점. 
+          //짝수면 마무리, 홀수면 시작점.
           var canvasPosition = this.canvasElement.getBoundingClientRect();
           let ctx=this.canvasElement.getContext('2d');
           if(this.evenflag%2==0){
@@ -420,41 +420,41 @@ ctx3.drawImage(this.canvasElement, 0, 0);
             console.log("even!")
             this.endX=ev.touches[0].pageX - canvasPosition.x;
             this.endY=ev.touches[0].pageY - canvasPosition.y;
-        
+
             console.log("end is ")
             console.log(this.endX+",,"+this.endY);
-            
-          
+
+
             console.log("middle issssss ")
             console.log(this.middleX+","+this.middleY)
-    
+
             ctx.lineTo(this.endX,this.endY);
             ctx.closePath();
             ctx.stroke();
           }else{
             //홀수
-         
+
             this.startX=ev.touches[0].pageX - canvasPosition.x;
             this.startY=ev.touches[0].pageY - canvasPosition.y;
-        
-            
+
+
             console.log("start is : ");
             console.log(this.startX+",,"+this.startY);
-        
+
             ctx.lineJoin='round';
             ctx.strokeStyle=this.selectedColor;
             ctx.lineWidth=5;
             ctx.beginPath();
             ctx.moveTo(this.startX,this.startY);
           }
-    
-    
-  
+
+
+
       }
     }
 
-   
-    
+
+
 
   }
   uploadCanvasImage(){
@@ -519,11 +519,11 @@ ctx3.drawImage(this.canvasElement, 0, 0);
 
       let currentX=ev.touches[0].pageX - canvasPosition.x;
       let currentY=ev.touches[0].pageY - canvasPosition.y;
-  
+
       console.log(this.saveX+","+this.saveY);
-  
+
       let ctx=this.canvasElement.getContext('2d');
-  
+
       ctx.lineJoin='round';
       ctx.strokeStyle=this.selectedColor;
       ctx.lineWidth=5;
@@ -534,10 +534,10 @@ ctx3.drawImage(this.canvasElement, 0, 0);
       ctx.stroke();
       this.saveX=currentX;
       this.saveY=currentY;
-  
+
     }else{
 
     }
-    
+
   }
 }

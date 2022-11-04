@@ -15,18 +15,9 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { FCM } from '@ionic-native/fcm/ngx';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
-import { Cameraselect2Page } from '../pages/cameraselect2/cameraselect2';
-// import { HomePage } from '../pages/home/home';
-// import { CompletePage } from '../pages/complete/complete';
-import { GongjiPage } from '../pages/gongji/gongji';
-import { DetailgongjiPage } from '../pages/detailgongji/detailgongji';
 import { DrawingPage } from '../pages/drawing/drawing';
-import { ViewdatapagePage } from '../pages/viewdatapage/viewdatapage';
-import { ViewCustomerPage } from '../pages/viewcustomerpage/viewcustomerpage';
+import { HomePage } from '../pages/home/home';
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
-import { Complete2Page } from '../pages/complete2/complete2';
-import { Home2Page } from '../pages/home2/home2';
-import { Login2Page } from '../pages/login2/login2';
 
 var firebaseConfig = {
   apiKey: "AIzaSyDtpcTlphU26s7cct2G3TcXEr96TbPCDs8",
@@ -43,19 +34,8 @@ firebase.initializeApp(firebaseConfig);
 @NgModule({
   declarations: [
     MyApp,
-    // LoginPage,
-    Login2Page,
-    Cameraselect2Page,
-    // HomePage,
-    Home2Page,
-    // CompletePage,
-    Complete2Page,
-    GongjiPage,
-    DetailgongjiPage,
     DrawingPage,
-    ViewdatapagePage,
-    ViewCustomerPage
-
+    HomePage,
   ],
   imports: [
     BrowserModule,
@@ -67,19 +47,8 @@ firebase.initializeApp(firebaseConfig);
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    // LoginPage,
-    Login2Page,
-    Cameraselect2Page,
-    // HomePage,
-    Home2Page,
-    // CompletePage,
-    Complete2Page,
-    GongjiPage,
-    DetailgongjiPage,
     DrawingPage,
-    ViewdatapagePage,
-    ViewCustomerPage
-
+    HomePage,
   ],
   providers: [
     AngularFireAuth,

@@ -2,7 +2,7 @@
   "_from": "cordova-plugin-whitelist@1.3.3",
   "_id": "cordova-plugin-whitelist@1.3.3",
   "_inBundle": false,
-  "_integrity": "sha1-tehezbv+Wu3tQKG/TuI3LmfZb7Q=",
+  "_integrity": "sha512-cEPZvc/EqfW01HHdoyqkYCdrFASj/C8hJPoWjY2halTCjZMcjBECxUprtY/P5cfLmS2fb2608OvEw8oDTfv0HA==",
   "_location": "/cordova-plugin-whitelist",
   "_phantomChildren": {},
   "_requested": {
@@ -21,7 +21,7 @@
   "_resolved": "https://registry.npmjs.org/cordova-plugin-whitelist/-/cordova-plugin-whitelist-1.3.3.tgz",
   "_shasum": "b5e85ecdbbfe5aeded40a1bf4ee2372e67d96fb4",
   "_spec": "cordova-plugin-whitelist@1.3.3",
-  "_where": "/Users/jangjinhyeog/Downloads/project/samchully0225/samchully-app",
+  "_where": "/Users/jangjinhyeog/Downloads/project/forchildren",
   "author": {
     "name": "Apache Software Foundation"
   },
