@@ -13,7 +13,7 @@ export const printRedirects = (redirects) => {
   console.group(`[ion-core] REDIRECTS[${redirects.length}]`);
   for (const redirect of redirects) {
     if (redirect.to) {
-      console.debug('FROM: ', `$c ${generatePath(redirect.from)}`, 'font-weight: bold', ' TO: ', `$c ${generatePath(redirect.to)}`, 'font-weight: bold');
+      console.debug('FROM: ', `$c ${generatePath(redirect.from)}`, 'font-weight: bold', ' TO: ', `$c ${generatePath(redirect.to.segments)}`, 'font-weight: bold');
     }
   }
   console.groupEnd();

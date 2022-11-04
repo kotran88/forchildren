@@ -306,7 +306,7 @@ export class Segment {
   }
   render() {
     const mode = getIonMode(this);
-    return (h(Host, { onClick: this.onClick, class: createColorClasses(this.color, {
+    return (h(Host, { role: "tablist", onClick: this.onClick, class: createColorClasses(this.color, {
         [mode]: true,
         'in-toolbar': hostContext('ion-toolbar', this.el),
         'in-toolbar-color': hostContext('ion-toolbar[color]', this.el),
@@ -347,7 +347,7 @@ export class Segment {
         "text": "The color to use from your application's color palette.\nDefault options are: `\"primary\"`, `\"secondary\"`, `\"tertiary\"`, `\"success\"`, `\"warning\"`, `\"danger\"`, `\"light\"`, `\"medium\"`, and `\"dark\"`.\nFor more information on colors, see [theming](/docs/theming/basics)."
       },
       "attribute": "color",
-      "reflect": false
+      "reflect": true
     },
     "disabled": {
       "type": "boolean",

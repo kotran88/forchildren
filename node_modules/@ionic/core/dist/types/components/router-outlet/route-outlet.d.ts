@@ -6,7 +6,7 @@ export declare class RouterOutlet implements ComponentInterface, NavOutlet {
   private waitPromise?;
   private gesture?;
   private ani?;
-  private animationEnabled;
+  private gestureOrAnimationInProgress;
   el: HTMLElement;
   /**
    * The mode determines which platform styles to use.

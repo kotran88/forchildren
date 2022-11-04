@@ -14,7 +14,7 @@ export interface RouterEventDetail {
 }
 export interface RouteRedirect {
   from: string[];
-  to?: string[];
+  to?: ParsedRoute;
 }
 export interface RouteWrite {
   changed: boolean;
@@ -39,6 +39,10 @@ export interface RouteEntry {
 }
 export interface RouteNode extends RouteEntry {
   children: RouteTree;
+}
+export interface ParsedRoute {
+  segments: string[];
+  queryString?: string;
 }
 export declare type RouterDirection = 'forward' | 'back' | 'root';
 export declare type NavOutletElement = NavOutlet & HTMLStencilElement;

@@ -34,5 +34,6 @@ export declare class SegmentButton implements ComponentInterface, ButtonInterfac
   private get hasIcon();
   private updateStyle;
   private updateState;
+  private get tabIndex();
   render(): any;
 }

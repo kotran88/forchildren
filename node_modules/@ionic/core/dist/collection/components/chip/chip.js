@@ -57,7 +57,7 @@ export class Chip {
         "text": "The color to use from your application's color palette.\nDefault options are: `\"primary\"`, `\"secondary\"`, `\"tertiary\"`, `\"success\"`, `\"warning\"`, `\"danger\"`, `\"light\"`, `\"medium\"`, and `\"dark\"`.\nFor more information on colors, see [theming](/docs/theming/basics)."
       },
       "attribute": "color",
-      "reflect": false
+      "reflect": true
     },
     "outline": {
       "type": "boolean",

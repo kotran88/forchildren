@@ -61,11 +61,21 @@ export class SegmentButton {
   get hasIcon() {
     return !!this.el.querySelector('ion-icon');
   }
+  get tabIndex() {
+    if (this.disabled) {
+      return -1;
+    }
+    const hasTabIndex = this.el.hasAttribute('tabindex');
+    if (hasTabIndex) {
+      return this.el.getAttribute('tabindex');
+    }
+    return 0;
+  }
   render() {
-    const { checked, type, disabled, hasIcon, hasLabel, layout, segmentEl } = this;
+    const { checked, type, disabled, hasIcon, hasLabel, layout, segmentEl, tabIndex } = this;
     const mode = getIonMode(this);
     const hasSegmentColor = () => segmentEl !== null && segmentEl.color !== undefined;
-    return (h(Host, { "aria-disabled": disabled ? 'true' : null, class: {
+    return (h(Host, { role: "tab", "aria-selected": checked ? 'true' : 'false', "aria-disabled": disabled ? 'true' : null, tabIndex: tabIndex, class: {
         [mode]: true,
         'in-toolbar': hostContext('ion-toolbar', this.el),
         'in-toolbar-color': hostContext('ion-toolbar[color]', this.el),
@@ -82,7 +92,7 @@ export class SegmentButton {
         'ion-activatable-instant': true,
         'ion-focusable': true,
       } },
-      h("button", { type: type, "aria-pressed": checked ? 'true' : 'false', class: "button-native", part: "native", disabled: disabled },
+      h("button", { type: type, tabIndex: -1, class: "button-native", part: "native", disabled: disabled },
         h("span", { class: "button-inner" },
           h("slot", null)),
         mode === 'md' && h("ion-ripple-effect", null)),

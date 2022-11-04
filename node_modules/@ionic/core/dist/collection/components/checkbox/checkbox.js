@@ -128,7 +128,7 @@ export class Checkbox {
         "text": "The color to use from your application's color palette.\nDefault options are: `\"primary\"`, `\"secondary\"`, `\"tertiary\"`, `\"success\"`, `\"warning\"`, `\"danger\"`, `\"light\"`, `\"medium\"`, and `\"dark\"`.\nFor more information on colors, see [theming](/docs/theming/basics)."
       },
       "attribute": "color",
-      "reflect": false
+      "reflect": true
     },
     "name": {
       "type": "string",
@@ -233,7 +233,7 @@ export class Checkbox {
       },
       "complexType": {
         "original": "CheckboxChangeEventDetail",
-        "resolved": "CheckboxChangeEventDetail",
+        "resolved": "CheckboxChangeEventDetail<any>",
         "references": {
           "CheckboxChangeEventDetail": {
             "location": "import",

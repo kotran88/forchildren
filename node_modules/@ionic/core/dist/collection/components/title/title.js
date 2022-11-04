@@ -23,6 +23,7 @@ export class ToolbarTitle {
     return (h(Host, { class: createColorClasses(this.color, {
         [mode]: true,
         [`title-${size}`]: true,
+        'title-rtl': document.dir === 'rtl'
       }) },
       h("div", { class: "toolbar-title" },
         h("slot", null))));
@@ -58,7 +59,7 @@ export class ToolbarTitle {
         "text": "The color to use from your application's color palette.\nDefault options are: `\"primary\"`, `\"secondary\"`, `\"tertiary\"`, `\"success\"`, `\"warning\"`, `\"danger\"`, `\"light\"`, `\"medium\"`, and `\"dark\"`.\nFor more information on colors, see [theming](/docs/theming/basics)."
       },
       "attribute": "color",
-      "reflect": false
+      "reflect": true
     },
     "size": {
       "type": "string",
