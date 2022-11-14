@@ -1,14 +1,28 @@
-<ion-content>
-  <ion-slides paginationType="bullets" slidesPerView="1" pager="true">
-    <ion-slide>
-      <span>111</span>
-      <span>2222</span>
-    </ion-slide>
-    <ion-slide>
-      <h1>Slide 2</h1>
-    </ion-slide>
-    <ion-slide>
-      <h1>Slide 3</h1>
+<ion-content class="content">
+
+  <div class="title">
+    <img class="icon" src="assets/imgs/대체식품/01_Main/00_bg/Main_Graphic.png" alt="">
+    <img class="memo" src="assets/imgs/대체식품/01_Main/00_bg/그룹 2126.png" alt="">
+  </div>
+
+  <div class="slide_btn slide_prev" (click)="slidePrev()">
+    <!-- <ion-icon name="arrow-back"></ion-icon> -->
+    <img src="assets/imgs/대체식품/01_Main/00_bg/BNT_Menu_Arrow_L_NOR.png" alt="">
+  </div>
+  <div class="slide_btn slide_next" (click)="slideNext()">
+    <!-- <ion-icon name="arrow-forward"></ion-icon> -->
+    <img src="assets/imgs/대체식품/01_Main/00_bg/BNT_Menu_Arrow_R_NOR.png" alt="">
+  </div>
+  <ion-slides class="slides" paginationType="bullets"
+  pager=false  centeredSlides=false slidesPerView="4">
+    <ion-slide class="slide_item" *ngFor="let item of food_list; let i = index;">
+      <img *ngIf="item.active_flag == true" class="active"
+      src="{{item.enable_img}}" alt="" (click)="menu_click(i)">
+      <img *ngIf="item.active_flag == false" class="inactive"
+      src="{{item.disable_img}}" alt="" (click)="menu_click(i)">
+
+      <div class="detail_button"
+      *ngIf="item.active_flag == true" (click)="detail(i)"></div>
     </ion-slide>
   </ion-slides>
 </ion-content>
