@@ -12,6 +12,7 @@ import { HomePage } from '../pages/home/home';
 import { Login2Page } from '../pages/login2/login2';
 import { DrawingPage } from '../pages/drawing/drawing';
 import { ReceiptPage } from '../pages/receipt/receipt';
+import { DrawPage } from '../pages/draw/draw';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDnAhTYDrVx_1hqwChoD44C5SbCl97soGA",
@@ -32,6 +33,7 @@ initializeApp(firebaseConfig);
     Login2Page,
     DrawingPage,
     ReceiptPage,
+    DrawPage,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +47,7 @@ initializeApp(firebaseConfig);
     Login2Page,
     DrawingPage,
     ReceiptPage,
+    DrawPage,
   ],
   providers: [
     // StatusBar,

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { DrawPage } from '../draw/draw';
 import { HomePage } from '../home/home';
 
 /**
@@ -30,6 +31,11 @@ export class ReceiptPage {
   back_button()
   {
     this.navCtrl.pop();
+  }
+
+  /**  다음 페이지로 이동  */
+  next_button() : void {
+    this.navCtrl.push(DrawPage);
   }
 
   home_button()
