@@ -80,9 +80,24 @@ page-receipt {
     }
   }
 
-  .receipt_bar
+  .title_div
+  {
+    .title
+    {
+      left: 1314px;
+      bottom: 36px;
+    }
+    .under_bar
+    {
+      left: 1203px;
+      bottom: 0px;
+    }
+  }
+
+  .recipe_bar
   {
     right: 0;
     top: 0;
+    cursor: w-resize;
   }
 }

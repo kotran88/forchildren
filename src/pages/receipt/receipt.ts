@@ -17,14 +17,42 @@ export class ReceiptPage {
 
   root_image_path = "assets/imgs/대체식품/02_Recipe/"
   index:any;
+  recipe_bar:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.index = this.navParams.get("index") | 1;
+    this.index = this.navParams.get("index");
     if(this.index < 10) this.index = "0" + this.index;
+    console.log(this.index)
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReceiptPage');
+
+    this.recipe_bar = document.getElementById('recipe_bar');
+    this.recipe_bar.addEventListener('touchstart', this.onTouchDown);
+    this.recipe_bar.addEventListener('touchmove', this.onTouchMove);
+    this.recipe_bar.addEventListener('touchend', this.onTouchEnd);
+  }
+
+  onTouchDown(e)
+  {
+    console.log("down");
+    console.log(e);
+    console.log(e.targetTouches)
+    console.log(e.changedTouches)
+  }
+  onTouchMove(e)
+  {
+    console.log("move");
+    console.log(e);
+    console.log(e.targetTouches)
+    console.log(e.changedTouches)
+  }
+  onTouchEnd(e)
+  {
+    console.log(e);
+    console.log(e.targetTouches)
+    console.log(e.changedTouches)
   }
 
   back_button()
