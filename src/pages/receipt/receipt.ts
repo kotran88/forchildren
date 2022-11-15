@@ -20,11 +20,59 @@ export class ReceiptPage {
   index:any;
   recipe_bar:any;
 
+
+  // left_info 이미지 갯수
+  left_info_cnt = 1;
+  left_infos = [0, 1, 3, 3, 2, 4, 3, 1, 2, 2, 1];
+  left_infos_position = []
+  left_infos_url_list = [];
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // this.index = this.navParams.get("index");
-    this.index = 1;
-    if(this.index < 10) this.index = "0" + this.index;
-    console.log(this.index)
+    this.index = this.navParams.get("index");
+    if(!this.index) this.index = 2;
+
+    this.left_infos_url_list = [];
+    for(var i = 0; i < this.left_infos[this.index]; i++)
+    {
+      this.left_infos_url_list.push(this.root_image_path + this.fm_str(this.index)
+      + "/left_info" + this.fm_str(i + 1) + ".png");
+      this.left_infos_position.push((1600 * i) + 388);
+    }
+  }
+
+  fm_str(num)
+  {
+    var s = '';
+    if(num < 10)
+      s = '0'
+
+    return s + num;
+  }
+
+  chenage_left_info()
+  {
+    if(this.left_infos[this.index] == 1) return;
+    if(this.left_info_cnt < this.left_infos[this.index])
+    {
+      for(var i = 0; i < this.left_infos_position.length; i++)
+      {
+        this.left_infos_position[i] -= 1600;
+        document.getElementById('general_material'+(i+1)).style.transition = "0.5s";
+        document.getElementById('general_material'+(i+1)).style.top = this.left_infos_position[i] + "px";
+
+      }
+      this.left_info_cnt++;
+    }
+    else
+    {
+      for(var i = 0; i < this.left_infos_position.length; i++)
+      {
+        this.left_infos_position[i] += 1600 * (this.left_infos[this.index] - 1);
+        document.getElementById('general_material'+(i+1)).style.transition = "0.5s";
+        document.getElementById('general_material'+(i+1)).style.top = this.left_infos_position[i] + "px";
+      }
+      this.left_info_cnt = 1;
+    }
   }
 
   ionViewDidLoad() {
@@ -44,6 +92,8 @@ export class ReceiptPage {
       console.log(e.targetTouches[0].clientX, e.targetTouches[0].clientY)
     if(e.changedTouches.length > 0)
       console.log(e.changedTouches[0].clientX, e.changedTouches[0].clientY)
+
+    document.getElementById('recipe_bar').style.transition = "0s";
   }
   onTouchMove(e)
   {
@@ -60,7 +110,8 @@ export class ReceiptPage {
     // }
     // else
     // {
-      document.getElementById('recipe_bar').style.left = e.changedTouches[0].clientX + "px";
+    document.getElementById('recipe_bar').style.left = e.changedTouches[0].clientX + "px";
+    // document.getElementById('recipe_bar').style.transform = "translateX("+e.changedTouches[0].clientX+"px)";
   }
   onTouchEnd(e)
   {
@@ -72,13 +123,19 @@ export class ReceiptPage {
       console.log(e.changedTouches[0].clientX, e.changedTouches[0].clientY)
 
     var clientX = e.changedTouches[0].clientX
-    if(clientX < (2560 / 2)) // 화면을 넘어섰을때
+    console.log(clientX)
+
+    document.getElementById('recipe_bar').style.transition = "0.5s";
+
+    if(clientX < (2560 / 2)) // 화면을 절반 넘었을때
     {
       document.getElementById('recipe_bar').style.left = "-158px";
+      // document.getElementById('recipe_bar').style.transform = "translateX(-158px)";
     }
-    else  // 화면을 절반 넘었을때
+    else  // 화면을 넘어섰을때
     {
       document.getElementById('recipe_bar').style.left = (2560 - 158) + 'px';
+      // document.getElementById('recipe_bar').style.transform = "translateX(2402px)";
     }
   }
 

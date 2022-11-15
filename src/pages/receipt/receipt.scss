@@ -1,12 +1,16 @@
 page-receipt {
 
+  .scroll-content
+  {
+    overflow-y:  hidden;
+  }
+
   img{position: absolute;}
 
   .left_bar
   {
     width: 620px;
     height: 100%;
-
     .home
     {
       top: 60px;
@@ -20,8 +24,9 @@ page-receipt {
 
     .general_material
     {
-      top: 388px;
-      left: 100px;
+      // top: 388px;
+      left: 60px;
+      // transition: "all 0.5s ease 0s" !important;
     }
 
     .bottom_arrow
@@ -94,10 +99,31 @@ page-receipt {
     }
   }
 
+  .receipt_bar_div
+  {
+    position: absolute;
+    left: 2402px;
+    top: 0;
+    width: calc(2560px + 158px);
+    height: 1600px;
+
+    div
+    {
+      width: 2560px;
+      height: 1600px;
+      position: absolute;
+      left:158px;
+      top: 0px;
+      background-color: white;
+      z-index: 10;
+    }
+  }
+
   .recipe_bar
   {
-    right: 0;
+    left: 0;
     top: 0;
     cursor: w-resize;
+    z-index: 10;
   }
 }

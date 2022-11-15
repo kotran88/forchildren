@@ -4,9 +4,13 @@
     <img class="home" (click)="home_button()" src="{{root_image_path}}00_btn/BNT_Home_NOR.png" alt="">
     <img class="back" (click)="back_button()" src="{{root_image_path}}00_btn/BNT_back_NOR.png" alt="">
 
-    <img class="general_material" src="{{root_image_path}}{{index}}/left_info.png" alt="">
+    <div>
+      <img *ngFor="let item of left_infos_url_list; let i = index;"
+      [ngStyle]="{top: left_infos_position[i] + 'px'}"
+      id="general_material{{i + 1}}" class="general_material" src="{{item}}" alt="">
+    </div>
 
-    <img class="bottom_arrow" src="{{root_image_path}}00_btn/BNT_Menu_Arrow_L_NOR.png" alt="">
+    <img class="bottom_arrow" (click)="chenage_left_info()" src="{{root_image_path}}00_btn/BNT_Menu_Arrow_L_NOR.png" alt="">
   </div>
 
   <div class="body">
@@ -14,31 +18,34 @@
 
     <div class="sub_recipe_div">
       <img class="sub_recipe_bar" src="{{root_image_path}}00_btn/sub_recipe_bar.png" alt="">
-      <img class="sub_recipe" src="{{root_image_path}}{{index}}/sub_recipe.png" alt="">
+      <img class="sub_recipe" src="{{root_image_path}}{{fm_str(index)}}/sub_recipe.png" alt="">
     </div>
 
     <div class="recipes_div">
 
-      <img class="icon0" src="{{root_image_path}}{{index}}/{{index}}_icon_00.png" alt="">
+      <img class="icon0" src="{{root_image_path}}{{fm_str(index)}}/{{fm_str(index)}}_icon_00.png" alt="">
 
-      <img class="recipe1" src="{{root_image_path}}{{index}}/{{index}}_recipe_01.png" alt="">
-      <img class="icon1" src="{{root_image_path}}{{index}}/{{index}}_icon_01.png" alt="">
-      <img class="recipe2" src="{{root_image_path}}{{index}}/{{index}}_recipe_02.png" alt="">
-      <img class="icon2" src="{{root_image_path}}{{index}}/{{index}}_icon_02.png" alt="">
-      <img class="recipe3" src="{{root_image_path}}{{index}}/{{index}}_recipe_03.png" alt="">
-      <img class="icon3" src="{{root_image_path}}{{index}}/{{index}}_icon_03.png" alt="">
-      <img class="recipe4" src="{{root_image_path}}{{index}}/{{index}}_recipe_04.png" alt="">
-      <img class="icon4" src="{{root_image_path}}{{index}}/{{index}}_icon_04.png" alt="">
-      <img class="recipe5" src="{{root_image_path}}{{index}}/{{index}}_recipe_05.png" alt="">
-      <img class="icon5" src="{{root_image_path}}{{index}}/{{index}}_icon_05.png" alt="">
-      <img class="icon5-1" src="{{root_image_path}}{{index}}/{{index}}_icon_05-1.png" alt="">
+      <img class="recipe1" src="{{root_image_path}}{{fm_str(index)}}/{{fm_str(index)}}_recipe_01.png" alt="">
+      <img class="icon1" src="{{root_image_path}}{{fm_str(index)}}/{{fm_str(index)}}_icon_01.png" alt="">
+      <img class="recipe2" src="{{root_image_path}}{{fm_str(index)}}/{{fm_str(index)}}_recipe_02.png" alt="">
+      <img class="icon2" src="{{root_image_path}}{{fm_str(index)}}/{{fm_str(index)}}_icon_02.png" alt="">
+      <img class="recipe3" src="{{root_image_path}}{{fm_str(index)}}/{{fm_str(index)}}_recipe_03.png" alt="">
+      <img class="icon3" src="{{root_image_path}}{{fm_str(index)}}/{{fm_str(index)}}_icon_03.png" alt="">
+      <img class="recipe4" src="{{root_image_path}}{{fm_str(index)}}/{{fm_str(index)}}_recipe_04.png" alt="">
+      <img class="icon4" src="{{root_image_path}}{{fm_str(index)}}/{{fm_str(index)}}_icon_04.png" alt="">
+      <img class="recipe5" src="{{root_image_path}}{{fm_str(index)}}/{{fm_str(index)}}_recipe_05.png" alt="">
+      <img class="icon5" src="{{root_image_path}}{{fm_str(index)}}/{{fm_str(index)}}_icon_05.png" alt="">
+      <img class="icon5-1" src="{{root_image_path}}{{fm_str(index)}}/{{fm_str(index)}}_icon_05-1.png" alt="">
     </div>
 
     <div class="title_div">
-      <img class="title" src="{{root_image_path}}{{index}}/title.png" alt="">
+      <img class="title" src="{{root_image_path}}{{fm_str(index)}}/title.png" alt="">
       <img class="under_bar" src="{{root_image_path}}00_btn/under_bar.png" alt="">
     </div>
   </div>
 
-  <img id="recipe_bar" class="recipe_bar" src="{{root_image_path}}00_btn/Recipe Bar.png" alt="">
+  <div id="recipe_bar" class="receipt_bar_div">
+    <img class="recipe_bar" src="{{root_image_path}}00_btn/Recipe Bar.png" alt="">
+    <div></div>
+  </div>
 </ion-content>
