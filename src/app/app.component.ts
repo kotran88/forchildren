@@ -7,11 +7,12 @@ import { HomePage } from '../pages/home/home';
 import { Login2Page } from '../pages/login2/login2';
 import { ReceiptPage } from '../pages/receipt/receipt';
 import { DropdownPage } from '../pages/dropdown/dropdown';
+import { DrawPage } from '../pages/draw/draw';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
+  rootPage:any = ReceiptPage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {

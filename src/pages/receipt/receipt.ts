@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { DrawPage } from '../draw/draw';
 import { HomePage } from '../home/home';
 
 /**
@@ -20,7 +21,8 @@ export class ReceiptPage {
   recipe_bar:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.index = this.navParams.get("index");
+    // this.index = this.navParams.get("index");
+    this.index = 1;
     if(this.index < 10) this.index = "0" + this.index;
     console.log(this.index)
   }
@@ -38,26 +40,56 @@ export class ReceiptPage {
   {
     console.log("down");
     console.log(e);
-    console.log(e.targetTouches)
-    console.log(e.changedTouches)
+    if(e.targetTouches.length > 0)
+      console.log(e.targetTouches[0].clientX, e.targetTouches[0].clientY)
+    if(e.changedTouches.length > 0)
+      console.log(e.changedTouches[0].clientX, e.changedTouches[0].clientY)
   }
   onTouchMove(e)
   {
-    console.log("move");
-    console.log(e);
-    console.log(e.targetTouches)
-    console.log(e.changedTouches)
+    // console.log("move");
+    // console.log(e);
+    // if(e.targetTouches.length > 0)
+    //   console.log(e.targetTouches[0].clientX, e.targetTouches[0].clientY)
+    // if(e.changedTouches.length > 0)
+    //   console.log(e.changedTouches[0].clientX, e.changedTouches[0].clientY)
+
+    // if(e.changedTouches[0].clientX > (2560 - 158))// 화면을 넘어섰을때
+    // {
+    //   document.getElementById('recipe_bar').style.left = (2560 - 158) + 'px';
+    // }
+    // else
+    // {
+      document.getElementById('recipe_bar').style.left = e.changedTouches[0].clientX + "px";
   }
   onTouchEnd(e)
   {
+    console.log("end")
     console.log(e);
-    console.log(e.targetTouches)
-    console.log(e.changedTouches)
+    if(e.targetTouches.length > 0)
+      console.log(e.targetTouches[0].clientX, e.targetTouches[0].clientY)
+    if(e.changedTouches.length > 0)
+      console.log(e.changedTouches[0].clientX, e.changedTouches[0].clientY)
+
+    var clientX = e.changedTouches[0].clientX
+    if(clientX < (2560 / 2)) // 화면을 넘어섰을때
+    {
+      document.getElementById('recipe_bar').style.left = "-158px";
+    }
+    else  // 화면을 절반 넘었을때
+    {
+      document.getElementById('recipe_bar').style.left = (2560 - 158) + 'px';
+    }
   }
 
   back_button()
   {
     this.navCtrl.pop();
+  }
+
+  /**  다음 페이지로 이동  */
+  next_button() : void {
+    this.navCtrl.push(DrawPage);
   }
 
   home_button()
