@@ -15,6 +15,7 @@ import { ReceiptPage } from '../pages/receipt/receipt';
 import { DropdownPage } from '../pages/dropdown/dropdown';
 import { DrawPage } from '../pages/draw/draw';
 import { ReceiptsProvider } from '../providers/receipts/receipts';
+import { HttpClientModule } from '@angular/common/http';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDnAhTYDrVx_1hqwChoD44C5SbCl97soGA",
@@ -39,6 +40,7 @@ initializeApp(firebaseConfig);
     DrawPage,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     DragulaModule.forRoot(),
     IonicModule.forRoot(MyApp)

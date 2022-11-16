@@ -22,7 +22,7 @@ export class ReceiptPage {
   index:any;
   recipe_bar:any;
 
-  modal_page = HomePage;
+  modal_page = DrawPage;
 
 
   // left_info 이미지 갯수
@@ -51,6 +51,7 @@ export class ReceiptPage {
     }
 
     this.receipts_positions = recpv.get_receipts_positions(this.index);
+    console.log(this.receipts_positions);
   }
 
   fm_str(num)
@@ -148,7 +149,7 @@ export class ReceiptPage {
   {
     setTimeout(() => {
       console.log(this.navCtrl);
-      this.navCtrl.setRoot(this.modal_page);
+      this.navCtrl.push(this.modal_page);
     }, 500);
   }
 

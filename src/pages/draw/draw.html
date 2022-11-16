@@ -58,14 +58,14 @@
   </div>
 
   <img id="food-popup-holder" class="food-popup-holder" style="display: none;" [ngStyle]="{top: targetTopValue + 'px'}" src="assets/imgs/대체식품/03_Planning/01_menu btn/Food Popup_holder.png" alt="">
-  
+
   <img id="food-popup-bg" class="food-popup-bg" style="display: none;" src="assets/imgs/대체식품/03_Planning/01_menu btn/Food Popup_bg.png" alt="">
   <div class="food-popup-div">
     <div *ngFor ="let i of targetList; let j = index;" dragula="bag" [(dragulaModel)]="q1" >
       <img id="popup-1-{{j + 1}}" class="popup-1-{{j + 1}}" src="{{i}}" alt="">
     </div>
   </div>
-  
+
   <img id="food-popup-bar" class="food-popup-bar" style="display: none;" src="assets/imgs/대체식품/03_Planning/01_menu btn/Food Popup bar.png" alt="">
 
   <!-- x 종류 버튼에는 click 이벤트 필요.-->
@@ -80,7 +80,7 @@
   </div> -->
 
   <div class="white-board" dragula="bag" [(dragulaModel)]="q1">
-    
+
   </div>
 
 </ion-content>

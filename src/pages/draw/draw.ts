@@ -52,7 +52,7 @@ export class DrawPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public dragulaService: DragulaService, public toastController: ToastController) {
 
     for (let i = 1; i <= 10; i++) { this.q1.push({ value: 'Write new Post', color: 'primary' }); }
-    
+
     /* 현재 항목이 드래고 되고 있을 때 호출된다. */
     this.dragulaService.drag('bag').subscribe(({ name, el, source }) => {
       console.log(name);
@@ -86,7 +86,7 @@ export class DrawPage {
 
   /** 메뉴바를 클릭 하였을때 타는 함수. */
   changeMenuButton(num : number) : void {
-    
+
     for (let i : number = 1; i <= 9; i++) {
       document.getElementsByClassName("menu-" + i)[0].setAttribute("style", "background-color: #0E8D66;");
       document.getElementsByClassName("menu-" + i + "-" + 2)[0].setAttribute("src", "assets/imgs/대체식품/03_Planning/01_menu btn/btn_text0" + i + "_nor.png");
@@ -103,7 +103,7 @@ export class DrawPage {
     document.getElementById("food-popup-bg").style.display = "";
     document.getElementById("food-popup-bar").style.display = "";
     document.getElementById("bnt-food-popup-close").style.display = "";
-    
+
     // 각각의 메뉴바에 관련된 아이템들 체인지.
     this.targetList = this.list[String(num)];
   }
@@ -127,6 +127,7 @@ export class DrawPage {
   }
 
   home_button(): void {
-    this.navCtrl.setRoot(HomePage);
+    location.reload();
+    // this.navCtrl.setRoot(HomePage);
   }
 }
