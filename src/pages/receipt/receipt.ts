@@ -40,7 +40,7 @@ export class ReceiptPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController,
   public recpv: ReceiptsProvider) {
     this.index = this.navParams.get("index");
-    if(!this.index) this.index = 1;
+    if(!this.index) this.index = 10;
 
     this.left_infos_url_list = [];
     for(var i = 0; i < this.left_infos[this.index]; i++)
@@ -149,6 +149,9 @@ export class ReceiptPage {
   {
     setTimeout(() => {
       console.log(this.navCtrl);
+      setTimeout(() => {
+        document.getElementById('recipe_bar').style.left = (2560 - 158) + 'px';
+      }, 300);
       this.navCtrl.push(this.modal_page);
     }, 500);
   }
@@ -160,7 +163,9 @@ export class ReceiptPage {
 
   /**  다음 페이지로 이동  */
   next_button() : void {
-    this.navCtrl.push(DrawPage);
+    this.navCtrl.push(DrawPage).then(()=>{
+
+    })
   }
 
   home_button()

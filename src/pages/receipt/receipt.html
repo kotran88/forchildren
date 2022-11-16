@@ -3,7 +3,7 @@
     <img class="background" src="{{root_image_path}}00_btn/left bar.png" alt="">
     <img class="home" (click)="home_button()" src="{{root_image_path}}00_btn/BNT_Home_NOR.png" alt="">
     <img class="back" (click)="back_button()" src="{{root_image_path}}00_btn/BNT_back_NOR.png" alt="">
-    <img (click)="next_button()" src="{{root_image_path}}00_btn/BNT_back_NOR.png" alt="">
+    <!-- <img (click)="next_button()" src="{{root_image_path}}00_btn/BNT_back_NOR.png" alt=""> -->
 
     <div>
       <img *ngFor="let item of left_infos_url_list; let i = index;"
@@ -54,7 +54,8 @@
     </div>
 
     <div class="title_div">
-      <img class="title" src="{{root_image_path}}{{fm_str(index)}}/title.png" alt="">
+      <img [ngStyle]="{left: receipts_positions[3][0] + 'px', top: receipts_positions[3][1] + 'px'}"
+      src="{{root_image_path}}{{fm_str(index)}}/title.png" alt="">
       <img class="under_bar" src="{{root_image_path}}00_btn/under_bar.png" alt="">
     </div>
   </div>
