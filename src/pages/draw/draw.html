@@ -1,7 +1,86 @@
 <ion-content class="content">
   <div>
-    <img class="home" (click)="home_button()" src="{{root_image_path}}BNT_Home_W_SEL.png" alt="">
-    <img class="back" (click)="back_button()" src="{{root_image_path}}BNT_Back_W_NOR.png" alt="">
+    <img class="home" (click)="home_button()" src="assets/imgs/대체식품/03_Planning/00_basic btn/BNT_Home_W_SEL.png" alt="">
+    <img class="back" (click)="back_button()" src="assets/imgs/대체식품/03_Planning/00_basic btn/BNT_Back_W_NOR.png" alt="">
+  </div>
+
+  <div>
+    <img class="receipe-sel" src="assets/imgs/대체식품/03_Planning/00_basic btn/BNT_Recipe_SEL.png" alt="">
+    <img class="save-nor" src="assets/imgs/대체식품/03_Planning/00_basic btn/BNT_Save_NOR.png" alt="">
+  </div>
+
+  <!-- 왼쪽 중앙부터 시작하는 재료 리스트 -->
+  <div>
+    <div class="menu-1" (click)="changeMenuButton(1)">
+      <img class="menu-1-1" src="assets/imgs/대체식품/03_Planning/01_menu btn/menu_icon_01.png" alt="">
+      <img class="menu-1-2" src="assets/imgs/대체식품/03_Planning/01_menu btn/btn_text01_nor.png" alt="">
+    </div>
+
+    <div class="menu-2" (click)="changeMenuButton(2)">
+      <img class="menu-2-1" src="assets/imgs/대체식품/03_Planning/01_menu btn/menu_icon_02.png" alt="">
+      <img class="menu-2-2" src="assets/imgs/대체식품/03_Planning/01_menu btn/btn_text02_nor.png" alt="">
+    </div>
+
+    <div class="menu-3" (click)="changeMenuButton(3)">
+      <img class="menu-3-1" src="assets/imgs/대체식품/03_Planning/01_menu btn/menu_icon_03.png" alt="">
+      <img class="menu-3-2" src="assets/imgs/대체식품/03_Planning/01_menu btn/btn_text03_nor.png" alt="">
+    </div>
+
+    <div class="menu-4" (click)="changeMenuButton(4)">
+      <img class="menu-4-1" src="assets/imgs/대체식품/03_Planning/01_menu btn/menu_icon_04.png" alt="">
+      <img class="menu-4-2" src="assets/imgs/대체식품/03_Planning/01_menu btn/btn_text04_nor.png" alt="">
+    </div>
+
+    <div class="menu-5" (click)="changeMenuButton(5)">
+      <img class="menu-5-1" src="assets/imgs/대체식품/03_Planning/01_menu btn/menu_icon_05.png" alt="">
+      <img class="menu-5-2" src="assets/imgs/대체식품/03_Planning/01_menu btn/btn_text05_nor.png" alt="">
+    </div>
+
+    <div class="menu-6" (click)="changeMenuButton(6)">
+      <img class="menu-6-1" src="assets/imgs/대체식품/03_Planning/01_menu btn/menu_icon_06.png" alt="">
+      <img class="menu-6-2" src="assets/imgs/대체식품/03_Planning/01_menu btn/btn_text06_nor.png" alt="">
+    </div>
+
+    <div class="menu-7" (click)="changeMenuButton(7)">
+      <img class="menu-7-1" src="assets/imgs/대체식품/03_Planning/01_menu btn/menu_icon_07.png" alt="">
+      <img class="menu-7-2" src="assets/imgs/대체식품/03_Planning/01_menu btn/btn_text07_nor.png" alt="">
+    </div>
+
+    <div class="menu-8" (click)="changeMenuButton(8)">
+      <img class="menu-8-1" src="assets/imgs/대체식품/03_Planning/01_menu btn/menu_icon_08.png" alt="">
+      <img class="menu-8-2" src="assets/imgs/대체식품/03_Planning/01_menu btn/btn_text08_nor.png" alt="">
+    </div>
+
+    <div class="menu-9" (click)="changeMenuButton(9)">
+      <img class="menu-9-1" src="assets/imgs/대체식품/03_Planning/01_menu btn/menu_icon_09.png" alt="">
+      <img class="menu-9-2" src="assets/imgs/대체식품/03_Planning/01_menu btn/btn_text09_nor.png" alt="">
+    </div>
+  </div>
+
+  <img id="food-popup-holder" class="food-popup-holder" style="display: none;" [ngStyle]="{top: targetTopValue + 'px'}" src="assets/imgs/대체식품/03_Planning/01_menu btn/Food Popup_holder.png" alt="">
+  
+  <img id="food-popup-bg" class="food-popup-bg" style="display: none;" src="assets/imgs/대체식품/03_Planning/01_menu btn/Food Popup_bg.png" alt="">
+  <div class="food-popup-div">
+    <div *ngFor ="let i of targetList; let j = index;" dragula="bag" [(dragulaModel)]="q1" >
+      <img id="popup-1-{{j + 1}}" class="popup-1-{{j + 1}}" src="{{i}}" alt="">
+    </div>
+  </div>
+  
+  <img id="food-popup-bar" class="food-popup-bar" style="display: none;" src="assets/imgs/대체식품/03_Planning/01_menu btn/Food Popup bar.png" alt="">
+
+  <!-- x 종류 버튼에는 click 이벤트 필요.-->
+  <img (click)="closeButton()" id="bnt-food-popup-close" class="bnt-food-popup-close" style="display: none;" src="assets/imgs/대체식품/03_Planning/01_menu btn/BNT_Food Popup_Close.png" alt="">
+
+
+  <!-- 드래그 앤 드롭 -->
+  <!-- <div class="display: content;" *ngFor ="let i of list; let j = index;">
+    <div class="menu-{{j + 1}}" dragula="bag" [(dragulaModel)]="q1">
+      <img src="{{i}}" alt="">
+    </div>
+  </div> -->
+
+  <div class="white-board" dragula="bag" [(dragulaModel)]="q1">
+    
   </div>
 
 </ion-content>
