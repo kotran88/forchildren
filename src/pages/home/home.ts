@@ -40,7 +40,13 @@ export class HomePage {
 
   menu_click(idx)
   {
-    this.food_list[idx].active_flag = !this.food_list[idx].active_flag;
+    for(var i = 0; i < this.food_list.length; i++)
+    {
+      if(i == idx)
+        this.food_list[idx].active_flag = !this.food_list[idx].active_flag;
+      else
+        this.food_list[i].active_flag = false;
+    }
   }
 
   detail(idx)

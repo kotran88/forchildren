@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content id="content">
   <div class="left_bar">
     <img class="background" src="{{root_image_path}}00_btn/left bar.png" alt="">
     <img class="home" (click)="home_button()" src="{{root_image_path}}00_btn/BNT_Home_NOR.png" alt="">
@@ -23,6 +23,8 @@
 
     <div class="recipes_div">
 
+      <!-- <img *ngFor="let item of list;" src="" alt=""> -->
+
       <img class="icon0" src="{{root_image_path}}{{fm_str(index)}}/{{fm_str(index)}}_icon_00.png" alt="">
 
       <img class="recipe1" src="{{root_image_path}}{{fm_str(index)}}/{{fm_str(index)}}_recipe_01.png" alt="">
@@ -46,6 +48,6 @@
 
   <div id="recipe_bar" class="receipt_bar_div">
     <img class="recipe_bar" src="{{root_image_path}}00_btn/Recipe Bar.png" alt="">
-    <div></div>
+    <div id="modal_page"></div>
   </div>
 </ion-content>

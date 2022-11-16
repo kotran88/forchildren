@@ -14,6 +14,7 @@ import { DrawingPage } from '../pages/drawing/drawing';
 import { ReceiptPage } from '../pages/receipt/receipt';
 import { DropdownPage } from '../pages/dropdown/dropdown';
 import { DrawPage } from '../pages/draw/draw';
+import { ReceiptsProvider } from '../providers/receipts/receipts';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDnAhTYDrVx_1hqwChoD44C5SbCl97soGA",
@@ -55,7 +56,8 @@ initializeApp(firebaseConfig);
   providers: [
     // StatusBar,
     // SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ReceiptsProvider
   ]
 })
 export class AppModule {}

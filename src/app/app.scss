@@ -45,3 +45,14 @@
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
   filter: alpha(opacity=20);
 }
+
+.slide_page
+{
+  .modal-wrapper {
+    position: absolute;
+    width: 2560px;
+    height: 1600px;
+    left: 2560px;
+    top: 0;
+  }
+}
