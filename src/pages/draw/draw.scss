@@ -10,11 +10,6 @@ page-draw {
         opacity: 1;
     }
 
-    img {
-        position: absolute;
-    }
-
-
     .body {
         .recipe_cap {
             left: 1123px;
@@ -110,16 +105,464 @@ page-draw {
     }
 
     .home {
+        position: absolute;
+        /* Layout Properties */
         top: 60px;
         left: 70px;
         width: 130px;
         height: 130px;
+        /* UI Properties */
+        opacity: 1;
     }
 
     .back {
+        position: absolute;
+        /* Layout Properties */
         top: 60px;
         left: 220px;
         width: 130px;
         height: 130px;
+        /* UI Properties */
+        opacity: 1;
+    }
+
+    .receipe-sel {
+        position: absolute;
+        /* Layout Properties */
+        top: 40px;
+        left: 1686px;
+        width: 447px;
+        height: 110px;
+        /* UI Properties */
+        background: #E7EEF2 0% 0% no-repeat padding-box;
+        border-radius: 57px;
+        opacity: 1;
+    }
+
+    .save-nor {
+        position: absolute;
+        /* Layout Properties */
+        top: 40px;
+        left: 2173px;
+        width: 297px;
+        height: 110px;
+        /* UI Properties */
+        background: #3BC573 0% 0% no-repeat padding-box;
+        border-radius: 57px;
+        opacity: 1;
+    }
+
+    .menu-1 {
+        position: absolute;
+        top: 262px;
+        left: 0px;
+        width: 600px;
+        height: 140px;
+        // background: #FFFFFF 0% 0% no-repeat padding-box;
+        background: #0E8D66 0% 0% no-repeat padding-box;
+        opacity: 1;
+    }
+
+    .menu-1-1 {
+        position: absolute;
+        top: 10px;
+        left: 23px;
+        width: 107px;
+        height: 107px;
+        background: transparent url('img/쌍별_귀뚜라미.png') 0% 0% no-repeat padding-box;
+        opacity: 1;
+    }
+
+    .menu-1-2 {
+        position: absolute;
+        top: 49px;
+        left: 148px;
+        width: 305px;
+        height: 44px;
+        /* UI Properties */
+        font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) 38px/44px esamanru;
+        text-align: left;
+        font: normal normal medium 38px/44px esamanru;
+        letter-spacing: 0px;
+        color: #3C4B47;
+        opacity: 1;
+    }
+
+    .menu-2 {
+        position: absolute;
+        /* Layout Properties */
+        top: 402px;
+        left: 0px;
+        width: 600px;
+        height: 140px;
+        /* UI Properties */
+        background: #0E8D66 0% 0% no-repeat padding-box;
+        opacity: 1;
+    }
+
+    .menu-2-1 {
+        position: absolute;
+        top: 25px;
+        /* Layout Properties */
+        left: 27px;
+        width: 100px;
+        height: 100px;
+        /* UI Properties */
+        background: transparent url('img/수벌번데기 가루.png') 0% 0% no-repeat padding-box;
+        opacity: 1;
+    }
+
+    .menu-2-2 {
+        position: absolute;
+        top: 49px;
+        left: 148px;
+        width: 305px;
+        height: 44px;
+        /* UI Properties */
+        font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) 38px/44px esamanru;
+        text-align: left;
+        font: normal normal medium 38px/44px esamanru;
+        letter-spacing: 0px;
+        color: #FFFFFF;
+        opacity: 1;
+    }
+
+    .menu-3 {
+        position: absolute;
+        /* Layout Properties */
+        top: 542px;
+        left: 0px;
+        width: 600px;
+        height: 140px;
+        /* UI Properties */
+        opacity: 1;
+    }
+
+    .menu-3-1 {
+        position: absolute;
+        top: 39px;
+        left: 30px;
+        width: 94px;
+        height: 66px;
+        /* UI Properties */
+        background: transparent url('img/사각형 402.png') 0% 0% no-repeat padding-box;
+        opacity: 1;
+    }
+
+    .menu-3-2 {
+        position: absolute;
+        top: 48px;
+        left: 157px;
+        width: 175px;
+        height: 44px;
+        /* UI Properties */
+        font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) 38px/44px esamanru;
+        text-align: left;
+        font: normal normal medium 38px/44px esamanru;
+        letter-spacing: 0px;
+        color: #FFFFFF;
+        opacity: 1;
+    }
+
+    .menu-4 {
+        position: absolute;
+        /* Layout Properties */
+            top: 682px;
+            left: 0px;
+            width: 600px;
+            height: 140px;
+            /* UI Properties */
+            opacity: 1;
+    }
+
+    .menu-4-1 {
+        position: absolute;
+        top: 38.53px;
+        left: 38.15px;
+        width: 78px;
+        height: 53px;
+        /* UI Properties */
+        background: #A36F46 0% 0% no-repeat padding-box;
+        opacity: 1;
+    }
+
+    .menu-4-2 {
+        position: absolute;
+        top: 48px;
+        left: 161.94px;
+        width: 70px;
+        height: 44px;
+        /* UI Properties */
+        font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) 38px/44px esamanru;
+        text-align: left;
+        font: normal normal medium 38px/44px esamanru;
+        letter-spacing: 0px;
+        color: #FFFFFF;
+        opacity: 1;
+    }
+
+    .menu-5 {
+        position: absolute;
+        /* Layout Properties */
+        top: 822px;
+        left: 0px;
+        width: 600px;
+        height: 140px;
+        /* UI Properties */
+        opacity: 1;
+    }
+
+    .menu-5-1 {
+        position: absolute;
+        top: 34.91px;
+        left: 51px;
+        width: 68px;
+        height: 52px;
+        /* UI Properties */
+        background: transparent url('img/사각형 398.png') 0% 0% no-repeat padding-box;
+        opacity: 1;
+    }
+
+    .menu-5-2 {
+        position: absolute;
+        top: 48px;
+        left: 157.29px;
+        width: 176px;
+        height: 44px;
+        /* UI Properties */
+        font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) 38px/44px esamanru;
+        text-align: left;
+        font: normal normal medium 38px/44px esamanru;
+        letter-spacing: 0px;
+        color: #FFFFFF;
+        opacity: 1;
+    }
+
+    .menu-6 {
+        position: absolute;
+        /* Layout Properties */
+        top: 962px;
+        left: 0px;
+        width: 600px;
+        height: 140px;
+        /* UI Properties */
+        opacity: 1;
+    }
+
+    .menu-6-1 {
+        position: absolute;
+        top: 33.61px;
+        left: 26px;
+        width: 101px;
+        height: 66px;
+        /* UI Properties */
+        background: transparent url('img/사각형 399.png') 0% 0% no-repeat padding-box;
+        opacity: 1;
+    }
+
+    .menu-6-2 {
+        position: absolute;
+        top: 48px;
+        left: 161.94px;
+        width: 70px;
+        height: 44px;
+        /* UI Properties */
+        font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) 38px/44px esamanru;
+        text-align: left;
+        font: normal normal medium 38px/44px esamanru;
+        letter-spacing: 0px;
+        color: #FFFFFF;
+        opacity: 1;
+    }
+
+    .menu-7 {
+        position: absolute;
+        /* Layout Properties */
+        top: 1102px;
+        left: 0px;
+        width: 600px;
+        height: 140px;
+        /* UI Properties */
+        opacity: 1;
+
+    }
+
+    .menu-7-1 {
+        position: absolute;
+        top: 20px;
+        left: 29px;
+        width: 77px;
+        height: 70px;
+        /* UI Properties */
+        background: transparent url('img/사각형 400.png') 0% 0% no-repeat padding-box;
+        opacity: 1;
+
+    }
+
+    .menu-7-2 {
+        position: absolute;
+        top: 48px;
+        left: 160.75px;
+        width: 105px;
+        height: 44px;
+        /* UI Properties */
+        font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) 38px/44px esamanru;
+        text-align: left;
+        font: normal normal medium 38px/44px esamanru;
+        letter-spacing: 0px;
+        color: #FFFFFF;
+        opacity: 1;
+    }
+
+    .menu-8 {
+        position: absolute;
+        /* Layout Properties */
+        top: 1242px;
+        left: 0px;
+        width: 600px;
+        height: 140px;
+        /* UI Properties */
+        opacity: 1;
+    }
+
+    .menu-8-1 {
+        position: absolute;
+        top: 19.44px;
+        left: 50px;
+        width: 52px;
+        height: 96px;
+        transform: matrix(0.99, 0.16, -0.16, 0.99, 0, 0);
+        /* UI Properties */
+        background: transparent url('img/사각형 404.png') 0% 0% no-repeat padding-box;
+        opacity: 1;
+
+    }
+
+    .menu-8-2 {
+        position: absolute;
+        top: 48px;
+        left: 152.69px;
+        width: 140px;
+        height: 44px;
+        /* UI Properties */
+        font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) 38px/44px esamanru;
+        text-align: left;
+        font: normal normal medium 38px/44px esamanru;
+        letter-spacing: 0px;
+        color: #FFFFFF;
+        opacity: 1;
+    }
+
+    .menu-9 {
+        position: absolute;
+        /* Layout Properties */
+        top: 1382px;
+        left: 0px;
+        width: 600px;
+        height: 140px;
+        /* UI Properties */
+        opacity: 1;
+    }
+
+    .menu-9-1 {
+        position: absolute;
+        top: 27px;
+        left: 54px;
+        width: 45px;
+        height: 85px;
+        /* UI Properties */
+        background: transparent url('img/사각형 403.png') 0% 0% no-repeat padding-box;
+        opacity: 1;
+
+    }
+
+    .menu-9-2 {
+        position: absolute;
+        top: 48px;
+        left: 156.24px;
+        width: 184px;
+        height: 44px;
+        /* UI Properties */
+        font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-medium) 38px/44px esamanru;
+        text-align: left;
+        font: normal normal medium 38px/44px esamanru;
+        letter-spacing: 0px;
+        color: #FFFFFF;
+        opacity: 1;
+    }
+
+    .food-popup-holder {
+        position: absolute;
+        left: 600px;
+        width: 40px;
+        height: 140px;
+        opacity: 0.8;
+        z-index: 5;
+    }
+
+    .food-popup-bg {
+        /* Layout Properties */
+        position: absolute;
+        top: 173px;
+        left: 624px;
+        width: 325px;
+        height: 1397px;
+        /* UI Properties */
+        // background: #EDF2F5 0% 0% no-repeat padding-box;
+        // box-shadow: 10px 3px 20px #00000033;
+        opacity: 0.8;
+        z-index: 5;
+    }
+
+    .food-popup-div
+    {
+        position: absolute;
+        top: 223px;
+        left: 660px;
+        width: 325px;
+        height: 1300px;
+        /* UI Properties */
+        // background: #EDF2F5 0% 0% no-repeat padding-box;
+        // box-shadow: 10px 3px 20px #00000033;
+        opacity: 0.8;
+        z-index: 5;
+        overflow-y: scroll;
+    }
+
+    .food-popup-bar {
+        position: absolute;
+        /* Layout Properties */
+        top: 250px;
+        left: 925px;
+        width: 20px;
+        height: 168px;
+        /* UI Properties */
+        background: #0E8D66 0% 0% no-repeat padding-box;
+        border-radius: 50px;
+        opacity: 1;
+        z-index: 5;
+    }
+
+    .bnt-food-popup-close {
+        position: absolute;
+        top: 1516px;
+        left: 920px;
+        width: 30px;
+        height: 30px;
+        border: 3px solid var(--unnamed-color-000000);
+        // border: 3px solid #000000;
+        opacity: 1;
+        z-index: 5;
+    }
+
+    .white-board {
+        position: absolute;
+        top: 173px;
+        left: 600px;
+        width: 1910px;
+        height: 1397px;
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        border-radius: 50px;
+        opacity: 1;
     }
 }
