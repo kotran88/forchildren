@@ -54,34 +54,40 @@ export class DrawPage {
     for (let i = 1; i <= 10; i++) { this.q1.push({ value: 'Write new Post', color: 'primary' }); }
 
     /* 현재 항목이 드래고 되고 있을 때 호출된다. */
-    this.dragulaService.drag('bag').subscribe(({ name, el, source }) => {
-      console.log(name);
-      console.log(el);
-      console.log(source);
-      el.setAttribute('color', 'danger');
-    });
-
-    this.dragulaService.removeModel('bag')
-      .subscribe(({ item }) => {
-        console.log("removeModel");
-        console.log(item);
-        this.toastController.create({
-          message: 'Removed: ' + item.value,
-          duration: 2000
-        })
-        // .then(toast => toast.present());
+    try {
+      this.dragulaService.drag('bag').subscribe(({ name, el, source }) => {
+        console.log(name);
+        console.log(el);
+        console.log(source);
+        el.setAttribute('color', 'danger');
       });
-
-    this.dragulaService.dropModel('bag')
-      .subscribe(({ item }) => {
-        console.log("dropModel");
-        console.log(item);
-        item['color'] = 'success';
+  
+      this.dragulaService.removeModel('bag')
+        .subscribe(({ item }) => {
+          console.log("removeModel");
+          console.log(item);
+          this.toastController.create({
+            message: 'Removed: ' + item.value,
+            duration: 2000
+          })
+          // .then(toast => toast.present());
+        });
+  
+      this.dragulaService.dropModel('bag')
+        .subscribe(({ item }) => {
+          console.log("dropModel");
+          console.log(item);
+          item['color'] = 'success';
+        });
+  
+      this.dragulaService.createGroup('bag', {
+        removeOnSpill: true
       });
-
-    this.dragulaService.createGroup('bag', {
-      removeOnSpill: true
-    });
+    }
+    catch (e) {
+      console.log(e);
+    }
+    
   }
 
   /** 메뉴바를 클릭 하였을때 타는 함수. */
