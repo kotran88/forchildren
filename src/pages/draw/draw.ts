@@ -60,7 +60,7 @@ export class DrawPage {
       this.dragulaService.drag('bag').subscribe(({ name, el, source }) => {
         el.setAttribute('color', 'danger');
       });
-  
+
       this.dragulaService.removeModel('bag').subscribe(({ item }) => {
         this.toastController.create({
           message: 'Removed: ' + item.value,
@@ -68,11 +68,11 @@ export class DrawPage {
         })
         // .then(toast => toast.present());
       });
-  
+
       this.dragulaService.dropModel('bag').subscribe(({ item }) => {
         item['color'] = 'success';
       });
-  
+
       this.dragulaService.createGroup('bag', {
         removeOnSpill: true
       });
@@ -81,10 +81,12 @@ export class DrawPage {
       console.log(e);
     }
 
-    window.onload = function() {
-      this.initCanvas();
-    }
+    // window.onload = function() {
+    //   this.initCanvas();
+    // }
   }
+
+
 
   /** 메뉴바를 클릭 하였을때 타는 함수. */
   changeMenuButton(num : number) : void {
@@ -127,11 +129,13 @@ export class DrawPage {
   // CanvasRenderingContext2D
   context : any;
 
+  prev_x = 0;
+  prev_y = 0;
   initCanvas() : void {
     let canvas = document.createElement("canvas");
     canvas.className = "white-board-cooking";
     canvas.id = "white-board-cooking";
-    
+
     this.context = canvas.getContext("2d");
     this.context.lineWidth = 1;
 
@@ -139,11 +143,15 @@ export class DrawPage {
 
     canvas.addEventListener("touchmove", (event) => {
       var rect = canvas.getBoundingClientRect();
-      console.log(event)
+      // console.log(event)
       let x = event.touches[0].pageX - rect.left;
       let y = event.touches[0].pageY - rect.top;
-      console.log("rect.x == " + rect.x);
-      console.log("rect.y == " + rect.y);
+      // console.log("rect.x == " + rect.x);
+      // console.log("rect.y == " + rect.y);
+      // console.log("rect.left == " + rect.left);
+      // console.log("rect.top == " + rect.top);
+      console.log(event.touches[0].pageX);
+      console.log(event.touches[0].pageY);
       console.log("x == " + x);
       console.log("y == " + y);
       console.log(this.context);
@@ -152,7 +160,7 @@ export class DrawPage {
         this.context.moveTo(x, y);
       }
       else {
-        this.context.lineTo(x, y);
+        this.context.lineTo(100, 100);
         this.context.stroke();
       }
     });
