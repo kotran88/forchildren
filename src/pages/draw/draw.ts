@@ -49,36 +49,29 @@ export class DrawPage {
   /** 각각의 메뉴바에 관련된 아이템을 화면에 보여주는 어레이 */
   targetList : string[] = new Array();
 
+  painting : boolean = false;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public dragulaService: DragulaService, public toastController: ToastController) {
 
-    for (let i = 1; i <= 10; i++) { this.q1.push({ value: 'Write new Post', color: 'primary' }); }
+    for (let i = 1; i <= 58; i++) { this.q1.push({ value: 'Write new Post', color: 'primary' }); }
 
     /* 현재 항목이 드래고 되고 있을 때 호출된다. */
     try {
       this.dragulaService.drag('bag').subscribe(({ name, el, source }) => {
-        console.log(name);
-        console.log(el);
-        console.log(source);
         el.setAttribute('color', 'danger');
       });
   
-      this.dragulaService.removeModel('bag')
-        .subscribe(({ item }) => {
-          console.log("removeModel");
-          console.log(item);
-          this.toastController.create({
-            message: 'Removed: ' + item.value,
-            duration: 2000
-          })
-          // .then(toast => toast.present());
-        });
+      this.dragulaService.removeModel('bag').subscribe(({ item }) => {
+        this.toastController.create({
+          message: 'Removed: ' + item.value,
+          duration: 2000
+        })
+        // .then(toast => toast.present());
+      });
   
-      this.dragulaService.dropModel('bag')
-        .subscribe(({ item }) => {
-          console.log("dropModel");
-          console.log(item);
-          item['color'] = 'success';
-        });
+      this.dragulaService.dropModel('bag').subscribe(({ item }) => {
+        item['color'] = 'success';
+      });
   
       this.dragulaService.createGroup('bag', {
         removeOnSpill: true
@@ -87,7 +80,10 @@ export class DrawPage {
     catch (e) {
       console.log(e);
     }
-    
+
+    window.onload = function() {
+      this.initCanvas();
+    }
   }
 
   /** 메뉴바를 클릭 하였을때 타는 함수. */
@@ -128,6 +124,56 @@ export class DrawPage {
     this.targetList = new Array();
   }
 
+  // CanvasRenderingContext2D
+  context : any;
+
+  initCanvas() : void {
+    let canvas = document.createElement("canvas");
+    canvas.className = "white-board-cooking";
+    canvas.id = "white-board-cooking";
+    
+    this.context = canvas.getContext("2d");
+    this.context.lineWidth = 1;
+
+    document.getElementById("white-board").append(canvas);
+
+    canvas.addEventListener("touchmove", (event) => {
+      var rect = canvas.getBoundingClientRect();
+      console.log(event)
+      let x = event.touches[0].pageX - rect.left;
+      let y = event.touches[0].pageY - rect.top;
+      console.log("rect.x == " + rect.x);
+      console.log("rect.y == " + rect.y);
+      console.log("x == " + x);
+      console.log("y == " + y);
+      console.log(this.context);
+      if (!this.painting) {
+        this.context.beginPath();
+        this.context.moveTo(x, y);
+      }
+      else {
+        this.context.lineTo(x, y);
+        this.context.stroke();
+      }
+    });
+    canvas.addEventListener("touchstart", () => {
+      console.log("startPainting");
+      this.painting = true;
+    });
+    canvas.addEventListener("touchend", () => {
+      console.log("stopPainting");
+      this.painting = false;
+    });
+    // canvas.addEventListener("mouseleave", () => {
+    //   console.log("stopPainting");
+    //   this.painting = false;
+    // });
+  }
+
+  ionViewDidLoad() : void {
+    this.initCanvas();
+  }
+
   back_button(): void {
     this.navCtrl.pop();
   }
@@ -136,4 +182,6 @@ export class DrawPage {
     location.reload();
     // this.navCtrl.setRoot(HomePage);
   }
+
 }
+

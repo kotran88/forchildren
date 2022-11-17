@@ -511,7 +511,7 @@ page-draw {
         // background: #EDF2F5 0% 0% no-repeat padding-box;
         // box-shadow: 10px 3px 20px #00000033;
         opacity: 0.8;
-        z-index: 5;
+        z-index: 6;
     }
 
     .food-popup-div
@@ -525,7 +525,7 @@ page-draw {
         // background: #EDF2F5 0% 0% no-repeat padding-box;
         // box-shadow: 10px 3px 20px #00000033;
         opacity: 0.8;
-        z-index: 5;
+        z-index: 6;
         overflow-y: scroll;
     }
 
@@ -540,7 +540,7 @@ page-draw {
         background: #0E8D66 0% 0% no-repeat padding-box;
         border-radius: 50px;
         opacity: 1;
-        z-index: 5;
+        z-index: 6;
     }
 
     .bnt-food-popup-close {
@@ -552,7 +552,7 @@ page-draw {
         border: 3px solid var(--unnamed-color-000000);
         // border: 3px solid #000000;
         opacity: 1;
-        z-index: 5;
+        z-index: 6;
     }
 
     .white-board {
@@ -561,8 +561,74 @@ page-draw {
         left: 600px;
         width: 1910px;
         height: 1397px;
-        background: #FFFFFF 0% 0% no-repeat padding-box;
+        // background: #FFFFFF 0% 0% no-repeat padding-box;
         border-radius: 50px;
         opacity: 1;
+        background-image: url("../../assets/imgs/대체식품/03_Planning/00_basic btn/plan_temp.png");
+    }
+
+    .white-board-cook-name {
+        position: absolute;
+        background-color: red;
+        z-index: 5;
+    }
+
+    .white-board-ingredient {
+        position: absolute;
+        background-color: white;
+        z-index: 5;
+        top: 440px;
+        left: 1px;
+        width: 950px;
+        height: 505px;
+
+        img
+        {
+            max-width: calc(230px * 0.8);
+            max-height: calc(280px * 0.8);
+        }
+    }
+
+    .white-board-ready {
+        position: absolute;
+        background-color: white;
+        z-index: 5;
+        top: 1015px;
+        left: 1px;
+        width: 950px;
+        height: 381px;
+        border-bottom-left-radius: 50px;
+    }
+
+    .white-board-cooking {
+        position: absolute;
+        background-color: white;
+        z-index: 5;
+        top: 158px;
+        left: 958px;
+        width: 950px;
+        height: 1238px;
+        border-bottom-right-radius: 50px;
+    }
+
+    .bnt-keypad-nor {
+        position: fixed;
+        z-index: 5;
+        top: 1170px;
+        left: 2365px;
+    }
+
+    .bnt-pen-nor {
+        position: fixed;
+        z-index: 5;
+        top: 1300px;
+        left: 2365px;
+    }
+
+    .bnt-eraser-nor {
+        position: fixed;
+        z-index: 5;
+        top: 1430px;
+        left: 2365px;
     }
 }
