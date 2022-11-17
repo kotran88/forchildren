@@ -12,7 +12,7 @@ import { DrawPage } from '../pages/draw/draw';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = ReceiptPage;
+  rootPage:any = HomePage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {
