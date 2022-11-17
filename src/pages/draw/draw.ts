@@ -46,9 +46,13 @@ export class DrawPage {
     "9" : [ "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_01.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_02.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_03.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_04.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_05.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_06.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_07.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_08.png", "" ],
   };
 
+  // 요리명 사진
+  food_name_url : string = "";
+
   /** 각각의 메뉴바에 관련된 아이템을 화면에 보여주는 어레이 */
   targetList : string[] = new Array();
 
+  context : CanvasRenderingContext2D[] = Array();
   painting : boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dragulaService: DragulaService, public toastController: ToastController) {
@@ -81,12 +85,10 @@ export class DrawPage {
       console.log(e);
     }
 
-    // window.onload = function() {
-    //   this.initCanvas();
-    // }
+    window.onload = function() {
+      this.initCanvas();
+    }
   }
-
-
 
   /** 메뉴바를 클릭 하였을때 타는 함수. */
   changeMenuButton(num : number) : void {
@@ -126,60 +128,89 @@ export class DrawPage {
     this.targetList = new Array();
   }
 
-  // CanvasRenderingContext2D
-  context : any;
-
-  prev_x = 0;
-  prev_y = 0;
   initCanvas() : void {
-    let canvas = document.createElement("canvas");
-    canvas.className = "white-board-cooking";
-    canvas.id = "white-board-cooking";
+    this.initWhiteBoardReadyCanvas();
+    this.initWhiteBoardCookingCanvas();
+  }
 
-    this.context = canvas.getContext("2d");
-    this.context.lineWidth = 1;
+  initWhiteBoardReadyCanvas() : void {
+    let canvas = document.createElement("canvas");
+    canvas.className = "white-board-ready";
+    canvas.id = "white-board-ready";
+    canvas.width = 950;
+    canvas.height = 381;
+
+    this.context.push(canvas.getContext("2d"));
+    this.context[0].lineWidth = 1;
 
     document.getElementById("white-board").append(canvas);
 
     canvas.addEventListener("touchmove", (event) => {
-      var rect = canvas.getBoundingClientRect();
-      // console.log(event)
+      let rect = canvas.getBoundingClientRect();
       let x = event.touches[0].pageX - rect.left;
       let y = event.touches[0].pageY - rect.top;
-      // console.log("rect.x == " + rect.x);
-      // console.log("rect.y == " + rect.y);
-      // console.log("rect.left == " + rect.left);
-      // console.log("rect.top == " + rect.top);
-      console.log(event.touches[0].pageX);
-      console.log(event.touches[0].pageY);
-      console.log("x == " + x);
-      console.log("y == " + y);
-      console.log(this.context);
       if (!this.painting) {
-        this.context.beginPath();
-        this.context.moveTo(x, y);
+        this.context[0].beginPath();
+        this.context[0].moveTo(x, y);
       }
       else {
-        this.context.lineTo(100, 100);
-        this.context.stroke();
+        this.context[0].lineTo(x, y);
+        this.context[0].stroke();
       }
     });
-    canvas.addEventListener("touchstart", () => {
-      console.log("startPainting");
+    canvas.addEventListener("touchstart", (event) => {
       this.painting = true;
+      let rect = canvas.getBoundingClientRect();
+      let x = event.touches[0].pageX - rect.left;
+      let y = event.touches[0].pageY - rect.top;
+      this.context[0].moveTo(x, y);
     });
     canvas.addEventListener("touchend", () => {
-      console.log("stopPainting");
       this.painting = false;
     });
-    // canvas.addEventListener("mouseleave", () => {
-    //   console.log("stopPainting");
-    //   this.painting = false;
-    // });
+  }
+
+  initWhiteBoardCookingCanvas() : void {
+    let canvas = document.createElement("canvas");
+    canvas.className = "white-board-cooking";
+    canvas.id = "white-board-cooking";
+    canvas.width = 950;
+    canvas.height = 1238;
+
+    this.context.push(canvas.getContext("2d"));
+    this.context[1].lineWidth = 1;
+
+    document.getElementById("white-board").append(canvas);
+
+    canvas.addEventListener("touchmove", (event) => {
+      let rect = canvas.getBoundingClientRect();
+      let x = event.touches[0].pageX - rect.left;
+      let y = event.touches[0].pageY - rect.top;
+      if (!this.painting) {
+        this.context[1].beginPath();
+        this.context[1].moveTo(x, y);
+      }
+      else {
+        this.context[1].lineTo(x, y);
+        this.context[1].stroke();
+      }
+    });
+    canvas.addEventListener("touchstart", (event) => {
+      this.painting = true;
+      let rect = canvas.getBoundingClientRect();
+      let x = event.touches[0].pageX - rect.left;
+      let y = event.touches[0].pageY - rect.top;
+      this.context[1].moveTo(x, y);
+    });
+    canvas.addEventListener("touchend", () => {
+      this.painting = false;
+    });
   }
 
   ionViewDidLoad() : void {
     this.initCanvas();
+
+    this.food_name_url = this.navParams.get("food_name_url");
   }
 
   back_button(): void {
@@ -192,4 +223,3 @@ export class DrawPage {
   }
 
 }
-

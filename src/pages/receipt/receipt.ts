@@ -22,8 +22,6 @@ export class ReceiptPage {
   index:any;
   recipe_bar:any;
 
-  modal_page = DrawPage;
-
 
   // left_info 이미지 갯수
   left_info_cnt = 1;
@@ -152,7 +150,7 @@ export class ReceiptPage {
       setTimeout(() => {
         document.getElementById('recipe_bar').style.left = (2560 - 158) + 'px';
       }, 300);
-      this.navCtrl.push(this.modal_page);
+      this.navCtrl.push(DrawPage, {"food_name_url": this.root_image_path + this.fm_str(this.index) + "/title.png"});
     }, 500);
   }
 
