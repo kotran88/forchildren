@@ -121,7 +121,7 @@
 
   <!-- 지우개 -->
   <div id="pen-control-bar" class="pen-control-bar" style="display: none;">
-    <input type="range" id="volume" name="volume" min="0" max="11" orient="vertical">
+    <input [(ngModel)]="erase_size" type="range" id="volume" name="volume" min="100" max="200" step="10" orient="vertical">
   </div>
 
   <!-- 오른쪽 하단에 보이는 키보드, 연필, 지우개 -->

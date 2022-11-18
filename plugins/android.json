@@ -10,9 +10,6 @@
     "com-sarriaroman-photoviewer": {
       "PACKAGE_NAME": "io.ionic.onoff.forchildren"
     },
-    "cordova-plugin-androidx": {
-      "PACKAGE_NAME": "io.ionic.onoff.forchildren"
-    },
     "cordova-plugin-androidx-adapter": {
       "PACKAGE_NAME": "io.ionic.onoff.forchildren"
     },

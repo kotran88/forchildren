@@ -56,6 +56,8 @@ export class DrawPage {
 
   context : CanvasRenderingContext2D[] = Array();
   painting : boolean = false;
+  erase_flag : boolean = false;
+  erase_size : number = 150;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public dragulaService: DragulaService, public toastController: ToastController,
@@ -83,7 +85,7 @@ export class DrawPage {
 
         let span = document.createElement("span");
         span.className = targetClass;
-        
+
         el.addEventListener("touchstart", (event : Event): void => {
           pressTimer = setTimeout(() => {
             close.style.display = "";
@@ -183,11 +185,15 @@ export class DrawPage {
       let rect = canvas.getBoundingClientRect();
       let x = event.touches[0].pageX - rect.left;
       let y = event.touches[0].pageY - rect.top;
-      if (!this.painting) {
-        this.context[0].beginPath();
-        this.context[0].moveTo(x, y);
+
+      if(this.erase_flag)
+      {
+        this.context[0].clearRect(x - this.erase_size / 2,
+        y - this.erase_size / 2,
+        this.erase_size, this.erase_size);
       }
-      else {
+      else
+      {
         this.context[0].lineTo(x, y);
         this.context[0].stroke();
       }
@@ -197,6 +203,7 @@ export class DrawPage {
       let rect = canvas.getBoundingClientRect();
       let x = event.touches[0].pageX - rect.left;
       let y = event.touches[0].pageY - rect.top;
+      this.context[0].beginPath();
       this.context[0].moveTo(x, y);
     });
     canvas.addEventListener("touchend", () => {
@@ -221,20 +228,26 @@ export class DrawPage {
       let rect = canvas.getBoundingClientRect();
       let x = event.touches[0].pageX - rect.left;
       let y = event.touches[0].pageY - rect.top;
-      if (!this.painting) {
-        this.context[1].beginPath();
-        this.context[1].moveTo(x, y);
+      if(this.erase_flag)
+      {
+        this.context[1].clearRect(x - this.erase_size / 2,
+        y - this.erase_size / 2,
+        this.erase_size, this.erase_size);
       }
-      else {
+      else
+      {
+          // this.context[1].beginPath();
         this.context[1].lineTo(x, y);
         this.context[1].stroke();
       }
+
     });
     canvas.addEventListener("touchstart", (event) => {
       this.painting = true;
       let rect = canvas.getBoundingClientRect();
       let x = event.touches[0].pageX - rect.left;
       let y = event.touches[0].pageY - rect.top;
+      this.context[1].beginPath();
       this.context[1].moveTo(x, y);
     });
     canvas.addEventListener("touchend", () => {
@@ -258,21 +271,44 @@ export class DrawPage {
   open_keypad()
   {
     console.log("keypad");
+    var doc = document.getElementById("white-board-cooking-textarea").style.zIndex;
     document.getElementById("white-board-cooking-textarea").style.zIndex =
-    (document.getElementById("white-board-cooking-textarea").style.zIndex == '6' ? '0' : '6');
+    doc == '6' ? '0' : '6';
+
+    if(doc == '6')
+    {
+      document.getElementById("pen-control-bar").style.opacity = '0.5';
+    }
+    else
+    {
+      document.getElementById("pen-control-bar").style.opacity = '1';
+      document.getElementById("white-board-cooking-textarea").focus();
+    }
     // this.keyboard.hasFocusedTextInput();
+    document.getElementById("pen-control-bar").style.display = 'none';
+    document.getElementById("pen-col-bg").style.display = 'none';
   }
   open_pen()
   {
     console.log("pen");
+    document.getElementById("pen-control-bar").style.display = 'none';
+
+    var doc = document.getElementById("pen-col-bg").style.display;
     document.getElementById("pen-col-bg").style.display =
-    (document.getElementById("pen-col-bg").style.display == 'none' ? "flex" : "none");
+    doc == 'none' ? "flex" : "none";
+
+    this.erase_flag = false;
   }
   open_eraser()
   {
     console.log("eraser");
+    document.getElementById("pen-col-bg").style.display = 'none';
+
+    var doc = document.getElementById("pen-control-bar").style.display
     document.getElementById("pen-control-bar").style.display =
-    (document.getElementById("pen-control-bar").style.display == 'none' ? "flex" : "none");
+    doc == 'none' ? "flex" : "none";
+
+    this.erase_flag = true;
   }
 
   change_color(col)
