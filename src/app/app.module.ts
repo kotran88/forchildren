@@ -16,7 +16,6 @@ import { DropdownPage } from '../pages/dropdown/dropdown';
 import { DrawPage } from '../pages/draw/draw';
 import { ReceiptsProvider } from '../providers/receipts/receipts';
 import { HttpClientModule } from '@angular/common/http';
-import { LongPressModule } from 'ionic-long-press';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDnAhTYDrVx_1hqwChoD44C5SbCl97soGA",
@@ -45,7 +44,6 @@ initializeApp(firebaseConfig);
     BrowserModule,
     DragulaModule.forRoot(),
     IonicModule.forRoot(MyApp),
-    LongPressModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
