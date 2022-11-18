@@ -8,6 +8,7 @@ import { Login2Page } from '../pages/login2/login2';
 import { ReceiptPage } from '../pages/receipt/receipt';
 import { DropdownPage } from '../pages/dropdown/dropdown';
 import { DrawPage } from '../pages/draw/draw';
+import { DrawingPage } from '../pages/drawing/drawing';
 @Component({
   templateUrl: 'app.html'
 })

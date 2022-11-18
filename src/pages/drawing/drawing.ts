@@ -296,9 +296,9 @@ ctx3.drawImage(this.canvasElement, 0, 0);
   startDrawing(ev){
     console.log("start drawing come...."+this.selectedFlag+",,,"+this.evenflag)
 
-    if($('input').is(":checked")==true){
-      this.checked=false;
-    }
+    // if($('input').is(":checked")==true){
+    //   this.checked=false;
+    // }
     console.log(this.checked);
     console.log(this.selectedFlag);
 

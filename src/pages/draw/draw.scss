@@ -569,8 +569,16 @@ page-draw {
 
     .white-board-cook-name {
         position: absolute;
-        background-color: red;
+        background-color: transparent;
         z-index: 5;
+        width: 50%;
+        height: 10%;
+        top: 14%;
+        text-align: center;
+        img
+        {
+          max-width: 90%;
+        }
     }
 
     .white-board-ingredient {

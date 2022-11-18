@@ -49,13 +49,8 @@ export class DrawPage {
     "9" : [ "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_01.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_02.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_03.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_04.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_05.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_06.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_07.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_08.png", "" ],
   };
 
-  // qwe() : void {
-  //   let obj = new Object();
-  //   for (let i in this.list) {
-  //     obj[i] = { i : this.list[i], "key" : i };
-  //   }
-  //   console.log(obj);
-  // }
+  // 요리명 사진
+  food_name_url : string = "";
 
   /** 각각의 메뉴바에 관련된 아이템을 화면에 보여주는 어레이 */
   targetList : object = {};
@@ -72,7 +67,7 @@ export class DrawPage {
       this.dragulaService.drag('bag').subscribe(({ name, el, source }) => {
         el.setAttribute('color', 'danger');
       });
-  
+
       this.dragulaService.removeModel('bag').subscribe(({ item }) => {
         this.toastController.create({
           message: 'Removed: ' + item.value,
@@ -127,7 +122,7 @@ export class DrawPage {
         span.appendChild(close);
         ingredient.appendChild(span);
       });
-  
+
       this.dragulaService.createGroup('bag', {
         removeOnSpill: true
       });
@@ -190,7 +185,7 @@ export class DrawPage {
     canvas.id = "white-board-ready";
     canvas.width = 950;
     canvas.height = 381;
-    
+
     this.context.push(canvas.getContext("2d"));
     this.context[0].lineWidth = 1;
 
@@ -228,7 +223,7 @@ export class DrawPage {
     canvas.id = "white-board-cooking";
     canvas.width = 950;
     canvas.height = 1238;
-    
+
     this.context.push(canvas.getContext("2d"));
     this.context[1].lineWidth = 1;
 
@@ -263,6 +258,7 @@ export class DrawPage {
     /** canvas 초기화 작업. */
     this.initWhiteBoardReadyCanvas();
     this.initWhiteBoardCookingCanvas();
+    this.food_name_url = this.navParams.get("food_name_url");
   }
 
   back_button(): void {
@@ -275,4 +271,3 @@ export class DrawPage {
   }
   
 }
-
