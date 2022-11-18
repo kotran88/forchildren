@@ -1,6 +1,5 @@
-import { Component, Injectable } from '@angular/core';
-import { HammerGestureConfig } from '@angular/platform-browser'
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { IonicPage, Keyboard, NavController, NavParams, ToastController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { DragulaService } from 'ng2-dragula';
 import { disconnect } from 'process';
@@ -58,8 +57,9 @@ export class DrawPage {
   context : CanvasRenderingContext2D[] = Array();
   painting : boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dragulaService: DragulaService, public toastController: ToastController) {
-    
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+  public dragulaService: DragulaService, public toastController: ToastController,
+  public keyboard:Keyboard) {
     for (let i = 1; i <= 58; i++) { this.q1.push({ value: 'Write new Post', color: 'primary' }); }
 
     /* 현재 항목이 드래고 되고 있을 때 호출된다. */
@@ -166,7 +166,7 @@ export class DrawPage {
       console.log(e);
     }
   }
-  
+
 
 
 
@@ -294,6 +294,94 @@ export class DrawPage {
     this.initWhiteBoardReadyCanvas();
     this.initWhiteBoardCookingCanvas();
     this.food_name_url = this.navParams.get("food_name_url");
+    addEventListener('keyboardWillShow', () => {
+
+    });
+    addEventListener('onKeyboardWillHide',()=>{
+
+    });
+  }
+
+  open_keypad()
+  {
+    console.log("keypad");
+    document.getElementById("white-board-cooking-textarea").style.zIndex =
+    (document.getElementById("white-board-cooking-textarea").style.zIndex == '6' ? '0' : '6');
+    // this.keyboard.hasFocusedTextInput();
+  }
+  open_pen()
+  {
+    console.log("pen");
+    document.getElementById("pen-col-bg").style.display =
+    (document.getElementById("pen-col-bg").style.display == 'none' ? "flex" : "none");
+  }
+  open_eraser()
+  {
+    console.log("eraser");
+    document.getElementById("pen-control-bar").style.display =
+    (document.getElementById("pen-control-bar").style.display == 'none' ? "flex" : "none");
+  }
+
+  change_color(col)
+  {
+    document.getElementById("col-black").classList.remove('col-active');
+    document.getElementById("col-blue").classList.remove('col-active');
+    document.getElementById("col-green").classList.remove('col-active');
+    document.getElementById("col-red").classList.remove('col-active');
+    document.getElementById("col-yellow").classList.remove('col-active');
+    switch(col)
+    {
+      case 'black':
+        this.context[0].strokeStyle = '#000000';
+        this.context[1].strokeStyle = '#000000';
+        document.getElementById("col-black").classList.add('col-active');
+        break;
+      case 'blue':
+        this.context[0].strokeStyle = '#0000ff';
+        this.context[1].strokeStyle = '#0000ff';
+        document.getElementById("col-blue").classList.add('col-active');
+        break;
+      case 'green':
+        this.context[0].strokeStyle = '#00ff00';
+        this.context[1].strokeStyle = '#00ff00';
+        document.getElementById("col-green").classList.add('col-active');
+        break;
+      case 'red':
+        this.context[0].strokeStyle = '#ff0000';
+        this.context[1].strokeStyle = '#ff0000';
+        document.getElementById("col-red").classList.add('col-active');
+        break;
+      case 'yellow':
+        this.context[0].strokeStyle = '#ffff00';
+        this.context[1].strokeStyle = '#ffff00';
+        document.getElementById("col-yellow").classList.add('col-active');
+        break;
+    }
+  }
+
+  change_pen(pen)
+  {
+    document.getElementById("pen-01").classList.remove('pen-active');
+    document.getElementById("pen-02").classList.remove('pen-active');
+    document.getElementById("pen-03").classList.remove('pen-active');
+    switch(pen)
+    {
+      case '01':
+        this.context[0].lineWidth = 1;
+        this.context[1].lineWidth = 1;
+        document.getElementById("pen-01").classList.add('pen-active');
+        break;
+      case '02':
+        this.context[0].lineWidth = 5;
+        this.context[1].lineWidth = 5;
+        document.getElementById("pen-02").classList.add('pen-active');
+        break;
+      case '03':
+        this.context[0].lineWidth = 10;
+        this.context[1].lineWidth = 10;
+        document.getElementById("pen-03").classList.add('pen-active');
+        break;
+    }
   }
 
   back_button(): void {
@@ -304,5 +392,5 @@ export class DrawPage {
     location.reload();
     // this.navCtrl.setRoot(HomePage);
   }
-  
+
 }

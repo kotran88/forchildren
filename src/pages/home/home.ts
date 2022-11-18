@@ -64,4 +64,16 @@ export class HomePage {
     console.log(this.slides)
     this.slides.slideNext();
   }
+  pressed()
+  {
+    console.log("pressed");
+  }
+  active()
+  {
+    console.log("active");
+  }
+  released()
+  {
+    console.log("released");
+  }
 }
