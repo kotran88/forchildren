@@ -10,7 +10,7 @@
     "com-sarriaroman-photoviewer": {
       "PACKAGE_NAME": "io.ionic.onoff.forchildren"
     },
-    "cordova-plugin-androidx": {
+    "com.darktalker.cordova.screenshot": {
       "PACKAGE_NAME": "io.ionic.onoff.forchildren"
     },
     "cordova-plugin-androidx-adapter": {

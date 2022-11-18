@@ -16,6 +16,7 @@ import { DropdownPage } from '../pages/dropdown/dropdown';
 import { DrawPage } from '../pages/draw/draw';
 import { ReceiptsProvider } from '../providers/receipts/receipts';
 import { HttpClientModule } from '@angular/common/http';
+import { Screenshot } from '@ionic-native/screenshot/ngx';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDnAhTYDrVx_1hqwChoD44C5SbCl97soGA",
@@ -59,7 +60,8 @@ initializeApp(firebaseConfig);
     // StatusBar,
     // SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ReceiptsProvider
+    ReceiptsProvider,
+    Screenshot,
   ]
 })
 export class AppModule {}

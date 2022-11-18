@@ -3,6 +3,7 @@ import { IonicPage, Keyboard, NavController, NavParams, ToastController } from '
 import { HomePage } from '../home/home';
 import { DragulaService } from 'ng2-dragula';
 import { disconnect } from 'process';
+import { Screenshot } from '@ionic-native/screenshot/ngx';
 
 /**
  * Generated class for the DrawPage page.
@@ -59,7 +60,7 @@ export class DrawPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public dragulaService: DragulaService, public toastController: ToastController,
-  public keyboard:Keyboard) {
+  public keyboard:Keyboard, private screenshot: Screenshot) {
     for (let i = 1; i <= 58; i++) { this.q1.push({ value: 'Write new Post', color: 'primary' }); }
 
     /* 현재 항목이 드래고 되고 있을 때 호출된다. */
@@ -344,6 +345,12 @@ export class DrawPage {
   home_button(): void {
     location.reload();
     // this.navCtrl.setRoot(HomePage);
+  }
+
+  TaskScreenShot() : void {
+    this.screenshot.save().then(() => {
+      alert("saved in phone.");
+    });
   }
 
 }
