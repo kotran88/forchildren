@@ -76,53 +76,6 @@ export class DrawPage {
         // .then(toast => toast.present());
       });
 
-      // this.dragulaService.dropModel('bag').subscribe(({ item, el }) => {
-      //   console.log(el);
-      //   let ingredient = document.getElementById("white-board-ingredient");
-      //   let children = ingredient.children;
-      //   let pressTimer = null;
-      //   let targetIndex = children.length - 1;
-      //   let targetClass = children[targetIndex].classList[0];
-
-      //   let span = document.createElement("span");
-      //   span.className = targetClass;
-        
-      //   children[targetIndex].addEventListener("touchstart", (event : Event): void => {
-      //     pressTimer = setTimeout(() => {
-      //       console.log("qqqqqqqqqqqqqqqq");
-      //       close.style.display = "";
-      //     }, 400);
-      //   });
-      //   children[targetIndex].addEventListener("touchend", (event : Event) : void => {
-      //     clearTimeout(pressTimer);
-      //   });
-
-      //   let close = document.createElement("img");
-      //   close.src = "assets/imgs/대체식품/03_Planning/01_menu btn/BNT_Food Popup_Close.png";
-      //   close.style.position = "absolute";
-      //   close.style.zIndex = "5";
-      //   close.style.display = "none";
-      //   close.width = 30;
-      //   close.height = 30;
-      //   close.className = targetClass;
-      //   close.addEventListener("touchstart", (event) => {
-      //     console.log(targetClass);
-      //     let tClass = document.getElementsByClassName(targetClass);
-      //     for (let i = 0; i <  tClass.length; i++) {
-      //       tClass[i].remove();
-      //     }
-      //   });
-      //   console.log("children[targetIndex].children.length ==== " + children[targetIndex].children.length);
-      //   if (children[targetIndex].children.length == 0) {
-      //     span.append(children[targetIndex]);
-      //   }
-      //   else {
-      //     span.appendChild(children[targetIndex]);
-      //   }
-      //   span.appendChild(close);
-      //   ingredient.appendChild(span);
-      // });
-
       this.dragulaService.dropModel('bag').subscribe(({ item, el }) => {
         let ingredient = document.getElementById("white-board-ingredient");
         let pressTimer = null;
