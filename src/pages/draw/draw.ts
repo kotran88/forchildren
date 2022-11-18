@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
+import { HammerGestureConfig } from '@angular/platform-browser'
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { DragulaService } from 'ng2-dragula';
+import { disconnect } from 'process';
+
 /**
  * Generated class for the DrawPage page.
  *
@@ -46,14 +49,22 @@ export class DrawPage {
     "9" : [ "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_01.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_02.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_03.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_04.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_05.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_06.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_07.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_08.png", "" ],
   };
 
+  // qwe() : void {
+  //   let obj = new Object();
+  //   for (let i in this.list) {
+  //     obj[i] = { i : this.list[i], "key" : i };
+  //   }
+  //   console.log(obj);
+  // }
+
   /** 각각의 메뉴바에 관련된 아이템을 화면에 보여주는 어레이 */
-  targetList : string[] = new Array();
+  targetList : object = {};
 
   context : CanvasRenderingContext2D[] = Array();
   painting : boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dragulaService: DragulaService, public toastController: ToastController) {
-
+    
     for (let i = 1; i <= 58; i++) { this.q1.push({ value: 'Write new Post', color: 'primary' }); }
 
     /* 현재 항목이 드래고 되고 있을 때 호출된다. */
@@ -69,9 +80,52 @@ export class DrawPage {
         })
         // .then(toast => toast.present());
       });
-  
+
       this.dragulaService.dropModel('bag').subscribe(({ item }) => {
-        item['color'] = 'success';
+
+        let ingredient = document.getElementById("white-board-ingredient");
+        let children = ingredient.children;
+        let pressTimer = null;
+        let targetIndex = children.length - 1;
+        let targetClass = children[targetIndex].classList[0];
+
+        let span = document.createElement("span");
+        span.className = targetClass;
+        
+        children[targetIndex].addEventListener("touchstart", (event : Event): void => {
+          pressTimer = setTimeout(() => {
+            console.log("qqqqqqqqqqqqqqqq");
+            close.style.display = "";
+          }, 400);
+        });
+        children[targetIndex].addEventListener("touchend", (event : Event) : void => {
+          clearTimeout(pressTimer);
+        });
+
+        let close = document.createElement("img");
+        close.src = "assets/imgs/대체식품/03_Planning/01_menu btn/BNT_Food Popup_Close.png";
+        close.style.position = "absolute";
+        close.style.zIndex = "5";
+        close.style.display = "none";
+        close.width = 30;
+        close.height = 30;
+        close.className = targetClass;
+        close.addEventListener("touchstart", (event) => {
+          console.log(targetClass);
+          let tClass = document.getElementsByClassName(targetClass);
+          for (let i = 0; i <  tClass.length; i++) {
+            tClass[i].remove();
+          }
+        });
+        console.log("children[targetIndex].children.length ==== " + children[targetIndex].children.length);
+        if (children[targetIndex].children.length == 0) {
+          span.append(children[targetIndex]);
+        }
+        else {
+          span.appendChild(children[targetIndex]);
+        }
+        span.appendChild(close);
+        ingredient.appendChild(span);
       });
   
       this.dragulaService.createGroup('bag', {
@@ -81,11 +135,10 @@ export class DrawPage {
     catch (e) {
       console.log(e);
     }
-
-    window.onload = function() {
-      this.initCanvas();
-    }
   }
+  
+
+
 
   /** 메뉴바를 클릭 하였을때 타는 함수. */
   changeMenuButton(num : number) : void {
@@ -105,31 +158,32 @@ export class DrawPage {
     document.getElementById("food-popup-holder").style.display = "";
     document.getElementById("food-popup-bg").style.display = "";
     document.getElementById("food-popup-bar").style.display = "";
+    document.getElementById("food-popup-div").style.display = "";
     document.getElementById("bnt-food-popup-close").style.display = "";
 
     // 각각의 메뉴바에 관련된 아이템들 체인지.
-    this.targetList = this.list[String(num)];
+    this.targetList = {
+      "key" : String(num),
+      "value" : this.list[String(num)],
+    };
   }
 
   /** 메뉴 아이콘 닫기 함수. */
   closeButton() : void {
-    for (let i : number = 1; i <= 9; i++) {
-      document.getElementsByClassName("menu-" + i)[0].setAttribute("style", "background-color: #0E8D66;");
-      document.getElementsByClassName("menu-" + i + "-" + 2)[0].setAttribute("src", "assets/imgs/대체식품/03_Planning/01_menu btn/btn_text0" + i + "_nor.png");
-    }
+    // for (let i : number = 1; i <= 9; i++) {
+    //   document.getElementsByClassName("menu-" + i)[0].setAttribute("style", "background-color: #0E8D66;");
+    //   document.getElementsByClassName("menu-" + i + "-" + 2)[0].setAttribute("src", "assets/imgs/대체식품/03_Planning/01_menu btn/btn_text0" + i + "_nor.png");
+    // }
     document.getElementById("food-popup-holder").style.display = "none";
     document.getElementById("food-popup-bg").style.display = "none";
     document.getElementById("food-popup-bar").style.display = "none";
+    document.getElementById("food-popup-div").style.display = "none";
     document.getElementById("bnt-food-popup-close").style.display = "none";
 
-    this.targetList = new Array();
+    this.targetList = new Object();
   }
 
-  initCanvas() : void {
-    this.initWhiteBoardReadyCanvas();
-    this.initWhiteBoardCookingCanvas();
-  }
-
+  /** 준비하기 영역 canvas 초기화 */
   initWhiteBoardReadyCanvas() : void {
     let canvas = document.createElement("canvas");
     canvas.className = "white-board-ready";
@@ -167,6 +221,7 @@ export class DrawPage {
     });
   }
 
+  /** 요리 만들기 영역 canvas 초기화 */
   initWhiteBoardCookingCanvas() : void {
     let canvas = document.createElement("canvas");
     canvas.className = "white-board-cooking";
@@ -205,7 +260,9 @@ export class DrawPage {
   }
 
   ionViewDidLoad() : void {
-    this.initCanvas();
+    /** canvas 초기화 작업. */
+    this.initWhiteBoardReadyCanvas();
+    this.initWhiteBoardCookingCanvas();
   }
 
   back_button(): void {
@@ -216,6 +273,6 @@ export class DrawPage {
     location.reload();
     // this.navCtrl.setRoot(HomePage);
   }
-
+  
 }
 
