@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, Keyboard, NavController, NavParams, ToastController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { DragulaService } from 'ng2-dragula';
 /**
@@ -55,7 +55,9 @@ export class DrawPage {
   context : CanvasRenderingContext2D[] = Array();
   painting : boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dragulaService: DragulaService, public toastController: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+  public dragulaService: DragulaService, public toastController: ToastController,
+  public keyboard:Keyboard) {
 
     for (let i = 1; i <= 58; i++) { this.q1.push({ value: 'Write new Post', color: 'primary' }); }
 
@@ -75,6 +77,7 @@ export class DrawPage {
 
       this.dragulaService.dropModel('bag').subscribe(({ item }) => {
         item['color'] = 'success';
+        console.log(item);
       });
 
       this.dragulaService.createGroup('bag', {
@@ -186,14 +189,14 @@ export class DrawPage {
       let rect = canvas.getBoundingClientRect();
       let x = event.touches[0].pageX - rect.left;
       let y = event.touches[0].pageY - rect.top;
-      if (!this.painting) {
-        this.context[1].beginPath();
-        this.context[1].moveTo(x, y);
-      }
-      else {
+      // if (!this.painting) {
+      //   this.context[1].beginPath();
+      //   this.context[1].moveTo(x, y);
+      // }
+      // else {
         this.context[1].lineTo(x, y);
         this.context[1].stroke();
-      }
+      // }
     });
     canvas.addEventListener("touchstart", (event) => {
       this.painting = true;
@@ -211,6 +214,94 @@ export class DrawPage {
     this.initCanvas();
 
     this.food_name_url = this.navParams.get("food_name_url");
+    addEventListener('keyboardWillShow', () => {
+
+    });
+    addEventListener('onKeyboardWillHide',()=>{
+
+    });
+  }
+
+  open_keypad()
+  {
+    console.log("keypad");
+    document.getElementById("white-board-cooking-textarea").style.zIndex =
+    (document.getElementById("white-board-cooking-textarea").style.zIndex == '6' ? '0' : '6');
+    // this.keyboard.hasFocusedTextInput();
+  }
+  open_pen()
+  {
+    console.log("pen");
+    document.getElementById("pen-col-bg").style.display =
+    (document.getElementById("pen-col-bg").style.display == 'none' ? "flex" : "none");
+  }
+  open_eraser()
+  {
+    console.log("eraser");
+    document.getElementById("pen-control-bar").style.display =
+    (document.getElementById("pen-control-bar").style.display == 'none' ? "flex" : "none");
+  }
+
+  change_color(col)
+  {
+    document.getElementById("col-black").classList.remove('col-active');
+    document.getElementById("col-blue").classList.remove('col-active');
+    document.getElementById("col-green").classList.remove('col-active');
+    document.getElementById("col-red").classList.remove('col-active');
+    document.getElementById("col-yellow").classList.remove('col-active');
+    switch(col)
+    {
+      case 'black':
+        this.context[0].strokeStyle = '#000000';
+        this.context[1].strokeStyle = '#000000';
+        document.getElementById("col-black").classList.add('col-active');
+        break;
+      case 'blue':
+        this.context[0].strokeStyle = '#0000ff';
+        this.context[1].strokeStyle = '#0000ff';
+        document.getElementById("col-blue").classList.add('col-active');
+        break;
+      case 'green':
+        this.context[0].strokeStyle = '#00ff00';
+        this.context[1].strokeStyle = '#00ff00';
+        document.getElementById("col-green").classList.add('col-active');
+        break;
+      case 'red':
+        this.context[0].strokeStyle = '#ff0000';
+        this.context[1].strokeStyle = '#ff0000';
+        document.getElementById("col-red").classList.add('col-active');
+        break;
+      case 'yellow':
+        this.context[0].strokeStyle = '#ffff00';
+        this.context[1].strokeStyle = '#ffff00';
+        document.getElementById("col-yellow").classList.add('col-active');
+        break;
+    }
+  }
+
+  change_pen(pen)
+  {
+    document.getElementById("pen-01").classList.remove('pen-active');
+    document.getElementById("pen-02").classList.remove('pen-active');
+    document.getElementById("pen-03").classList.remove('pen-active');
+    switch(pen)
+    {
+      case '01':
+        this.context[0].lineWidth = 1;
+        this.context[1].lineWidth = 1;
+        document.getElementById("pen-01").classList.add('pen-active');
+        break;
+      case '02':
+        this.context[0].lineWidth = 5;
+        this.context[1].lineWidth = 5;
+        document.getElementById("pen-02").classList.add('pen-active');
+        break;
+      case '03':
+        this.context[0].lineWidth = 10;
+        this.context[1].lineWidth = 10;
+        document.getElementById("pen-03").classList.add('pen-active');
+        break;
+    }
   }
 
   back_button(): void {
