@@ -233,14 +233,14 @@ export class DrawPage {
       let rect = canvas.getBoundingClientRect();
       let x = event.touches[0].pageX - rect.left;
       let y = event.touches[0].pageY - rect.top;
-      // if (!this.painting) {
-      //   this.context[1].beginPath();
-      //   this.context[1].moveTo(x, y);
-      // }
-      // else {
+      if (!this.painting) {
+        this.context[1].beginPath();
+        this.context[1].moveTo(x, y);
+      }
+      else {
         this.context[1].lineTo(x, y);
         this.context[1].stroke();
-      // }
+      }
     });
     canvas.addEventListener("touchstart", (event) => {
       this.painting = true;
