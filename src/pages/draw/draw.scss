@@ -740,4 +740,81 @@ page-draw {
         top: 70px;
       }
     }
+
+  .recipe-save-modal
+  {
+    position: absolute;
+    top: 462px;
+    left: 962px;
+    width: 1150px;
+    height: 631px;
+    /* UI Properties */
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 30px 50px #0000004D;
+    border: 1px solid #707070;
+    border-radius: 20px;
+    opacity: 1;
+    z-index: 10;
+    text-align: center;
+
+    span
+    {
+      display: block;
+      margin-top: 90px;
+      font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) 52px/65px var(--unnamed-font-family-nanumsquare_ac);
+      color: var(--unnamed-color-000000);
+      text-align: center;
+      font: normal normal bold 52px/65px NanumSquare_ac;
+      letter-spacing: -0.52px;
+    }
+
+    input
+    {
+      margin-top: 80px;
+      width: 910px;
+      height: 123px;
+      /* UI Properties */
+      background: #EAF3F9 0% 0% no-repeat padding-box;
+      border-radius: 10px 10px 0px 0px;
+      opacity: 0.4;
+      font-size: 40px;
+      border: none;
+      border-bottom: solid 1px black;
+    }
+
+    .modal-cancel
+    {
+      margin: 83px 40px 0 0;
+      width: 435px;
+      height: 128px;
+      /* UI Properties */
+      background: #FFFFFF 0% 0% no-repeat padding-box;
+      border: 3px solid #0E8D66;
+      border-radius: 20px;
+      opacity: 1;
+
+      /* UI Properties */
+      font: var(--unnamed-font-style-normal) normal 800 42px/57px var(--unnamed-font-family-nanumsquare_ac);
+      font: normal normal 800 42px/57px NanumSquare_ac;
+      letter-spacing: -0.42px;
+      color: #0E8D66;
+    }
+
+    .modal-save
+    {
+      margin: 83px 0 0 0;
+      width: 435px;
+      height: 128px;
+      /* UI Properties */
+      background: #0E8D66 0% 0% no-repeat padding-box;
+      border: 1px solid #707070;
+      border-radius: 20px;
+      opacity: 1;
+
+      font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) 42px/57px var(--unnamed-font-family-nanumsquare_ac);
+      font: normal normal bold 42px/57px NanumSquare_ac;
+      letter-spacing: -0.42px;
+      color: #FFFFFF;
+    }
+  }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, Keyboard, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, Keyboard, ModalController, NavController, NavParams, ToastController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { DragulaService } from 'ng2-dragula';
 import { disconnect } from 'process';
@@ -63,7 +63,8 @@ export class DrawPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public dragulaService: DragulaService, public toastController: ToastController,
-  public keyboard:Keyboard, private screenshot: Screenshot, public util: UtilProvider,) {
+  public keyboard:Keyboard, private screenshot: Screenshot, public util: UtilProvider,
+  public modal:ModalController) {
     for (let i = 1; i <= 58; i++) { this.q1.push({ value: 'Write new Post', color: 'primary' }); }
 
     /* 현재 항목이 드래고 되고 있을 때 호출된다. */
@@ -382,6 +383,18 @@ export class DrawPage {
   home_button(): void {
     // location.reload();
     this.navCtrl.setRoot(HomePage);
+  }
+
+  save_modal_open()
+  {
+    var modal = document.getElementById("recipe-save-modal");
+    modal.style.display = "";
+  }
+
+  save_modal_close()
+  {
+    var modal = document.getElementById("recipe-save-modal");
+    modal.style.display = "none";
   }
 
   async TaskScreenShot() : Promise<void> {

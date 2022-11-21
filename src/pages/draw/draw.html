@@ -118,7 +118,7 @@
 
   <!-- 지우개 -->
   <div id="pen-control-bar" class="pen-control-bar" style="display: none;">
-    <input [(ngModel)]="erase_size" type="range" id="volume" name="volume" min="100" max="200" step="10" orient="vertical">
+    <input [(ngModel)]="erase_size" type="range" id="volume" name="volume" min="10" max="300" step="10" orient="vertical">
   </div>
 
   <!-- 오른쪽 하단에 보이는 키보드, 연필, 지우개 -->
@@ -126,4 +126,12 @@
   <img id="bnt-pen-nor" (click)="open_pen()" class="bnt-pen-nor" src="assets/imgs/대체식품/03_Planning/00_basic btn/BNT_Pen_NOR.png" alt="">
   <img id="bnt-eraser-nor" (click)="open_eraser()" class="bnt-eraser-nor" src="assets/imgs/대체식품/03_Planning/00_basic btn/BNT_Eraser_NOR.png" alt="">
 
+
+  <div id="recipe-save-modal" class="recipe-save-modal" style="display: none;">
+    <span>레시피 이름을 입력하세요</span>
+    <input/>
+
+    <button class="modal-cancel">취소하기</button>
+    <button class="modal-save">저장하기</button>
+  </div>
 </ion-content>
