@@ -388,9 +388,10 @@ export class DrawPage {
 
     try
     {
-      await this.screenshot.save();
+      let response = await this.screenshot.save();
       var uri = await this.screenshot.URI();
-      this.util.uploadImage("image","001",uri,()=>{})
+      let fileName = response.filePath.split("/")[5];
+      this.util.uploadImage("image", fileName, uri, () => {});
     }
     catch(err)
     {
