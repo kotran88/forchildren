@@ -17,6 +17,8 @@ import { DrawPage } from '../pages/draw/draw';
 import { ReceiptsProvider } from '../providers/receipts/receipts';
 import { HttpClientModule } from '@angular/common/http';
 import { Screenshot } from '@ionic-native/screenshot/ngx';
+import { UtilProvider } from '../providers/util/util';
+// import {Crop} from '@ionic-native/crop/ngx';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDnAhTYDrVx_1hqwChoD44C5SbCl97soGA",
@@ -62,6 +64,8 @@ initializeApp(firebaseConfig);
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ReceiptsProvider,
     Screenshot,
+    UtilProvider,
+    // Crop,
   ]
 })
 export class AppModule {}

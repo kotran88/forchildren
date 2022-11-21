@@ -4,6 +4,7 @@ import { HomePage } from '../home/home';
 import { DragulaService } from 'ng2-dragula';
 import { disconnect } from 'process';
 import { Screenshot } from '@ionic-native/screenshot/ngx';
+import { UtilProvider } from '../../providers/util/util';
 
 /**
  * Generated class for the DrawPage page.
@@ -62,7 +63,7 @@ export class DrawPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public dragulaService: DragulaService, public toastController: ToastController,
-  public keyboard:Keyboard, private screenshot: Screenshot) {
+  public keyboard:Keyboard, private screenshot: Screenshot, public util: UtilProvider,) {
     for (let i = 1; i <= 58; i++) { this.q1.push({ value: 'Write new Post', color: 'primary' }); }
 
     /* 현재 항목이 드래고 되고 있을 때 호출된다. */
@@ -379,14 +380,21 @@ export class DrawPage {
   }
 
   home_button(): void {
-    location.reload();
-    // this.navCtrl.setRoot(HomePage);
+    // location.reload();
+    this.navCtrl.setRoot(HomePage);
   }
 
-  TaskScreenShot() : void {
-    this.screenshot.save().then(() => {
-      alert("saved in phone.");
-    });
-  }
+  async TaskScreenShot() : Promise<void> {
 
+    try
+    {
+      await this.screenshot.save();
+      var uri = await this.screenshot.URI();
+      this.util.uploadImage("image","001",uri,()=>{})
+    }
+    catch(err)
+    {
+      console.log(err);
+    }
+  }
 }
