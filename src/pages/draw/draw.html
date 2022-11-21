@@ -98,6 +98,29 @@
     <!-- 요리 만들기 -->
 
   </div>
+
+  <!-- 연필 -->
+  <div id="pen-col-bg" class="pen-col-bg" style="display: none;">
+    <div class="cols">
+      <img class="col col-active" id="col-black" (click)="change_color('black')" src="assets/imgs/대체식품/03_Planning/00_basic btn/col_black.png" alt="">
+      <img class="col" id="col-blue" (click)="change_color('blue')" src="assets/imgs/대체식품/03_Planning/00_basic btn/col_blue.png" alt="">
+      <img class="col" id="col-green" (click)="change_color('green')" src="assets/imgs/대체식품/03_Planning/00_basic btn/col_green.png" alt="">
+      <img class="col" id="col-red" (click)="change_color('red')" src="assets/imgs/대체식품/03_Planning/00_basic btn/col_red.png" alt="">
+      <img class="col" id="col-yellow" (click)="change_color('yellow')" src="assets/imgs/대체식품/03_Planning/00_basic btn/col_yellow.png" alt="">
+    </div>
+
+    <div class="pens">
+      <img class="pen pen-active" id="pen-01" (click)="change_pen('01')" src="assets/imgs/대체식품/03_Planning/00_basic btn/pen_01.png" alt="">
+      <img class="pen" id="pen-02" (click)="change_pen('02')" src="assets/imgs/대체식품/03_Planning/00_basic btn/pen_02.png" alt="">
+      <img class="pen" id="pen-03" (click)="change_pen('03')" src="assets/imgs/대체식품/03_Planning/00_basic btn/pen_03.png" alt="">
+    </div>
+  </div>
+
+  <!-- 지우개 -->
+  <div id="pen-control-bar" class="pen-control-bar" style="display: none;">
+    <input [(ngModel)]="erase_size" type="range" id="volume" name="volume" min="100" max="200" step="10" orient="vertical">
+  </div>
+
   <!-- 오른쪽 하단에 보이는 키보드, 연필, 지우개 -->
   <img id="bnt-keypad-nor" class="bnt-keypad-nor" src="assets/imgs/대체식품/03_Planning/00_basic btn/BNT_Keypad_NOR.png" alt="">
   <img id="bnt-pen-nor" class="bnt-pen-nor" src="assets/imgs/대체식품/03_Planning/00_basic btn/BNT_Pen_NOR.png" alt="">
