@@ -75,7 +75,7 @@ export class DrawPage {
   ionViewDidLeave() : void {
     this.dropSub.unsubscribe();
   }
-  
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public dragulaService: DragulaService, public toastController: ToastController,
   public keyboard:Keyboard, private screenshot: Screenshot, public util: UtilProvider,
@@ -95,7 +95,7 @@ export class DrawPage {
         })
         // .then(toast => toast.present());
       });
-      
+
         this.dropSub = this.dragulaService.dropModel('bag').subscribe(({ item, el }) => {
         console.log("qweqwe");
         let ingredient = document.getElementById("white-board-ingredient");
@@ -399,8 +399,12 @@ export class DrawPage {
 
   save_modal_open(): void
   {
-    var modal = document.getElementById("recipe-save-modal");
-    modal.style.display = "";
+    this.util.present_loading("");
+    setTimeout(() => {
+      this.util.dismiss_loading();
+    }, 2000);
+    // var modal = document.getElementById("recipe-save-modal");
+    // modal.style.display = "";
   }
 
   save_modal_close(): void
