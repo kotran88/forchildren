@@ -403,8 +403,8 @@ export class DrawPage {
     {
       width: 1910,
       height: 1397,
-      canvasWidth: 1910,
-      canvasHeight: 1397,
+      canvasWidth: -600,
+      canvasHeight: 137,
       style: {
         left: "0px !important;",
         top: "0px !important;",
