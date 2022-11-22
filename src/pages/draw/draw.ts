@@ -5,6 +5,7 @@ import { DragulaService } from 'ng2-dragula';
 import { disconnect } from 'process';
 import { Screenshot } from '@ionic-native/screenshot/ngx';
 import { UtilProvider } from '../../providers/util/util';
+import * as htmlToImage from 'html-to-image';
 
 /**
  * Generated class for the DrawPage page.
@@ -398,17 +399,32 @@ export class DrawPage {
   }
 
   async TaskScreenShot() : Promise<void> {
+    htmlToImage.toPng(document.getElementById("white-board"),
+    {
+      width: 1910,
+      height: 1397,
+      canvasWidth: 1910,
+      canvasHeight: 1397,
+      style: {
+        left: "0px !important;",
+        top: "0px !important;",
+      }
+    })
+    .then((image)=>{
+      console.log(image);
+    })
 
-    try
-    {
-      let response = await this.screenshot.save();
-      var uri = await this.screenshot.URI();
-      let fileName = response.filePath.split("/")[5];
-      this.util.uploadImage("image", fileName, uri, () => {});
-    }
-    catch(err)
-    {
-      console.log(err);
-    }
+    // this.save_modal_open();
+    // try
+    // {
+    //   let response = await this.screenshot.save();
+    //   var uri = await this.screenshot.URI();
+    //   let fileName = response.filePath.split("/")[5];
+    //   this.util.uploadImage("image", fileName, uri, () => {});
+    // }
+    // catch(err)
+    // {
+    //   console.log(err);
+    // }
   }
 }

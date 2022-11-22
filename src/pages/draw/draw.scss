@@ -557,8 +557,9 @@ page-draw {
 
     .white-board {
         position: absolute;
-        top: 173px;
-        left: 600px;
+        margin: 173px 0 0 600px;
+        // top: 173px;
+        // left: 600px;
         width: 1910px;
         height: 1397px;
         // background: #FFFFFF 0% 0% no-repeat padding-box;
