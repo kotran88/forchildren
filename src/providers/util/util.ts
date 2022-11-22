@@ -38,27 +38,18 @@ export class UtilProvider {
       this.lloading.dismiss();
   }
 
-  // get_image(dir, key, callback)
-  // {
-  //   var options:ImagePickerOptions = {
-  //     maximumImagesCount : 1,
-  //     outputType:1,
-  //     width: 500,
-  //     height: 500,
-  //   }
-  //   this.imagePicker.getPictures(options).then((image)=>{
-  //     console.log(image);
-  //     this.present_loading("로딩중...");
-  //     this.uploadImage(dir, key, image[0], (result)=>{
-  //       this.dismiss_loading();
-  //       callback(result);
-  //     });
-  //   }).catch((err)=>{
-  //     console.log(err);
-  //     alert("error");
-  //     callback(null);
-  //   })
-  // }
+  upload_recipe(name, url)
+  {
+    var key = this.firemain.push().key;
+
+    this.firemain.child("recipes").child(key)
+    .update({
+      "name" : name,
+      "url" : url,
+      "key" : key,
+      "create_date" : new Date().toISOString(),
+    })
+  }
 
   // dir : storage 폴더명
   // key : storage에 올린후 해당 이미지의 이름
@@ -94,7 +85,6 @@ export class UtilProvider {
         this.mypicref.child(dir).child(key).getDownloadURL().then((url)=>{
 
           console.log("download url is : "+url);
-          window.alert("사진업로드 완료!");
           this.dismiss_loading();
           callback(url);
 

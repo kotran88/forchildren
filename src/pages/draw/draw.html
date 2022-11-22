@@ -5,8 +5,8 @@
   </div>
 
   <div>
-    <img class="receipe-sel" src="assets/imgs/대체식품/03_Planning/00_basic btn/BNT_Recipe_SEL.png" alt="">
-    <img (click)="TaskScreenShot()" class="save-nor" src="assets/imgs/대체식품/03_Planning/00_basic btn/BNT_Save_NOR.png" alt="">
+    <img (click)="open_recipe_board()" class="receipe-sel" src="assets/imgs/대체식품/03_Planning/00_basic btn/BNT_Recipe_SEL.png" alt="">
+    <img (click)="save_modal_open()" class="save-nor" src="assets/imgs/대체식품/03_Planning/00_basic btn/BNT_Save_NOR.png" alt="">
   </div>
 
   <!-- 왼쪽 중앙부터 시작하는 재료 리스트 -->
@@ -78,14 +78,14 @@
       <img src="{{i}}" alt="">
     </div>
   </div> -->
-  
+
   <div id="white-board" class="white-board">
 
     <img id="guide-popup" class="guide-popup" src="assets/imgs/대체식품/03_Planning/00_basic btn/Guide_Popup.png" alt="">
     <img (click)="guidePopueCloseButton()" id="guide-popup-close" class="guide-popup-close" src="assets/imgs/대체식품/03_Planning/01_menu btn/BNT_Food Popup_Close.png" alt="">
     <!-- 요리명 -->
     <div class="white-board-cook-name">
-
+      <img src="{{food_name_url}}" alt="">
     </div>
 
     <!-- 재료 -->
@@ -100,6 +100,10 @@
 
     <!-- 요리 만들기 -->
 
+    <!-- textarea -->
+    <div id="white-board-cooking-textarea-board" class="white-board-cooking-textarea-board">
+      <textarea id="white-board-cooking-textarea" class="white-board-cooking-textarea" cols="50" rows="10"></textarea>
+    </div>
   </div>
 
   <!-- 연필 -->
@@ -138,36 +142,19 @@
     <button (click)="save()" class="modal-save">저장하기</button>
   </div>
 
-  <div id="other-recipe-board" class="other-recipe-board">
+  <div id="other-recipe-board" class="other-recipe-board" style="display: none;">
     <span class="board-title">다른 레시피 보기</span>
-    <img class="close-button" src="assets/imgs/대체식품/04_gallery/btn_Recipe Thumbnail_Pannel_close.png"/>
+    <img (click)="close_recipe_board()" class="close-button" src="assets/imgs/대체식품/04_gallery/btn_Recipe Thumbnail_Pannel_close.png"/>
 
-    <img class="prev-arraw" src="assets/imgs/대체식품/04_gallery/BNT_Recipe_Arrow_L_NOR.png" />
-    <img class="next-arraw" src="assets/imgs/대체식품/04_gallery/BNT_Recipe_Arrow_R_NOR.png" />
+    <img (click)="slidePrev()" class="prev-arraw" src="assets/imgs/대체식품/04_gallery/BNT_Recipe_Arrow_L_NOR.png" />
+    <img (click)="slideNext()" class="next-arraw" src="assets/imgs/대체식품/04_gallery/BNT_Recipe_Arrow_R_NOR.png" />
 
-    <ion-slides class="recipe-slides" paginationType="bullets"
-    pager=false  centeredSlides=false slidesPerView="3">
-      <ion-slide class="slide-item">
-        <img class="slide-image" src="" alt="">
-        <span class="slide-name">제목1</span>
+    <ion-slides class="recipe-slides" #recipe_slides paginationType="bullets"
+    pager="false"  centeredSlides="false" slidesPerView="3">
+      <ion-slide class="slide-item" *ngFor="let item of recipe_list">
+        <img class="slide-image" src="{{item.url}}" alt="">
+        <span class="slide-name">{{item.name}}</span>
       </ion-slide>
-      <ion-slide class="slide-item">
-        <img class="slide-image" src="" alt="">
-        <span class="slide-name">제목2</span>
-      </ion-slide>
-      <ion-slide class="slide-item">
-        <img class="slide-image" src="" alt="">
-        <span class="slide-name">제목3</span>
-      </ion-slide>
-        <!-- <ion-slide class="slide_item" *ngFor="let item of food_list; let i = index;">
-          <img *ngIf="item.active_flag == true" class="active"
-          src="{{item.enable_img}}" alt="" (click)="menu_click(i)">
-          <img *ngIf="item.active_flag == false" class="inactive"
-          src="{{item.disable_img}}" alt="" (click)="menu_click(i)">
-
-          <div class="detail_button"
-          *ngIf="item.active_flag == true" (click)="detail(i)"></div>
-        </ion-slide> -->
     </ion-slides>
   </div>
 </ion-content>

@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
-import { IonicPage, Keyboard, ModalController, NavController, NavParams, ToastController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, Keyboard, ModalController, NavController, NavParams, Slides, ToastController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { DragulaService } from 'ng2-dragula';
 import { disconnect } from 'process';
 import { Screenshot } from '@ionic-native/screenshot/ngx';
 import { UtilProvider } from '../../providers/util/util';
+import * as htmlToImage from 'html-to-image';
+import firebase from 'firebase';
 // import * as htmlToImage from 'html-to-image';
 
 /**
@@ -19,6 +21,9 @@ import { UtilProvider } from '../../providers/util/util';
   templateUrl: 'draw.html',
 })
 export class DrawPage {
+  @ViewChild('recipe_slides') recipe_slides: Slides;
+
+  firemain = firebase.database().ref();
 
   /** 각각의 메뉴바들에 대한 화살표의 높이) px */
   topValue : number[] = [ 264, 402, 533, 678, 822, 961, 1097, 1244, 1382 ];
@@ -277,17 +282,17 @@ export class DrawPage {
   open_keypad()
   {
     console.log("keypad");
-    var doc = document.getElementById("white-board-cooking-textarea").style.zIndex;
-    document.getElementById("white-board-cooking-textarea").style.zIndex =
+    var doc = document.getElementById("white-board-cooking-textarea-board").style.zIndex;
+    document.getElementById("white-board-cooking-textarea-board").style.zIndex =
     doc == '6' ? '0' : '6';
 
     if(doc == '6')
     {
-      document.getElementById("pen-control-bar").style.opacity = '0.5';
+      document.getElementById("bnt-keypad-nor").style.opacity = '0.5';
     }
     else
     {
-      document.getElementById("pen-control-bar").style.opacity = '1';
+      document.getElementById("bnt-keypad-nor").style.opacity = '1';
       document.getElementById("white-board-cooking-textarea").focus();
     }
     // this.keyboard.hasFocusedTextInput();
@@ -388,19 +393,19 @@ export class DrawPage {
     this.navCtrl.setRoot(HomePage);
   }
 
-  save_modal_open()
+  save_modal_open(): void
   {
     var modal = document.getElementById("recipe-save-modal");
     modal.style.display = "";
   }
 
-  save_modal_close()
+  save_modal_close(): void
   {
     var modal = document.getElementById("recipe-save-modal");
     modal.style.display = "none";
   }
 
-  save()
+  save(): void
   {
     if(this.recipe_name == "")
     {
@@ -408,42 +413,95 @@ export class DrawPage {
       document.getElementById("recipe-name").focus();
       return;
     }
-    // htmlToImage.toPng(document.getElementById("white-board"),
-    // {
-    //   width: 1910,
-    //   height: 1397,
-    //   canvasWidth: 1910,
-    //   canvasHeight: 1397,
-    //   style: {
-    //     margin: "0px",
-    //   }
-    // })
-    // .then((image)=>{
-    //   this.util.uploadImage("image", new Date().toISOString(), image, (result) => {
-    //     console.log(result);
-    //     if(result)
-    //     {
-    //       // this.util.upload_recipe(this.recipe_name, result);
-    //       this.save_modal_close();
-    //     }
-    //   });
-    // })
+    htmlToImage.toPng(document.getElementById("white-board"),
+    {
+      width: 1910,
+      height: 1397,
+      canvasWidth: 1910,
+      canvasHeight: 1397,
+      style: {
+        margin: "0px",
+      }
+    })
+    .then((image)=>{
+      this.util.uploadImage("image", new Date().toISOString(), image, (result) => {
+        console.log(result);
+        if(result)
+        {
+          this.util.upload_recipe(this.recipe_name, result);
+          this.save_modal_close();
+        }
+      });
+    })
+  }
+
+  recipe_list = [];
+  async get_recipes_from_DB()
+  {
+    var k = (this.recipe_list.length == 0 ? "" :
+    this.recipe_list[this.recipe_list.length - 1].key);
+
+    var root = this.firemain.child('recipes').orderByChild('key');
+    if(k != "") root = root.endAt(k);
+
+    var snap = await root.limitToLast(6).once('value');
+
+    console.log(snap.val());
+    var list = [];
+    for(var i in snap.val())
+      list.push(snap.val()[i])
+
+    list.reverse();
+
+    for(var j = (this.recipe_list.length == 0 ? 0 : 1); j < list.length; j++)
+      this.recipe_list.push(list[j])
+  }
+
+  slidePrev() {
+    console.log("prev");
+    console.log(this.recipe_slides)
+    this.recipe_slides.slidePrev();
+  }
+  slideNext() {
+    console.log("next");
+    console.log(this.recipe_slides)
+    if(this.recipe_slides.isEnd())
+    {
+      this.get_recipes_from_DB();
+    }
+    else
+    {
+      this.recipe_slides.slideNext();
+    }
+  }
+
+  open_recipe_board(): void
+  {
+    this.recipe_list = [];
+    this.get_recipes_from_DB();
+    var doc = document.getElementById("other-recipe-board");
+    doc.style.display = "";
+  }
+
+  close_recipe_board(): void
+  {
+    var doc = document.getElementById("other-recipe-board");
+    doc.style.display = "none";
   }
 
   async TaskScreenShot() : Promise<void> {
-
-    this.save_modal_open();
-    // try
-    // {
-    //   let response = await this.screenshot.save();
-    //   var uri = await this.screenshot.URI();
-    //   let fileName = response.filePath.split("/")[5];
-    //   this.util.uploadImage("image", fileName, uri, () => {});
-    // }
-    // catch(err)
-    // {
-    //   console.log(err);
-    // }
+    // this.save_modal_open();
+    try
+    {
+      let response = await this.screenshot.save();
+      var uri = await this.screenshot.URI();
+      let fileName = response.filePath.split("/")[5];
+      this.util.uploadImage("image", fileName, uri, () => {});
+    }
+    catch(err)
+    {
+      console.log(err);
+    }
   }
 
   /** 팝업 닫는 함수. */
