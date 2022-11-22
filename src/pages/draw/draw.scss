@@ -519,7 +519,7 @@ page-draw {
         position: absolute;
         top: 223px;
         left: 660px;
-        width: 325px;
+        width: 280px;
         height: 1300px;
         /* UI Properties */
         // background: #EDF2F5 0% 0% no-repeat padding-box;
@@ -527,6 +527,22 @@ page-draw {
         opacity: 0.8;
         z-index: 6;
         overflow-y: scroll;
+    }
+
+    .food-popup-div::-webkit-scrollbar {
+        width: 20px;
+        margin-left: 40px;
+    }
+
+    .food-popup-div::-webkit-scrollbar-thumb {
+        background-color: green;
+        height: 10px;
+        border-radius: 10px;
+    }
+
+    .food-popup-div::-webkit-scrollbar-track {
+        // background-color: red;
+        border-radius: 50px;
     }
 
     .food-popup-bar {
@@ -545,8 +561,8 @@ page-draw {
 
     .bnt-food-popup-close {
         position: absolute;
-        top: 1516px;
-        left: 920px;
+        top: 1530px;
+        left: 910px;
         width: 30px;
         height: 30px;
         border: 3px solid var(--unnamed-color-000000);

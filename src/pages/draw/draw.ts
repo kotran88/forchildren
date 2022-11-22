@@ -62,6 +62,9 @@ export class DrawPage {
   /** 각각의 메뉴바에 관련된 아이템을 화면에 보여주는 어레이 */
   targetList : object = {};
 
+  /* subscrible 변수) 페이지를 떠나는 경우 등록되어있는 리스너를 삭제하여야 한다. */
+  dropSub : any;
+
   context : CanvasRenderingContext2D[] = Array();
   painting : boolean = false;
   erase_flag : boolean = false;
@@ -69,6 +72,10 @@ export class DrawPage {
 
   recipe_name : string = "";
 
+  ionViewDidLeave() : void {
+    this.dropSub.unsubscribe();
+  }
+  
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public dragulaService: DragulaService, public toastController: ToastController,
   public keyboard:Keyboard, private screenshot: Screenshot, public util: UtilProvider,
@@ -88,8 +95,9 @@ export class DrawPage {
         })
         // .then(toast => toast.present());
       });
-
-      this.dragulaService.dropModel('bag').subscribe(({ item, el }) => {
+      
+        this.dropSub = this.dragulaService.dropModel('bag').subscribe(({ item, el }) => {
+        console.log("qweqwe");
         let ingredient = document.getElementById("white-board-ingredient");
         let pressTimer = null;
         let targetClass = el.classList[0];
@@ -123,10 +131,6 @@ export class DrawPage {
         span.appendChild(close);
         ingredient.appendChild(span);
       });
-
-      this.dragulaService.createGroup('bag', {
-        removeOnSpill: true
-      });
     }
     catch (e) {
       console.log(e);
@@ -153,7 +157,7 @@ export class DrawPage {
     this.targetTopValue = this.topValue[num - 1];
     document.getElementById("food-popup-holder").style.display = "";
     document.getElementById("food-popup-bg").style.display = "";
-    document.getElementById("food-popup-bar").style.display = "";
+    // document.getElementById("food-popup-bar").style.display = "";
     document.getElementById("food-popup-div").style.display = "";
     document.getElementById("bnt-food-popup-close").style.display = "";
 
@@ -172,7 +176,7 @@ export class DrawPage {
     }
     document.getElementById("food-popup-holder").style.display = "none";
     document.getElementById("food-popup-bg").style.display = "none";
-    document.getElementById("food-popup-bar").style.display = "none";
+    // document.getElementById("food-popup-bar").style.display = "none";
     document.getElementById("food-popup-div").style.display = "none";
     document.getElementById("bnt-food-popup-close").style.display = "none";
 
