@@ -62,6 +62,8 @@ export class DrawPage {
   erase_flag : boolean = false;
   erase_size : number = 150;
 
+  recipe_name : string = "";
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public dragulaService: DragulaService, public toastController: ToastController,
   public keyboard:Keyboard, private screenshot: Screenshot, public util: UtilProvider,
@@ -398,23 +400,39 @@ export class DrawPage {
     modal.style.display = "none";
   }
 
-  async TaskScreenShot() : Promise<void> {
+  save()
+  {
+    if(this.recipe_name == "")
+    {
+      alert("이름을 입력해주세요.");
+      document.getElementById("recipe-name").focus();
+      return;
+    }
     htmlToImage.toPng(document.getElementById("white-board"),
     {
       width: 1910,
       height: 1397,
-      canvasWidth: -600,
-      canvasHeight: 137,
+      canvasWidth: 1910,
+      canvasHeight: 1397,
       style: {
-        left: "0px !important;",
-        top: "0px !important;",
+        margin: "0px",
       }
     })
     .then((image)=>{
-      console.log(image);
+      this.util.uploadImage("image", new Date().toISOString(), image, (result) => {
+        console.log(result);
+        if(result)
+        {
+          this.util.upload_recipe(this.recipe_name, result);
+          this.save_modal_close();
+        }
+      });
     })
+  }
 
-    // this.save_modal_open();
+  async TaskScreenShot() : Promise<void> {
+
+    this.save_modal_open();
     // try
     // {
     //   let response = await this.screenshot.save();
