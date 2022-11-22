@@ -818,4 +818,80 @@ page-draw {
       color: #FFFFFF;
     }
   }
+
+  .other-recipe-board
+  {
+    position: absolute;
+    top: 883px;
+    left: 639px;
+    width: 1832px;
+    height: 657px;
+    background: #DBE5EB 0% 0% no-repeat padding-box;
+    box-shadow: 0px 10px 10px #00000028;
+    border-radius: 50px;
+    opacity: 1;
+    z-index: 10;
+    text-align: center;
+
+    .board-title
+    {
+      display: block;
+      margin-top: 65px;
+      /* UI Properties */
+      font: normal normal normal 48px/53px BM JUA_TTF;
+
+      letter-spacing: 0px;
+      color: #085B48;
+    }
+
+    .close-button
+    {
+      position: absolute;
+      top: 36px;
+      right: 52px;
+      width: 42px;
+      height: 42px;
+      opacity: 1;
+    }
+
+    .prev-arraw, .next-arraw
+    {
+      position: absolute;
+      top: 286px;
+    }
+    .prev-arraw{left: 60px;}
+    .next-arraw{right: 60px;}
+
+    .recipe-slides
+    {
+      position: absolute;
+      top: 128px;
+      left: 211px;
+      width: 1411px;
+      height: 476px;
+      /* UI Properties */
+      opacity: 1;
+
+      .slide-item
+      {
+        text-align: center;
+        .slide-image
+        {
+          width: 408px;
+          height: 356px;
+          /* UI Properties */
+          background: #FFFFFF 0% 0% no-repeat padding-box;
+          box-shadow: 0px 20px 30px #29404E26;
+          border-radius: 10px;
+          opacity: 1;
+        }
+        .slide-name
+        {
+          display: block;
+          margin-top: 20px;
+          font-size: 30px;
+        }
+      }
+    }
+  }
 }

@@ -134,4 +134,37 @@
     <button (click)="save_modal_close()" class="modal-cancel">취소하기</button>
     <button (click)="save()" class="modal-save">저장하기</button>
   </div>
+
+  <div id="other-recipe-board" class="other-recipe-board">
+    <span class="board-title">다른 레시피 보기</span>
+    <img class="close-button" src="assets/imgs/대체식품/04_gallery/btn_Recipe Thumbnail_Pannel_close.png"/>
+
+    <img class="prev-arraw" src="assets/imgs/대체식품/04_gallery/BNT_Recipe_Arrow_L_NOR.png" />
+    <img class="next-arraw" src="assets/imgs/대체식품/04_gallery/BNT_Recipe_Arrow_R_NOR.png" />
+
+    <ion-slides class="recipe-slides" paginationType="bullets"
+    pager=false  centeredSlides=false slidesPerView="3">
+      <ion-slide class="slide-item">
+        <img class="slide-image" src="" alt="">
+        <span class="slide-name">제목1</span>
+      </ion-slide>
+      <ion-slide class="slide-item">
+        <img class="slide-image" src="" alt="">
+        <span class="slide-name">제목2</span>
+      </ion-slide>
+      <ion-slide class="slide-item">
+        <img class="slide-image" src="" alt="">
+        <span class="slide-name">제목3</span>
+      </ion-slide>
+        <!-- <ion-slide class="slide_item" *ngFor="let item of food_list; let i = index;">
+          <img *ngIf="item.active_flag == true" class="active"
+          src="{{item.enable_img}}" alt="" (click)="menu_click(i)">
+          <img *ngIf="item.active_flag == false" class="inactive"
+          src="{{item.disable_img}}" alt="" (click)="menu_click(i)">
+
+          <div class="detail_button"
+          *ngIf="item.active_flag == true" (click)="detail(i)"></div>
+        </ion-slide> -->
+    </ion-slides>
+  </div>
 </ion-content>
