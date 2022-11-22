@@ -72,12 +72,6 @@ export class DrawPage {
 
     /* 현재 항목이 드래고 되고 있을 때 호출된다. */
     try {
-      
-      /* dragulaService가 여러번 호출 시 화면의 ui가 이상하게 변함. localStorage로 한번만 호출되게 수정. */
-      let isDragulaService = localStorage.getItem("isDragulaService");
-      if (isDragulaService == "true") return;
-      localStorage.setItem("isDragulaService", "true");
-
       this.dragulaService.drag('bag').subscribe(({ name, el, source }) => {
         el.setAttribute('color', 'danger');
       });
@@ -154,7 +148,7 @@ export class DrawPage {
     this.targetTopValue = this.topValue[num - 1];
     document.getElementById("food-popup-holder").style.display = "";
     document.getElementById("food-popup-bg").style.display = "";
-    document.getElementById("food-popup-bar").style.display = "";
+    // document.getElementById("food-popup-bar").style.display = "";
     document.getElementById("food-popup-div").style.display = "";
     document.getElementById("bnt-food-popup-close").style.display = "";
 
@@ -173,7 +167,7 @@ export class DrawPage {
     }
     document.getElementById("food-popup-holder").style.display = "none";
     document.getElementById("food-popup-bg").style.display = "none";
-    document.getElementById("food-popup-bar").style.display = "none";
+    // document.getElementById("food-popup-bar").style.display = "none";
     document.getElementById("food-popup-div").style.display = "none";
     document.getElementById("bnt-food-popup-close").style.display = "none";
 
