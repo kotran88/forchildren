@@ -60,7 +60,7 @@
   <img id="food-popup-holder" class="food-popup-holder" style="display: none;" [ngStyle]="{top: targetTopValue + 'px'}" src="assets/imgs/대체식품/03_Planning/01_menu btn/Food Popup_holder.png" alt="">
 
   <img id="food-popup-bg" class="food-popup-bg" style="display: none;" src="assets/imgs/대체식품/03_Planning/01_menu btn/Food Popup_bg.png" alt="">
-  <div id="food-popup-div" class="food-popup-div">
+  <div id="food-popup-div" class="food-popup-div" style="display: none;">
     <div *ngFor ="let i of targetList.value; let j = index;" dragula="bag" [(dragulaModel)]="q1" >
       <img id="popup-{{targetList.key}}-{{j + 1}}" class="popup-{{targetList.key}}-{{j + 1}}" src="{{i}}" alt="">
     </div>
