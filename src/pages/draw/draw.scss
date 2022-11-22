@@ -568,6 +568,22 @@ page-draw {
         background-image: url("../../assets/imgs/대체식품/03_Planning/00_basic btn/plan_temp.png");
     }
 
+    .guide-popup {
+        position: absolute;
+        z-index: 7;
+        top: 135px;
+        left: 360px;
+    }
+
+    .guide-popup-close {
+        position: absolute;
+        z-index: 7;
+        top: 200px;
+        left: 1405px;
+        height: 80px;
+        width: 80px;
+    }
+
     .white-board-cook-name {
         position: absolute;
         background-color: transparent;

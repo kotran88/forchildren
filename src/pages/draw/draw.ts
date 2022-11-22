@@ -5,7 +5,7 @@ import { DragulaService } from 'ng2-dragula';
 import { disconnect } from 'process';
 import { Screenshot } from '@ionic-native/screenshot/ngx';
 import { UtilProvider } from '../../providers/util/util';
-import * as htmlToImage from 'html-to-image';
+// import * as htmlToImage from 'html-to-image';
 
 /**
  * Generated class for the DrawPage page.
@@ -408,26 +408,26 @@ export class DrawPage {
       document.getElementById("recipe-name").focus();
       return;
     }
-    htmlToImage.toPng(document.getElementById("white-board"),
-    {
-      width: 1910,
-      height: 1397,
-      canvasWidth: 1910,
-      canvasHeight: 1397,
-      style: {
-        margin: "0px",
-      }
-    })
-    .then((image)=>{
-      this.util.uploadImage("image", new Date().toISOString(), image, (result) => {
-        console.log(result);
-        if(result)
-        {
-          this.util.upload_recipe(this.recipe_name, result);
-          this.save_modal_close();
-        }
-      });
-    })
+    // htmlToImage.toPng(document.getElementById("white-board"),
+    // {
+    //   width: 1910,
+    //   height: 1397,
+    //   canvasWidth: 1910,
+    //   canvasHeight: 1397,
+    //   style: {
+    //     margin: "0px",
+    //   }
+    // })
+    // .then((image)=>{
+    //   this.util.uploadImage("image", new Date().toISOString(), image, (result) => {
+    //     console.log(result);
+    //     if(result)
+    //     {
+    //       // this.util.upload_recipe(this.recipe_name, result);
+    //       this.save_modal_close();
+    //     }
+    //   });
+    // })
   }
 
   async TaskScreenShot() : Promise<void> {
@@ -444,5 +444,13 @@ export class DrawPage {
     // {
     //   console.log(err);
     // }
+  }
+
+  /** 팝업 닫는 함수. */
+  guidePopueCloseButton() : void {
+    let guidePopup = document.getElementById("guide-popup");
+    let guidePopupClose = document.getElementById("guide-popup-close");
+    guidePopup.style.display = "none";
+    guidePopupClose.style.display = "none";
   }
 }
