@@ -5,7 +5,7 @@ import { DragulaService } from 'ng2-dragula';
 import { disconnect } from 'process';
 import { Screenshot } from '@ionic-native/screenshot/ngx';
 import { UtilProvider } from '../../providers/util/util';
-import * as htmlToImage from 'html-to-image';
+// import * as htmlToImage from 'html-to-image';
 
 /**
  * Generated class for the DrawPage page.
@@ -161,10 +161,10 @@ export class DrawPage {
 
   /** 메뉴 아이콘 닫기 함수. */
   closeButton() : void {
-    // for (let i : number = 1; i <= 9; i++) {
-    //   document.getElementsByClassName("menu-" + i)[0].setAttribute("style", "background-color: #0E8D66;");
-    //   document.getElementsByClassName("menu-" + i + "-" + 2)[0].setAttribute("src", "assets/imgs/대체식품/03_Planning/01_menu btn/btn_text0" + i + "_nor.png");
-    // }
+    for (let i : number = 1; i <= 9; i++) {
+      document.getElementsByClassName("menu-" + i)[0].setAttribute("style", "background-color: #0E8D66;");
+      document.getElementsByClassName("menu-" + i + "-" + 2)[0].setAttribute("src", "assets/imgs/대체식품/03_Planning/01_menu btn/btn_text0" + i + "_nor.png");
+    }
     document.getElementById("food-popup-holder").style.display = "none";
     document.getElementById("food-popup-bg").style.display = "none";
     document.getElementById("food-popup-bar").style.display = "none";
@@ -408,26 +408,26 @@ export class DrawPage {
       document.getElementById("recipe-name").focus();
       return;
     }
-    htmlToImage.toPng(document.getElementById("white-board"),
-    {
-      width: 1910,
-      height: 1397,
-      canvasWidth: 1910,
-      canvasHeight: 1397,
-      style: {
-        margin: "0px",
-      }
-    })
-    .then((image)=>{
-      this.util.uploadImage("image", new Date().toISOString(), image, (result) => {
-        console.log(result);
-        if(result)
-        {
-          this.util.upload_recipe(this.recipe_name, result);
-          this.save_modal_close();
-        }
-      });
-    })
+    // htmlToImage.toPng(document.getElementById("white-board"),
+    // {
+    //   width: 1910,
+    //   height: 1397,
+    //   canvasWidth: 1910,
+    //   canvasHeight: 1397,
+    //   style: {
+    //     margin: "0px",
+    //   }
+    // })
+    // .then((image)=>{
+    //   this.util.uploadImage("image", new Date().toISOString(), image, (result) => {
+    //     console.log(result);
+    //     if(result)
+    //     {
+    //       // this.util.upload_recipe(this.recipe_name, result);
+    //       this.save_modal_close();
+    //     }
+    //   });
+    // })
   }
 
   async TaskScreenShot() : Promise<void> {
@@ -444,5 +444,13 @@ export class DrawPage {
     // {
     //   console.log(err);
     // }
+  }
+
+  /** 팝업 닫는 함수. */
+  guidePopueCloseButton() : void {
+    let guidePopup = document.getElementById("guide-popup");
+    let guidePopupClose = document.getElementById("guide-popup-close");
+    guidePopup.style.display = "none";
+    guidePopupClose.style.display = "none";
   }
 }
