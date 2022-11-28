@@ -1,13 +1,14 @@
 <ion-content id="content">
   <div class="left_bar">
-    <img class="background" src="{{root_image_path}}00_btn/left bar.png" alt="">
+    <!-- <img class="background" src="{{root_image_path}}00_btn/left bar.png" alt=""> -->
     <img class="home" (click)="home_button()" src="{{root_image_path}}00_btn/BNT_Home_NOR.png" alt="">
-    <img class="back" (click)="back_button()" src="{{root_image_path}}00_btn/BNT_back_NOR.png" alt="">
+    <img class="back" (click)="back_button()" src="{{root_image_path}}00_btn/BNT_Back_NOR.png" alt="">
     <!-- <img (click)="next_button()" src="{{root_image_path}}00_btn/BNT_back_NOR.png" alt=""> -->
 
-    <div>
+    <!-- [ngStyle]="{'top': left_infos_position[i] + '%'}" -->
+    <div class="left-bar-material">
       <img *ngFor="let item of left_infos_url_list; let i = index;"
-      [ngStyle]="{top: left_infos_position[i] + 'px'}"
+      [ngStyle]="{'top': left_infos_position[i] + '%'}"
       id="general_material{{i + 1}}" class="general_material" src="{{item}}" alt="">
     </div>
 
@@ -18,7 +19,7 @@
     <img class="recipe_cap" src="{{root_image_path}}00_btn/recipe_cap.png" alt="">
 
     <div class="sub_recipe_div">
-      <img class="sub_recipe_bar" src="{{root_image_path}}00_btn/sub_recipe_bar.png" alt="">
+      <!-- <img class="sub_recipe_bar" src="{{root_image_path}}00_btn/sub_recipe_bar.png" alt=""> -->
       <img class="sub_recipe" src="{{root_image_path}}{{fm_str(index)}}/sub_recipe.png" alt="">
     </div>
 
@@ -26,18 +27,18 @@
 
       <!-- <img *ngFor="let item of list;" src="" alt=""> -->
 
-      <img [ngStyle]="{left: receipts_positions[0][0] + 'px', top: receipts_positions[0][1] + 'px'}"
+      <img [ngStyle]="{left: receipts_positions[0][0] + '%', top: receipts_positions[0][1] + '%', width: receipts_positions[0][2] + '%'}"
       src="{{root_image_path}}{{fm_str(index)}}/{{fm_str(index)}}_icon_00.png" alt="">
 
       <!-- <img class="icon0" src="{{root_image_path}}{{fm_str(index)}}/{{fm_str(index)}}_icon_00.png" alt=""> -->
 
       <img *ngFor="let item of receipts_positions[1]; let i = index;"
       style="z-index: 2;"
-      [ngStyle]="{left: item[0] + 'px', top: item[1] + 'px'}"
+      [ngStyle]="{left: item[0] + '%', top: item[1] + '%', width: item[2] + '%'}"
       src="{{root_image_path}}{{fm_str(index)}}/{{fm_str(index)}}_recipe_{{fm_str(i + 1)}}.png" alt=""/>
 
       <img *ngFor="let item of receipts_positions[2]; let i = index;"
-      [ngStyle]="{left: item[0] + 'px', top: item[1] + 'px'}"
+      [ngStyle]="{left: item[0] + '%', top: item[1] + '%', width: item[2] + '%'}"
       src="{{root_image_path}}{{fm_str(index)}}/{{fm_str(index)}}_icon_{{fm_str(i + 1)}}.png" alt=""/>
 
       <!-- <img class="recipe1" src="{{root_image_path}}{{fm_str(index)}}/{{fm_str(index)}}_recipe_01.png" alt=""> -->
@@ -54,16 +55,12 @@
     </div>
 
     <div class="title_div">
-      <img [ngStyle]="{left: receipts_positions[3][0] + 'px', top: receipts_positions[3][1] + 'px'}"
-      src="{{root_image_path}}{{fm_str(index)}}/title.png" alt="">
-      <img class="under_bar" src="{{root_image_path}}00_btn/under_bar.png" alt="">
+      <img src="{{root_image_path}}{{fm_str(index)}}/title.png" alt="">
     </div>
   </div>
 
   <div id="recipe_bar" class="receipt_bar_div">
     <img class="recipe_bar" src="{{root_image_path}}00_btn/Recipe Bar.png" alt="">
-    <div id="modal_page">
-
-    </div>
+    <div id="modal_page"><img src="assets/imgs/대체식품/drawpage_default.png" alt=""></div>
   </div>
 </ion-content>

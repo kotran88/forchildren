@@ -4,12 +4,19 @@ page-home {
   {
     position: relative;
     text-align: center;
-    margin-top: 100px;
+    width: 70%;
+    margin: 3% 15%;
+
+    .icon
+    {
+      width: 100%;
+    }
     .memo
     {
       position: absolute;
-      left: 700px;
-      top: 100px;
+      left: 15%;
+      top: 50%;
+      width: 65%;
     }
   }
 
@@ -17,8 +24,8 @@ page-home {
   {
     top: 0px;
     left: 0px;
-    width: 2560px;
-    height: 1600px;
+    // width: 2560px;
+    // height: 1600px;
     /* UI Properties */
     background: #0E8D66 0% 0% no-repeat padding-box;
     opacity: 1;
@@ -27,64 +34,70 @@ page-home {
   .slide_btn
   {
     position: absolute;
-    bottom: 500px;
+    bottom: 25%;
     font-size: 100px;
     z-index: 2;
-    width: 92px;
-    height: 183px;
+    height: 11%;
     color: #B7D8C1;
+    img
+    {
+      height: 100%;
+    }
   }
-  .slide_prev {left: 60px;}
-  .slide_next {right: 60px;}
+  .slide_prev {left: 1%;}
+  .slide_next {right: 1%;}
 
   .slides
   {
     position: relative;
-    width: calc(100% - calc(196px * 2)) !important;
-    height: 1000px;
     padding: 0;
-    // 2560 - (790 * 2) / 2
-    margin: 100px 196px;;
+    width: 86%;
+    height: 60%;
+    margin: 7% 7% 0%;
     .slide_item
     {
-      width: 512px !important;
-      height: 588px !important;
-      margin: 220px 15px;
-      box-shadow: 0px 50px 50px #176B5763;
-      // border: 1px solid #70D696;
+      .slide-zoom
+      {
+        overflow: hidden;
+      }
+      // width: 25% !important;
       border-radius: 30px;
       opacity: 1;
+      padding-top: 5%;
+
+      img
+      {
+        max-width: 125%;
+        width: 125%;
+        max-height: 125%;
+        height: 125%;
+        margin-left: -12.5%;
+      }
     }
 
     .inactive
     {
-      width: 662px !important;
-      height: 891px !important;
-      max-width: none !important;
-      margin: 0;
-      margin-left: -75px;
-      margin-top: 100px;
+
     }
     .active
     {
-      width: 680px !important;
-      height: 1090px !important;
+      // width: 680px !important;
+      // height: 1090px !important;
       max-width: none !important;
       margin: 0;
-      margin-left: -85px;
-      margin-top: 60px;
+      // margin-top: -35%;
     }
+
 
     .detail_button
     {
       position: absolute;
-      // border: solid 1px red;
       background-color: transparent;
-      width: 100px;
-      height: 100px;
-      border-radius: 50px;
-      right: 15px;
-      bottom: -130px;
+      width: 17%;
+      height: 10%;
+      bottom: 6%;
+      right: 6%;
+      border-radius: 50%;
     }
   }
 }

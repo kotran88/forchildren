@@ -13,7 +13,7 @@ import { DrawingPage } from '../pages/drawing/drawing';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
+  rootPage:any = DrawPage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {

@@ -38,15 +38,16 @@ export class ReceiptPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController,
   public recpv: ReceiptsProvider) {
     this.index = this.navParams.get("index");
-    if(!this.index) this.index = 10;
+    if(!this.index) this.index = 1;
 
     this.left_infos_url_list = [];
     for(var i = 0; i < this.left_infos[this.index]; i++)
     {
       this.left_infos_url_list.push(this.root_image_path + this.fm_str(this.index)
       + "/left_info" + this.fm_str(i + 1) + ".png");
-      this.left_infos_position.push((1600 * i) + 388);
+      this.left_infos_position.push(i * 100);
     }
+    // console.log(this.left_infos_position)
 
     this.receipts_positions = recpv.get_receipts_positions(this.index);
     console.log(this.receipts_positions);
@@ -61,6 +62,7 @@ export class ReceiptPage {
     return s + num;
   }
 
+  // 295.47
   chenage_left_info()
   {
     if(this.left_infos[this.index] == 1) return;
@@ -68,9 +70,9 @@ export class ReceiptPage {
     {
       for(var i = 0; i < this.left_infos_position.length; i++)
       {
-        this.left_infos_position[i] -= 1600;
+        this.left_infos_position[i] -= 100;
         document.getElementById('general_material'+(i+1)).style.transition = "0.5s";
-        document.getElementById('general_material'+(i+1)).style.top = this.left_infos_position[i] + "px";
+        document.getElementById('general_material'+(i+1)).style.top = this.left_infos_position[i] + "%";
 
       }
       this.left_info_cnt++;
@@ -79,37 +81,47 @@ export class ReceiptPage {
     {
       for(var i = 0; i < this.left_infos_position.length; i++)
       {
-        this.left_infos_position[i] += 1600 * (this.left_infos[this.index] - 1);
+        this.left_infos_position[i] += 100 * (this.left_infos[this.index] - 1);
         document.getElementById('general_material'+(i+1)).style.transition = "0.5s";
-        document.getElementById('general_material'+(i+1)).style.top = this.left_infos_position[i] + "px";
+        document.getElementById('general_material'+(i+1)).style.top = this.left_infos_position[i] + "%";
       }
       this.left_info_cnt = 1;
     }
   }
 
+  slide_start_x = 0;
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReceiptPage');
     $('#content').load("src/pages/home/home.html");
 
     this.recipe_bar = document.getElementById('recipe_bar');
-    this.recipe_bar.addEventListener('touchstart', this.onTouchDown);
     this.recipe_bar.addEventListener('touchmove', this.onTouchMove);
-    // this.recipe_bar.addEventListener('touchend', this.onTouchEnd);
+    this.recipe_bar.addEventListener('touchstart',(e)=>{
+      console.log("down");
+      console.log(e);
+
+      this.slide_start_x = e.changedTouches[0].clientX;
+
+      document.getElementById('recipe_bar').style.transition = "0s";
+    });
     this.recipe_bar.addEventListener('touchend', (e)=>{
 
+      console.log(e);
       console.log("end")
       var clientX = e.changedTouches[0].clientX
       console.log(clientX)
       document.getElementById('recipe_bar').style.transition = "0.5s";
 
-      if(clientX < (2560 / 2)) // 화면을 절반 넘었을때
+      console.log(clientX)
+      console.log(this.slide_start_x);
+      if(clientX < (this.slide_start_x / 2)) // 화면을 절반 넘었을때
       {
-        document.getElementById('recipe_bar').style.left = "-158px";
+        document.getElementById('recipe_bar').style.left = "-6.2%";
         this.go_slide_page();
       }
-      else  // 화면을 넘어섰을때
+      else  // 절반에 못 미쳤을때
       {
-        document.getElementById('recipe_bar').style.left = (2560 - 158) + 'px';
+        document.getElementById('recipe_bar').style.left = '93.8%';
       }
     });
   }
@@ -118,6 +130,8 @@ export class ReceiptPage {
   {
     console.log("down");
     console.log(e);
+
+    this.slide_start_x = e.changedTouches[0].clientX;
 
     document.getElementById('recipe_bar').style.transition = "0s";
   }
@@ -148,7 +162,7 @@ export class ReceiptPage {
     setTimeout(() => {
       console.log(this.navCtrl);
       setTimeout(() => {
-        document.getElementById('recipe_bar').style.left = (2560 - 158) + 'px';
+        document.getElementById('recipe_bar').style.left = 93.8 + '%';
       }, 300);
       this.navCtrl.push(DrawPage, {"food_name_url": this.root_image_path + this.fm_str(this.index) + "/title.png"});
     }, 500);

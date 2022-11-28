@@ -7,6 +7,7 @@ import { Screenshot } from '@ionic-native/screenshot/ngx';
 import { UtilProvider } from '../../providers/util/util';
 import * as htmlToImage from 'html-to-image';
 import firebase from 'firebase';
+import { ExpansionRecipePage } from '../expansion-recipe/expansion-recipe';
 // import * as htmlToImage from 'html-to-image';
 
 /**
@@ -399,12 +400,12 @@ export class DrawPage {
 
   save_modal_open(): void
   {
-    this.util.present_loading("");
-    setTimeout(() => {
-      this.util.dismiss_loading();
-    }, 2000);
-    // var modal = document.getElementById("recipe-save-modal");
-    // modal.style.display = "";
+    // setTimeout(() => {
+    //   this.util.dismiss_loading();
+    // }, 2000);
+    this.recipe_name = "";
+    var modal = document.getElementById("recipe-save-modal");
+    modal.style.display = "";
   }
 
   save_modal_close(): void
@@ -518,5 +519,22 @@ export class DrawPage {
     let guidePopupClose = document.getElementById("guide-popup-close");
     guidePopup.style.display = "none";
     guidePopupClose.style.display = "none";
+  }
+
+  open_recipe(item)
+  {
+    console.log(item);
+
+    let modal = this.modal.create(ExpansionRecipePage,{"recipe_image" : item.url},{
+      cssClass:'expansion-recipe',
+      enableBackdropDismiss:false
+    });
+    modal.onDidDismiss(receiveddata=>{
+      console.log(receiveddata)
+      if(receiveddata!=undefined){
+        console.log('back to homepage');
+      }
+    })
+    modal.present();
   }
 }

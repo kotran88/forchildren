@@ -135,5 +135,13 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-plugin-crop": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-crop@^0.4.0"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

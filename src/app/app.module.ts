@@ -18,6 +18,7 @@ import { ReceiptsProvider } from '../providers/receipts/receipts';
 import { HttpClientModule } from '@angular/common/http';
 import { Screenshot } from '@ionic-native/screenshot/ngx';
 import { UtilProvider } from '../providers/util/util';
+import { ExpansionRecipePage } from '../pages/expansion-recipe/expansion-recipe';
 // import {Crop} from '@ionic-native/crop/ngx';
 
 const firebaseConfig = {
@@ -41,6 +42,7 @@ initializeApp(firebaseConfig);
     ReceiptPage,
     DropdownPage,
     DrawPage,
+    ExpansionRecipePage,
   ],
   imports: [
     HttpClientModule,
@@ -57,6 +59,7 @@ initializeApp(firebaseConfig);
     ReceiptPage,
     DropdownPage,
     DrawPage,
+    ExpansionRecipePage,
   ],
   providers: [
     // StatusBar,

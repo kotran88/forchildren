@@ -50,9 +50,102 @@
 {
   .modal-wrapper {
     position: absolute;
-    width: 2560px;
-    height: 1600px;
-    left: 2560px;
+    width: 100%;
+    height: 100%;
+    left: 100%;
     top: 0;
+  }
+}
+
+.loading-style .loading-wrapper
+{
+  width: 1024px;
+  max-width: 1024px;
+  height: 243px;
+  text-align: center;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 30px 50px #0000004D;
+  border: 3px solid #0E8D66;
+  border-radius: 20px;
+  opacity: 1;
+  padding: 0;
+  padding-left: 35px;
+  .loading-text
+  {
+    font: normal normal 800 40px/65px NanumSquareOTF_ac;
+    letter-spacing: -0.4px;
+    color: #0E8D66;
+    opacity: 1;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+  .loading-bg
+  {
+    width: 868px;
+    height: 30px;
+    background: #DBE5EB 0% 0% no-repeat padding-box;
+    border-radius: 44px;
+    opacity: 1;
+  }
+  .loading-bar
+  {
+    transition: 0.5s;
+    height: 100%;
+    background: #0E8D66 0% 0% no-repeat padding-box;
+    border-radius: 44px;
+    opacity: 1;
+  }
+}
+
+.loading-bar0 .loading-bar{width: 0%;}
+.loading-bar1 .loading-bar{width: 10%;}
+.loading-bar2 .loading-bar{width: 20%;}
+.loading-bar3 .loading-bar{width: 30%;}
+.loading-bar4 .loading-bar{width: 40%;}
+.loading-bar5 .loading-bar{width: 50%;}
+.loading-bar6 .loading-bar{width: 60%;}
+.loading-bar7 .loading-bar{width: 70%;}
+.loading-bar8 .loading-bar{width: 80%;}
+.loading-bar9 .loading-bar{width: 90%;}
+.loading-bar10 .loading-bar{width: 100%;}
+
+
+.expansion-recipe
+{
+  .modal-wrapper
+  {
+    width: 2206px;
+    height: 1420px;
+    top: 90px;
+    left: 177px;
+    *{
+      background-color: transparent;
+      box-shadow: none;
+      border: none;
+    }
+    box-shadow: none;
+    border: none;
+    border-radius: 10px;
+    opacity: 1;
+  }
+  .recipe-image
+  {
+    position: absolute;
+    // width: 1580px;
+    width: 1881px;
+    height: 1376px;
+    left: 163px;
+    top: 22px;
+  }
+
+  .close-image
+  {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 133px;
+    height: 133px;
+    /* UI Properties */
+    opacity: 1;
   }
 }

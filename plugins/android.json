@@ -20,6 +20,9 @@
       "ANDROID_SUPPORT_V4_VERSION": "27.+",
       "PACKAGE_NAME": "io.ionic.onoff.forchildren"
     },
+    "cordova-plugin-crop": {
+      "PACKAGE_NAME": "io.ionic.onoff.forchildren"
+    },
     "cordova-plugin-device": {
       "PACKAGE_NAME": "io.ionic.onoff.forchildren"
     },

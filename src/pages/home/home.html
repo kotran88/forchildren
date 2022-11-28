@@ -4,6 +4,7 @@
     <img class="icon" src="assets/imgs/대체식품/01_Main/00_bg/Main_Graphic.png" alt="">
     <img class="memo" src="assets/imgs/대체식품/01_Main/00_bg/그룹 2126.png" alt="">
   </div>
+
   <!-- <div ion-long-press [interval]="400" (onPressStart)="pressed()" (onPressing)="active()" (onPressEnd)="released()">Press</div> -->
 
   <div class="slide_btn slide_prev" (click)="slidePrev()">
@@ -22,8 +23,8 @@
       <img *ngIf="item.active_flag == false" class="inactive"
       src="{{item.disable_img}}" alt="" (click)="menu_click(i)">
 
-      <div class="detail_button"
-      *ngIf="item.active_flag == true" (click)="detail(i)"></div>
+      <div class="detail_button" (click)="detail(i)"
+      *ngIf="item.active_flag == true"></div>
     </ion-slide>
   </ion-slides>
 </ion-content>

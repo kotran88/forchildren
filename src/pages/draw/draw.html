@@ -85,7 +85,7 @@
     <img (click)="guidePopueCloseButton()" id="guide-popup-close" class="guide-popup-close" src="assets/imgs/대체식품/03_Planning/01_menu btn/BNT_Food Popup_Close.png" alt="">
     <!-- 요리명 -->
     <div class="white-board-cook-name">
-      <img src="{{food_name_url}}" alt="">
+      <!-- <img src="{{food_name_url}}" alt=""> -->
     </div>
 
     <!-- 재료 -->
@@ -151,7 +151,7 @@
 
     <ion-slides class="recipe-slides" #recipe_slides paginationType="bullets"
     pager="false"  centeredSlides="false" slidesPerView="3">
-      <ion-slide class="slide-item" *ngFor="let item of recipe_list">
+      <ion-slide class="slide-item" *ngFor="let item of recipe_list" (click)="open_recipe(item)">
         <img class="slide-image" src="{{item.url}}" alt="">
         <span class="slide-name">{{item.name}}</span>
       </ion-slide>

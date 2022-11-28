@@ -16,20 +16,41 @@ export class UtilProvider {
   mypicref=firebase.storage().ref();
 
   lloading:Loading;
+
   constructor(public http: HttpClient, public loading: LoadingController) {
     console.log('Hello UtilProvider Provider');
   }
 
-  present_loading(text)
+  present_loading(content)
   {
     if(this.lloading)
       this.dismiss_loading();
 
     this.lloading = this.loading.create({
-      spinner: 'hide',
-      content: text
+      spinner: 'none',
+      // content:'<div class="loading-style">' +
+      // '<span class="loading-text">'+content+'</span>' +
+      // '</div>',
+      content:
+      '<div class="loading-style">' +
+      '<span class="loading-text">'+content+'</span>'+
+        '<div class="loading-bg">'+
+          '<div class="loading-bar"></div>'+
+        '</div>'+
+      '</div>',
+      cssClass:"loading-style loading-bar10",
+      showBackdrop : false,
+      enableBackdropDismiss : false,
+      dismissOnPageChange : false,
     });
     this.lloading.present();
+  }
+
+  // 0 ~ 10까지 11개의 단계 0: 0%, 10: 100%
+  change_loading(num)
+  {
+    if(!this.lloading) return;
+    console.log(num);
   }
 
   dismiss_loading()
@@ -67,7 +88,7 @@ export class UtilProvider {
     var root = this.mypicref.child(dir).child(key)
     console.log(root);
 
-    this.present_loading("이미지 업로드중");
+    this.present_loading("사진 저장중...");
     this.encodeImageUri(imageURI, (image64)=>{
       console.log(image64);
       if(imageURI != image64)
