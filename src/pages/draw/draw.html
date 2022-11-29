@@ -1,75 +1,42 @@
 <ion-content class="content">
-  <div>
+  <div class="home-back-div">
     <img class="home" (click)="home_button()" src="assets/imgs/대체식품/03_Planning/00_basic btn/BNT_Home_W_SEL.png" alt="">
     <img class="back" (click)="back_button()" src="assets/imgs/대체식품/03_Planning/00_basic btn/BNT_Back_W_NOR.png" alt="">
   </div>
 
-  <div>
+  <div class="receipe-save-div">
     <img (click)="open_recipe_board()" class="receipe-sel" src="assets/imgs/대체식품/03_Planning/00_basic btn/BNT_Recipe_SEL.png" alt="">
     <img (click)="save_modal_open()" class="save-nor" src="assets/imgs/대체식품/03_Planning/00_basic btn/BNT_Save_NOR.png" alt="">
   </div>
 
   <!-- 왼쪽 중앙부터 시작하는 재료 리스트 -->
-  <div>
-    <div class="menu-1" (click)="changeMenuButton(1)">
-      <img class="menu-1-1" src="assets/imgs/대체식품/03_Planning/01_menu btn/menu_icon_01.png" alt="">
-      <img class="menu-1-2" src="assets/imgs/대체식품/03_Planning/01_menu btn/btn_text01_nor.png" alt="">
-    </div>
-
-    <div class="menu-2" (click)="changeMenuButton(2)">
-      <img class="menu-2-1" src="assets/imgs/대체식품/03_Planning/01_menu btn/menu_icon_02.png" alt="">
-      <img class="menu-2-2" src="assets/imgs/대체식품/03_Planning/01_menu btn/btn_text02_nor.png" alt="">
-    </div>
-
-    <div class="menu-3" (click)="changeMenuButton(3)">
-      <img class="menu-3-1" src="assets/imgs/대체식품/03_Planning/01_menu btn/menu_icon_03.png" alt="">
-      <img class="menu-3-2" src="assets/imgs/대체식품/03_Planning/01_menu btn/btn_text03_nor.png" alt="">
-    </div>
-
-    <div class="menu-4" (click)="changeMenuButton(4)">
-      <img class="menu-4-1" src="assets/imgs/대체식품/03_Planning/01_menu btn/menu_icon_04.png" alt="">
-      <img class="menu-4-2" src="assets/imgs/대체식품/03_Planning/01_menu btn/btn_text04_nor.png" alt="">
-    </div>
-
-    <div class="menu-5" (click)="changeMenuButton(5)">
-      <img class="menu-5-1" src="assets/imgs/대체식품/03_Planning/01_menu btn/menu_icon_05.png" alt="">
-      <img class="menu-5-2" src="assets/imgs/대체식품/03_Planning/01_menu btn/btn_text05_nor.png" alt="">
-    </div>
-
-    <div class="menu-6" (click)="changeMenuButton(6)">
-      <img class="menu-6-1" src="assets/imgs/대체식품/03_Planning/01_menu btn/menu_icon_06.png" alt="">
-      <img class="menu-6-2" src="assets/imgs/대체식품/03_Planning/01_menu btn/btn_text06_nor.png" alt="">
-    </div>
-
-    <div class="menu-7" (click)="changeMenuButton(7)">
-      <img class="menu-7-1" src="assets/imgs/대체식품/03_Planning/01_menu btn/menu_icon_07.png" alt="">
-      <img class="menu-7-2" src="assets/imgs/대체식품/03_Planning/01_menu btn/btn_text07_nor.png" alt="">
-    </div>
-
-    <div class="menu-8" (click)="changeMenuButton(8)">
-      <img class="menu-8-1" src="assets/imgs/대체식품/03_Planning/01_menu btn/menu_icon_08.png" alt="">
-      <img class="menu-8-2" src="assets/imgs/대체식품/03_Planning/01_menu btn/btn_text08_nor.png" alt="">
-    </div>
-
-    <div class="menu-9" (click)="changeMenuButton(9)">
-      <img class="menu-9-1" src="assets/imgs/대체식품/03_Planning/01_menu btn/menu_icon_09.png" alt="">
-      <img class="menu-9-2" src="assets/imgs/대체식품/03_Planning/01_menu btn/btn_text09_nor.png" alt="">
+  <div class="menu-list">
+    <div *ngFor="let item of menu_list; let i = index;" class="menu-div menu-{{i+1}}" (click)="changeMenuButton(i+1)">
+      <div class="menu-icon">
+        <img class="menu-{{i+1}}-1" src="assets/imgs/대체식품/03_Planning/01_menu btn/menu_icon_0{{item}}.png" alt=""/>
+      </div>
+      <div class="menu-name">
+        <img class="menu-{{i+1}}-2" src="assets/imgs/대체식품/03_Planning/01_menu btn/btn_text0{{item}}_nor.png" alt=""/>
+      </div>
     </div>
   </div>
 
-  <img id="food-popup-holder" class="food-popup-holder" style="display: none;" [ngStyle]="{top: targetTopValue + 'px'}" src="assets/imgs/대체식품/03_Planning/01_menu btn/Food Popup_holder.png" alt="">
+  <div id="menu-popup-div" class="menu-popup-div" style="display: none;">
+    <img id="food-popup-holder" class="food-popup-holder" [ngStyle]="{top: targetTopValue + '%'}" src="assets/imgs/대체식품/03_Planning/01_menu btn/Food Popup_holder.png" alt="">
+    <img id="food-popup-bg" class="food-popup-bg" src="assets/imgs/대체식품/03_Planning/01_menu btn/Food Popup_bg.png" alt="">
 
-  <img id="food-popup-bg" class="food-popup-bg" style="display: none;" src="assets/imgs/대체식품/03_Planning/01_menu btn/Food Popup_bg.png" alt="">
-  <div id="food-popup-div" class="food-popup-div" style="display: none;">
-    <div *ngFor ="let i of targetList.value; let j = index;" dragula="bag" [(dragulaModel)]="q1" >
-      <img id="popup-{{targetList.key}}-{{j + 1}}" class="popup-{{targetList.key}}-{{j + 1}}" src="{{i}}" alt="">
+    <div id="food-popup-div" class="food-popup-div">
+      <div *ngFor ="let i of targetList.value; let j = index;" dragula="bag" [(dragulaModel)]="q1" >
+        <img id="popup-{{targetList.key}}-{{j + 1}}" class="popup-{{targetList.key}}-{{j + 1}}" src="{{i}}" alt="">
+      </div>
     </div>
+
+    <!-- x 종류 버튼에는 click 이벤트 필요.-->
+    <img (click)="closeButton()" id="bnt-food-popup-close" class="bnt-food-popup-close" src="assets/imgs/대체식품/03_Planning/01_menu btn/BNT_Food Popup_Close.png" alt="">
   </div>
 
   <!-- <img id="food-popup-bar" class="food-popup-bar" style="display: none;" src="assets/imgs/대체식품/03_Planning/01_menu btn/Food Popup bar.png" alt=""> -->
 
-  <!-- x 종류 버튼에는 click 이벤트 필요.-->
-  <img (click)="closeButton()" id="bnt-food-popup-close" class="bnt-food-popup-close" style="display: none;" src="assets/imgs/대체식품/03_Planning/01_menu btn/BNT_Food Popup_Close.png" alt="">
 
 
   <!-- 드래그 앤 드롭 -->
@@ -86,6 +53,7 @@
     <!-- 요리명 -->
     <div class="white-board-cook-name">
       <!-- <img src="{{food_name_url}}" alt=""> -->
+      <input/>
     </div>
 
     <!-- 재료 -->
@@ -108,23 +76,27 @@
 
   <!-- 연필 -->
   <div id="pen-col-bg" class="pen-col-bg" style="display: none;">
-    <div class="cols">
-      <img class="col col-active" id="col-black" (click)="change_color('black')" src="assets/imgs/대체식품/03_Planning/00_basic btn/col_black.png" alt="">
-      <img class="col" id="col-blue" (click)="change_color('blue')" src="assets/imgs/대체식품/03_Planning/00_basic btn/col_blue.png" alt="">
-      <img class="col" id="col-green" (click)="change_color('green')" src="assets/imgs/대체식품/03_Planning/00_basic btn/col_green.png" alt="">
-      <img class="col" id="col-red" (click)="change_color('red')" src="assets/imgs/대체식품/03_Planning/00_basic btn/col_red.png" alt="">
-      <img class="col" id="col-yellow" (click)="change_color('yellow')" src="assets/imgs/대체식품/03_Planning/00_basic btn/col_yellow.png" alt="">
-    </div>
+    <img src="../../assets/imgs/대체식품/03_Planning/00_basic btn/pen_col_bg.png" alt="">
+    <div class="pen-col-div">
+      <div class="cols">
+        <img class="color col-active" id="col-black" (click)="change_color('black')" src="assets/imgs/대체식품/03_Planning/00_basic btn/col_black.png" alt="">
+        <img class="color" id="col-blue" (click)="change_color('blue')" src="assets/imgs/대체식품/03_Planning/00_basic btn/col_blue.png" alt="">
+        <img class="color" id="col-green" (click)="change_color('green')" src="assets/imgs/대체식품/03_Planning/00_basic btn/col_green.png" alt="">
+        <img class="color" id="col-red" (click)="change_color('red')" src="assets/imgs/대체식품/03_Planning/00_basic btn/col_red.png" alt="">
+        <img class="color" id="col-yellow" (click)="change_color('yellow')" src="assets/imgs/대체식품/03_Planning/00_basic btn/col_yellow.png" alt="">
+      </div>
 
-    <div class="pens">
-      <img class="pen pen-active" id="pen-01" (click)="change_pen('01')" src="assets/imgs/대체식품/03_Planning/00_basic btn/pen_01.png" alt="">
-      <img class="pen" id="pen-02" (click)="change_pen('02')" src="assets/imgs/대체식품/03_Planning/00_basic btn/pen_02.png" alt="">
-      <img class="pen" id="pen-03" (click)="change_pen('03')" src="assets/imgs/대체식품/03_Planning/00_basic btn/pen_03.png" alt="">
+      <div class="pens">
+        <img class="pen pen-active" id="pen-01" (click)="change_pen('01')" src="assets/imgs/대체식품/03_Planning/00_basic btn/pen_01.png" alt="">
+        <img class="pen" id="pen-02" (click)="change_pen('02')" src="assets/imgs/대체식품/03_Planning/00_basic btn/pen_02.png" alt="">
+        <img class="pen" id="pen-03" (click)="change_pen('03')" src="assets/imgs/대체식품/03_Planning/00_basic btn/pen_03.png" alt="">
+      </div>
     </div>
   </div>
 
   <!-- 지우개 -->
   <div id="pen-control-bar" class="pen-control-bar" style="display: none;">
+    <img src="../../assets/imgs/대체식품/03_Planning/00_basic btn/Pen Control bar.png" alt="">
     <input [(ngModel)]="erase_size" type="range" id="volume" name="volume" min="10" max="300" step="10" orient="vertical">
   </div>
 
@@ -135,6 +107,7 @@
 
 
   <div id="recipe-save-modal" class="recipe-save-modal" style="display: none;">
+    <!-- <img class="bg-image" src="../../assets/imgs/대체식품/03_Planning/03_save/recipe_save_bg.png" alt=""> -->
     <span>레시피 이름을 입력하세요</span>
     <input id="recipe-name" [(ngModel)]="recipe_name"/>
 
@@ -143,7 +116,7 @@
   </div>
 
   <div id="other-recipe-board" class="other-recipe-board" style="display: none;">
-    <span class="board-title">다른 레시피 보기</span>
+    <img class="bg-image" src="../../assets/imgs/대체식품/04_gallery/Recipe Thumbnail_Pannel.png" alt="">
     <img (click)="close_recipe_board()" class="close-button" src="assets/imgs/대체식품/04_gallery/btn_Recipe Thumbnail_Pannel_close.png"/>
 
     <img (click)="slidePrev()" class="prev-arraw" src="assets/imgs/대체식품/04_gallery/BNT_Recipe_Arrow_L_NOR.png" />

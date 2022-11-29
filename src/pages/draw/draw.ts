@@ -27,7 +27,8 @@ export class DrawPage {
   firemain = firebase.database().ref();
 
   /** 각각의 메뉴바들에 대한 화살표의 높이) px */
-  topValue : number[] = [ 264, 402, 533, 678, 822, 961, 1097, 1244, 1382 ];
+  // topValue : number[] = [ 264, 402, 533, 678, 822, 961, 1097, 1244, 1382 ];
+  topValue : number[] = [ 8, 15, 26, 35, 45, 54, 64, 74, 84 ];
 
   /** Food Popup_bg.png의 높이 */
   targetTopValue : number = 0;
@@ -45,6 +46,7 @@ export class DrawPage {
    *  "8" : 유지당류
    *  "9" : 기타 식재료
    */
+  menu_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
   list = {
     "1" : [ "assets/imgs/대체식품/03_Planning/01_menu btn/01_popup/01_popup_01.png", "assets/imgs/대체식품/03_Planning/01_menu btn/01_popup/01_popup_02.png", "assets/imgs/대체식품/03_Planning/01_menu btn/01_popup/01_popup_03.png", "assets/imgs/대체식품/03_Planning/01_menu btn/01_popup/01_popup_04.png", "assets/imgs/대체식품/03_Planning/01_menu btn/01_popup/01_popup_05.png", "assets/imgs/대체식품/03_Planning/01_menu btn/01_popup/01_popup_06.png", "assets/imgs/대체식품/03_Planning/01_menu btn/01_popup/01_popup_07.png", "assets/imgs/대체식품/03_Planning/01_menu btn/01_popup/01_popup_08.png", "assets/imgs/대체식품/03_Planning/01_menu btn/01_popup/01_popup_09.png", "assets/imgs/대체식품/03_Planning/01_menu btn/01_popup/01_popup_10.png", "" ],
     "2" : [ "assets/imgs/대체식품/03_Planning/01_menu btn/02_popup/02_popup_01.png", "assets/imgs/대체식품/03_Planning/01_menu btn/02_popup/02_popup_02.png", "assets/imgs/대체식품/03_Planning/01_menu btn/02_popup/02_popup_03.png", "assets/imgs/대체식품/03_Planning/01_menu btn/02_popup/02_popup_04.png", "assets/imgs/대체식품/03_Planning/01_menu btn/02_popup/02_popup_05.png", "assets/imgs/대체식품/03_Planning/01_menu btn/02_popup/02_popup_06.png", "assets/imgs/대체식품/03_Planning/01_menu btn/02_popup/02_popup_07.png", "assets/imgs/대체식품/03_Planning/01_menu btn/02_popup/02_popup_08.png", "assets/imgs/대체식품/03_Planning/01_menu btn/02_popup/02_popup_09.png", "assets/imgs/대체식품/03_Planning/01_menu btn/02_popup/02_popup_10.png", "" ],
@@ -69,7 +71,7 @@ export class DrawPage {
   context : CanvasRenderingContext2D[] = Array();
   painting : boolean = false;
   erase_flag : boolean = false;
-  erase_size : number = 150;
+  erase_size : number = 50;
 
   recipe_name : string = "";
 
@@ -119,8 +121,7 @@ export class DrawPage {
         close.style.position = "absolute";
         close.style.zIndex = "5";
         close.style.display = "none";
-        close.width = 30;
-        close.height = 30;
+        close.style.width = "4%";
         close.className = targetClass;
         close.addEventListener("touchstart", (event) => {
           let tClass = document.getElementsByClassName(targetClass);
@@ -148,6 +149,11 @@ export class DrawPage {
       document.getElementsByClassName("menu-" + i)[0].setAttribute("style", "background-color: #0E8D66;");
       document.getElementsByClassName("menu-" + i + "-" + 2)[0].setAttribute("src", "assets/imgs/대체식품/03_Planning/01_menu btn/btn_text0" + i + "_nor.png");
     }
+    if(this.targetTopValue == this.topValue[num - 1])
+    {
+      this.closeButton();
+      return;
+    }
     let targetMenu = document.getElementsByClassName("menu-" + num)[0];
     targetMenu.setAttribute("style", "background-color: white;");
 
@@ -156,11 +162,12 @@ export class DrawPage {
 
     // 메뉴바를 가리키는 화살표의 위치값을 바꿈.
     this.targetTopValue = this.topValue[num - 1];
-    document.getElementById("food-popup-holder").style.display = "";
-    document.getElementById("food-popup-bg").style.display = "";
-    // document.getElementById("food-popup-bar").style.display = "";
-    document.getElementById("food-popup-div").style.display = "";
-    document.getElementById("bnt-food-popup-close").style.display = "";
+    // document.getElementById("food-popup-holder").style.display = "";
+    // document.getElementById("food-popup-bg").style.display = "";
+    // // document.getElementById("food-popup-bar").style.display = "";
+    // document.getElementById("food-popup-div").style.display = "";
+    // document.getElementById("bnt-food-popup-close").style.display = "";
+    document.getElementById("menu-popup-div").style.display = "";
 
     // 각각의 메뉴바에 관련된 아이템들 체인지.
     this.targetList = {
@@ -175,11 +182,13 @@ export class DrawPage {
       document.getElementsByClassName("menu-" + i)[0].setAttribute("style", "background-color: #0E8D66;");
       document.getElementsByClassName("menu-" + i + "-" + 2)[0].setAttribute("src", "assets/imgs/대체식품/03_Planning/01_menu btn/btn_text0" + i + "_nor.png");
     }
-    document.getElementById("food-popup-holder").style.display = "none";
-    document.getElementById("food-popup-bg").style.display = "none";
-    // document.getElementById("food-popup-bar").style.display = "none";
-    document.getElementById("food-popup-div").style.display = "none";
-    document.getElementById("bnt-food-popup-close").style.display = "none";
+    // document.getElementById("food-popup-holder").style.display = "none";
+    // document.getElementById("food-popup-bg").style.display = "none";
+    // // document.getElementById("food-popup-bar").style.display = "none";
+    // document.getElementById("food-popup-div").style.display = "none";
+    // document.getElementById("bnt-food-popup-close").style.display = "none";
+
+    document.getElementById("menu-popup-div").style.display = "none";
 
     this.targetList = new Object();
   }
@@ -189,8 +198,10 @@ export class DrawPage {
     let canvas = document.createElement("canvas");
     canvas.className = "white-board-ready";
     canvas.id = "white-board-ready";
-    canvas.width = 950;
-    canvas.height = 381;
+
+    // 화면 전체크기 * white-board크기 * canvas크기
+    canvas.width = screen.width * 0.73 * 0.51;
+    canvas.height = screen.height * 0.85 * 0.26;
 
     this.context.push(canvas.getContext("2d"));
     this.context[0].lineWidth = 1;
@@ -232,8 +243,10 @@ export class DrawPage {
     let canvas = document.createElement("canvas");
     canvas.className = "white-board-cooking";
     canvas.id = "white-board-cooking";
-    canvas.width = 950;
-    canvas.height = 1238;
+
+    // 화면 전체크기 * white-board크기 * canvas크기
+    canvas.width = screen.width * 0.73 * 0.45;
+    canvas.height = screen.height * 0.85 * 0.87;
 
     this.context.push(canvas.getContext("2d"));
     this.context[1].lineWidth = 1;
@@ -246,9 +259,10 @@ export class DrawPage {
       let y = event.touches[0].pageY - rect.top;
       if(this.erase_flag)
       {
-        this.context[1].clearRect(x - this.erase_size / 2,
-        y - this.erase_size / 2,
-        this.erase_size, this.erase_size);
+        var xx = x - this.erase_size / 2;
+        var yy = y - this.erase_size / 2;
+
+        this.context[1].clearRect(xx, yy, this.erase_size, this.erase_size);
       }
       else
       {
@@ -261,6 +275,10 @@ export class DrawPage {
     canvas.addEventListener("touchstart", (event) => {
       this.painting = true;
       let rect = canvas.getBoundingClientRect();
+      console.log(rect.left, rect.top)
+      console.log(event.touches[0].pageX, event.touches[0].pageY)
+      console.log(event.touches[0].pageX - rect.left, event.touches[0].pageY - rect.top)
+      console.log("////////////////////////////////////////////////");
       let x = event.touches[0].pageX - rect.left;
       let y = event.touches[0].pageY - rect.top;
       this.context[1].beginPath();
@@ -289,9 +307,9 @@ export class DrawPage {
     console.log("keypad");
     var doc = document.getElementById("white-board-cooking-textarea-board").style.zIndex;
     document.getElementById("white-board-cooking-textarea-board").style.zIndex =
-    doc == '6' ? '0' : '6';
+    doc == '8' ? '0' : '8';
 
-    if(doc == '6')
+    if(doc == '8')
     {
       document.getElementById("bnt-keypad-nor").style.opacity = '0.5';
     }
@@ -377,13 +395,13 @@ export class DrawPage {
         document.getElementById("pen-01").classList.add('pen-active');
         break;
       case '02':
-        this.context[0].lineWidth = 5;
+        this.context[0].lineWidth = 3;
         this.context[1].lineWidth = 5;
         document.getElementById("pen-02").classList.add('pen-active');
         break;
       case '03':
-        this.context[0].lineWidth = 10;
-        this.context[1].lineWidth = 10;
+        this.context[0].lineWidth = 7;
+        this.context[1].lineWidth = 7;
         document.getElementById("pen-03").classList.add('pen-active');
         break;
     }
@@ -424,21 +442,17 @@ export class DrawPage {
     }
     htmlToImage.toPng(document.getElementById("white-board"),
     {
-      width: 1910,
-      height: 1397,
-      canvasWidth: 1910,
-      canvasHeight: 1397,
       style: {
         margin: "0px",
       }
     })
     .then((image)=>{
+      this.save_modal_close();
       this.util.uploadImage("image", new Date().toISOString(), image, (result) => {
         console.log(result);
         if(result)
         {
           this.util.upload_recipe(this.recipe_name, result);
-          this.save_modal_close();
         }
       });
     })
