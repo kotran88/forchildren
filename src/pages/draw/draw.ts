@@ -89,7 +89,13 @@ export class DrawPage {
     try {
       this.dragulaService.drag('bag').subscribe(({ name, el, source }) => {
         el.setAttribute('color', 'danger');
+        console.log("asdasd");
       });
+
+      this.dragulaService.dragend('bag').subscribe(({el}) =>{
+        console.log("zxczxc");
+
+      })
 
       this.dragulaService.removeModel('bag').subscribe(({ item }) => {
         this.toastController.create({
@@ -101,6 +107,8 @@ export class DrawPage {
 
         this.dropSub = this.dragulaService.dropModel('bag').subscribe(({ item, el }) => {
         console.log("qweqwe");
+        console.log(item);
+        console.log(el);
         let ingredient = document.getElementById("white-board-ingredient");
         let pressTimer = null;
         let targetClass = el.classList[0];
@@ -529,6 +537,8 @@ export class DrawPage {
 
   /** 팝업 닫는 함수. */
   guidePopueCloseButton() : void {
+    // let guidePopupDiv = document.getElementById("guide-popup-div");
+    // guidePopupDiv.style.display = "none"
     let guidePopup = document.getElementById("guide-popup");
     let guidePopupClose = document.getElementById("guide-popup-close");
     guidePopup.style.display = "none";

@@ -112,6 +112,14 @@ page-receipt {
     width: 100%;
     height: 100%;
     // background-color: #0E8D66;
+    .induction-arrow
+    {
+      width: 4%;
+      position: absolute;
+      top: 50%;
+    // transform: translateY(-50%);
+      transform: translate(-100%, -50%);
+    }
     div
     {
       position: absolute;
