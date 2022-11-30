@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, ModalCmp, ModalController, NavController, NavParams } from 'ionic-angular';
+import { Animation, AnimationController } from '@ionic/angular';
 import { DrawPage } from '../draw/draw';
 import { HomePage } from '../home/home';
 import * as $ from "jquery";
@@ -35,7 +36,7 @@ export class ReceiptPage {
   // 2 : 레시피 아이콘
   receipts_positions = []
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController,
+  constructor(public animationCtrl: AnimationController, public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController,
   public recpv: ReceiptsProvider) {
     this.index = this.navParams.get("index");
     if(!this.index) this.index = 1;
@@ -93,6 +94,12 @@ export class ReceiptPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReceiptPage');
     $('#content').load("src/pages/home/home.html");
+
+    this.animationCtrl.create()
+    .addElement(document.getElementById("induction-arrow"))
+    .duration(1500)
+    .iterations(Infinity)
+    .fromTo('transform', 'translateX(-200%)', 'translateX(-100%)');
 
     this.recipe_bar = document.getElementById('recipe_bar');
     this.recipe_bar.addEventListener('touchmove', this.onTouchMove);

@@ -87,14 +87,13 @@ export class DrawPage {
 
     /* 현재 항목이 드래고 되고 있을 때 호출된다. */
     try {
-      this.dragulaService.drag('bag').subscribe(({ name, el, source }) => {
+      this.dragulaService.drag('bag').subscribe(async ({ name, el, source }) => {
         el.setAttribute('color', 'danger');
         console.log("asdasd");
       });
 
       this.dragulaService.dragend('bag').subscribe(({el}) =>{
         console.log("zxczxc");
-
       })
 
       this.dragulaService.removeModel('bag').subscribe(({ item }) => {
@@ -102,10 +101,9 @@ export class DrawPage {
           message: 'Removed: ' + item.value,
           duration: 2000
         })
-        // .then(toast => toast.present());
       });
 
-        this.dropSub = this.dragulaService.dropModel('bag').subscribe(({ item, el }) => {
+      this.dropSub = this.dragulaService.dropModel('bag').subscribe(({ item, el }) => {
         console.log("qweqwe");
         console.log(item);
         console.log(el);
@@ -302,11 +300,29 @@ export class DrawPage {
     this.initWhiteBoardReadyCanvas();
     this.initWhiteBoardCookingCanvas();
     this.food_name_url = this.navParams.get("food_name_url");
+
+
+    // this.keyboard.willShow.subscribe(()=>{
+    //   console.log("willshow");
+    //   document.getElementById("keyboard-bg").style.display = "";
+    // })
+    // this.keyboard.willHide.subscribe(()=>{
+    //   console.log("willhide");
+    //   document.getElementById("keyboard-bg").style.display = "none";
+    // })
+    // this.keyboard.didShow.subscribe(()=>{
+    //   console.log("didshow");
+    // })
+    // this.keyboard.didHide.subscribe(()=>{
+    //   console.log("didhide");
+    // })
     addEventListener('keyboardWillShow', () => {
-
+      console.log("willshow");
+      document.getElementById("keyboard-bg").style.display = "";
     });
-    addEventListener('onKeyboardWillHide',()=>{
-
+    addEventListener('keyboardWillHide',()=>{
+      console.log("willhide");
+      document.getElementById("keyboard-bg").style.display = "none";
     });
   }
 
@@ -314,17 +330,23 @@ export class DrawPage {
   {
     console.log("keypad");
     var doc = document.getElementById("white-board-cooking-textarea-board").style.zIndex;
+
     document.getElementById("white-board-cooking-textarea-board").style.zIndex =
     doc == '8' ? '0' : '8';
 
-    if(doc == '8')
+    document.getElementById("white-board-ready-textarea-board").style.zIndex =
+    doc == '8' ? '0' : '8';
+
+    if(doc == '8') // 키보드 비활성화
     {
       document.getElementById("bnt-keypad-nor").style.opacity = '0.5';
+      // document.getElementById("keyboard-bg").style.display = "none";
     }
-    else
+    else // 키보드 활성화
     {
       document.getElementById("bnt-keypad-nor").style.opacity = '1';
-      document.getElementById("white-board-cooking-textarea").focus();
+      // document.getElementById("white-board-cooking-textarea").focus();
+      // document.getElementById("keyboard-bg").style.display = "";
     }
     // this.keyboard.hasFocusedTextInput();
     document.getElementById("pen-control-bar").style.display = 'none';
@@ -332,6 +354,10 @@ export class DrawPage {
   }
   open_pen()
   {
+    document.getElementById("white-board-ready-textarea-board").style.zIndex = '0';
+    document.getElementById("white-board-cooking-textarea-board").style.zIndex = '0';
+    document.getElementById("bnt-keypad-nor").style.opacity = '0.5';
+
     console.log("pen");
     document.getElementById("pen-control-bar").style.display = 'none';
 
@@ -343,6 +369,10 @@ export class DrawPage {
   }
   open_eraser()
   {
+    document.getElementById("white-board-ready-textarea-board").style.zIndex = '0';
+    document.getElementById("white-board-cooking-textarea-board").style.zIndex = '0';
+    document.getElementById("bnt-keypad-nor").style.opacity = '0.5';
+
     console.log("eraser");
     document.getElementById("pen-col-bg").style.display = 'none';
 
@@ -540,8 +570,10 @@ export class DrawPage {
     // let guidePopupDiv = document.getElementById("guide-popup-div");
     // guidePopupDiv.style.display = "none"
     let guidePopup = document.getElementById("guide-popup");
+    let guidePopupBg = document.getElementById("guide-popup-bg");
     let guidePopupClose = document.getElementById("guide-popup-close");
     guidePopup.style.display = "none";
+    guidePopupBg.style.display = "none";
     guidePopupClose.style.display = "none";
   }
 

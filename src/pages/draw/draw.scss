@@ -1,7 +1,7 @@
 page-draw {
 
   .content {background: #0E8D66 0% 0% no-repeat padding-box;}
-  .scroll-content{overflow: hidden;}
+  .scroll-content{}
 
   .home-back-div
   {
@@ -83,6 +83,8 @@ page-draw {
       // opacity: 0.8;
       left: 10%;
       width: 90%;
+      background-color: white;
+      border-radius: 30px;
     }
 
     .food-popup-div
@@ -121,6 +123,18 @@ page-draw {
         // border: 3px solid #000000;
         opacity: 1;
     }
+  }
+
+  .guide-popup-bg
+  {
+    background-color: #0E8D66;
+    opacity: 0.75;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
   }
 
   .white-board
@@ -197,7 +211,7 @@ page-draw {
     .white-board-ready {
       position: absolute;
       background-color: transparent;
-      z-index: 8;
+      z-index: 7;
       top: 73%;
       left: 1%;
       width: 51%;
@@ -227,6 +241,26 @@ page-draw {
       font-size: 180%;
 
       .white-board-cooking-textarea
+      {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background-color: transparent;
+      }
+    }
+
+    .white-board-ready-textarea-board {
+      position: absolute;
+      background-color: transparent;
+      z-index: 0;
+      top: 73%;
+      left: 1%;
+      width: 51%;
+      height: 26%;
+      border-bottom-left-radius: 50px;
+      font-size: 180%;
+
+      .white-board-ready-textarea
       {
         width: 100%;
         height: 100%;
@@ -484,5 +518,13 @@ page-draw {
         }
       }
     }
+  }
+  .keyboard-bg
+  {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 50%;
   }
 }
