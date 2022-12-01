@@ -1,9 +1,13 @@
 page-receipt {
 
-  .scroll-content
+  .recipe-content
   {
-    overflow-y:  hidden;
-    display: flex;
+    z-index: 10;
+    .scroll-content
+    {
+      overflow-y:  hidden;
+      display: flex;
+    }
   }
 
   // img{position: absolute;}
@@ -143,4 +147,531 @@ page-receipt {
   }
 
   ////////////////////////////////////////////////////////////////////////////////////////////////
+  .draw-content {background: #0E8D66 0% 0% no-repeat padding-box;}
+  .scroll-content{}
+
+  .home-back-div
+  {
+    margin: 2% 0% 3% 2%;
+    display: inline-flex;
+    .home {
+      width: 30%;
+      margin-right: 5%;
+    }
+
+    .back {
+      width: 30%;
+    }
+  }
+
+  .receipe-save-div
+  {
+    float: right;
+    margin: 2%;
+    height: 7%;
+    display: flex;
+    img{height: 100%;}
+    .receipe-sel {
+      float: left;
+      margin-right: 2%;
+    }
+
+    .save-nor {
+      float: left;
+    }
+  }
+
+  .menu-list
+  {
+    width: 25%;
+    height: 75%;
+    .menu-div
+    {
+      height: 11%;
+      width: 100%;
+      display: flex;
+      position: relative;
+      padding: 3%;
+      .menu-icon
+      {
+        flex: 35;
+        text-align: center;
+        img{height: 100%;}
+      }
+      .menu-name
+      {
+        text-align: start;
+        flex: 65;
+        transform: translateY(25%);
+        img{height: 50%; max-width: 80%;}
+      }
+      border-bottom: solid 1px white;
+    }
+  }
+
+  .menu-popup-div
+  {
+    position: absolute;
+    top: 12%;
+    left: 25%;
+    width: 12%;
+    height: 85%;
+    display: inline-block;
+    z-index: 10;
+    .food-popup-holder {
+      position: absolute;
+      width: 10%;
+      // opacity: 0.8;
+    }
+
+    .food-popup-bg {
+      position: absolute;
+      height: 100%;
+      // opacity: 0.8;
+      left: 10%;
+      width: 90%;
+      background-color: white;
+      border-radius: 30px;
+    }
+
+    .food-popup-div
+    {
+        position: absolute;
+        left: 10%;
+        height: 99%;
+        width: 100%;
+        padding: 5% 7%;
+        // opacity: 0.8;
+        overflow-y: scroll;
+    }
+
+    .food-popup-div::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    .food-popup-div::-webkit-scrollbar-thumb {
+        background-color: green;
+        height: 10px;
+        border-radius: 10px;
+    }
+
+    .food-popup-div::-webkit-scrollbar-track {
+        // background-color: red;
+        border-radius: 50px;
+    }
+
+    .bnt-food-popup-close {
+        position: absolute;
+        top: 95%;
+        left: 120%;
+        width: 30px;
+        height: 30px;
+        border: 3px solid var(--unnamed-color-000000);
+        // border: 3px solid #000000;
+        opacity: 1;
+    }
+  }
+
+  .guide-popup-bg
+  {
+    background-color: #0E8D66;
+    opacity: 0.75;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+  }
+
+  .white-board
+  {
+    position: absolute;
+    margin: 8% 0 0 25%;
+    top: 0%;
+    left: 0%;
+    width: 73%;
+    height: 85%;
+    // background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 50px;
+    opacity: 1;
+    background-image: url("../../assets/imgs/대체식품/03_Planning/00_basic btn/plan_temp.png");
+    background-size: cover;
+
+    .guide-popup {
+      position: absolute;
+      z-index: 11;
+      top: 10%;
+      left: 9%;
+      width: 70%;
+    }
+
+    .guide-popup-close {
+      position: absolute;
+      z-index: 11;
+      top: 14%;
+      left: 71%;
+      height: 5%;
+    }
+
+    .white-board-cook-name {
+      position: absolute;
+      background-color: transparent;
+      z-index: 8;
+      width: 47%;
+      height: 10%;
+      top: 14%;
+      left: 2%;
+      text-align: center;
+      img
+      {
+        max-width: 90%;
+      }
+
+      input
+      {
+        text-align: center;
+        width: 90%;
+        height: 100%;
+        font-size: 60px;
+        border: none;
+        color: rgb(17,96,69);
+      }
+    }
+
+    .white-board-ingredient {
+      position: absolute;
+      background-color: transparent;
+      z-index: 8;
+      top: 32%;
+      left: 1%;
+      width: 47%;
+      height: 35%;
+
+      img
+      {
+        max-width: 20%;
+        max-height: 50%;
+      }
+    }
+
+    .white-board-ready {
+      position: absolute;
+      background-color: transparent;
+      z-index: 7;
+      top: 73%;
+      left: 1%;
+      width: 47%;
+      height: 26%;
+      border-bottom-left-radius: 50px;
+    }
+
+    .white-board-cooking {
+      position: absolute;
+      z-index: 7;
+      background-color: transparent;
+      top: 12%;
+      left: 52%;
+      width: 45%;
+      height: 87%;
+      border-bottom-right-radius: 50px;
+    }
+    .white-board-cooking-textarea-board {
+      position: absolute;
+      background-color: transparent;
+      z-index: 0;
+      top: 12%;
+      left: 52%;
+      width: 45%;
+      height: 87%;
+      border-bottom-right-radius: 50px;
+      font-size: 180%;
+
+      .white-board-cooking-textarea
+      {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background-color: transparent;
+      }
+    }
+
+    .white-board-ready-textarea-board {
+      position: absolute;
+      background-color: transparent;
+      z-index: 0;
+      top: 73%;
+      left: 1%;
+      width: 47%;
+      height: 26%;
+      border-bottom-left-radius: 50px;
+      font-size: 180%;
+
+      .white-board-ready-textarea
+      {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background-color: transparent;
+      }
+    }
+  }
+
+    .bnt-keypad-nor {
+      position: fixed;
+      z-index: 9;
+      top: 69%;
+      right: 3%;
+      width: 6%;
+    }
+
+    .bnt-pen-nor {
+      position: fixed;
+      z-index: 9;
+      top: 78%;
+      right: 3%;
+      width: 6%;
+    }
+
+    .bnt-eraser-nor {
+      position: fixed;
+      z-index: 9;
+      top: 87%;
+      right: 3%;
+      width: 6%;
+    }
+
+    .pen-col-bg
+    {
+      position: absolute;
+      background-size: cover;
+      top: 69%;
+      left: 79%;
+      width: 12%;
+      z-index: 9;
+      > img{width: 100%; height: 100%;}
+
+      .pen-col-div
+      {
+        display: flex;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 3% 10% 3% 3%;
+        height: 100%;
+        width: 100%;
+        .cols
+        {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+        }
+        .pens
+        {
+          flex: 2;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .color
+        {
+          flex: 1;
+          padding: 10%;
+          border-radius: 25px;
+          border: solid 5px transparent;
+        }
+
+        .col-active
+        {
+          padding: 0;
+          margin: 10%;
+          border: solid 5px rgb(143,143,143);
+        }
+
+        .pen
+        {
+          flex: 1;
+          padding: 20px 0;
+          opacity: 0.5;
+        }
+
+        .pen-active
+        {
+          opacity: 1;
+        }
+      }
+    }
+
+    .pen-control-bar
+    {
+      // background-image: url("../../assets/imgs/대체식품/03_Planning/00_basic btn/Pen Control bar.png");
+      position: absolute;
+      background-size: cover;
+      top: 70%;
+      left: 84%;
+      width: 7%;
+      display: flex;
+      flex-direction: row;
+      z-index: 9;
+
+      >img{width: 100%; height: 100%;}
+
+      input
+      {
+        -webkit-appearance: slider-vertical;
+        width: 7%;
+        height: 65%;
+        position: absolute;
+        left: 39%;
+        top: 20%;
+      }
+    }
+
+  .recipe-save-modal
+  {
+    position: absolute;
+    top: 29%;
+    left: 40%;
+    width: 45%;
+    height: 40%;
+    /* UI Properties */
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 30px 50px #0000004D;
+    border: 1px solid #707070;
+    border-radius: 20px;
+    opacity: 1;
+    z-index: 10;
+    text-align: center;
+
+    span
+    {
+      display: block;
+      margin-top: 7%;
+      text-align: center;
+      font-size: 230%;
+      font-weight: bold;
+    }
+
+    input
+    {
+      margin-top: 5%;
+      width: 80%;
+      height: 20%;
+      background: #EAF3F9 0% 0% no-repeat padding-box;
+      border-radius: 10px 10px 0px 0px;
+      opacity: 0.4;
+      font-size: 200%;
+      border: none;
+      border-bottom: solid 1px black;
+    }
+
+    .modal-cancel
+    {
+      margin-top: 7%;
+      margin-right: 3%;
+      width: 35%;
+      height: 20%;
+      background: #FFFFFF 0% 0% no-repeat padding-box;
+      border: 3px solid #0E8D66;
+      border-radius: 10px;
+      opacity: 1;
+
+      font-size: 200%;
+      font-weight: bold;
+      color: #0E8D66;
+    }
+
+    .modal-save
+    {
+      margin-top: 7%;
+      width: 35%;
+      height: 20%;
+      background: #0E8D66 0% 0% no-repeat padding-box;
+      // border: 1px solid #707070;
+      border-radius: 10px;
+      opacity: 1;
+
+      font-size: 200%;
+      font-weight: bold;
+      color: #FFFFFF;
+    }
+  }
+
+  .other-recipe-board
+  {
+    position: absolute;
+    top: 55%;
+    left: 26%;
+    width: 71%;
+    height: 40%;
+    box-shadow: 0px 10px 10px #00000028;
+    border-radius: 50px;
+    opacity: 1;
+    z-index: 10;
+    text-align: center;
+
+    .bg-image{
+      width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      position: absolute;
+    }
+
+    .close-button
+    {
+      position: absolute;
+      top: 5%;
+      right: 2%;
+      width: 3%;
+      opacity: 1;
+    }
+
+    .prev-arraw, .next-arraw
+    {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10%;
+    }
+    .prev-arraw{left: 0;}
+    .next-arraw{right: 0;}
+
+    .recipe-slides
+    {
+      // position: absolute;
+      position: relative;
+      width: 80%;
+      height: 65%;
+      opacity: 1;
+      left: 10%;
+      top: 25%;
+
+      .slide-item
+      {
+        text-align: center;
+        width: calc(100% / 3);
+        .slide-image
+        {
+          width: 90%;
+          background: #FFFFFF 0% 0% no-repeat padding-box;
+          box-shadow: 0px 20px 30px #29404E26;
+          border-radius: 10px;
+          opacity: 1;
+        }
+        .slide-name
+        {
+          height: 20%;
+          display: block;
+        }
+      }
+    }
+  }
+  .keyboard-bg
+  {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+  }
 }
