@@ -45,6 +45,9 @@ export class ReceiptPage {
   // 2 : 레시피 아이콘
   receipts_positions = []
 
+  // 레시피 재료 텍스트
+  sub_recipe_text = "";
+
   // 슬라이드아이콘 클릭 시작 좌표
   slide_start_x = 0;
 
@@ -119,6 +122,8 @@ export class ReceiptPage {
     // console.log(this.left_infos_position)
 
     this.receipts_positions = recpv.get_receipts_positions(this.index);
+    this.sub_recipe_text = recpv.get_subrecipes(this.index);
+    console.log(this.sub_recipe_text);
     console.log(this.receipts_positions);
 
   }

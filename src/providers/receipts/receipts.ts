@@ -56,37 +56,20 @@ export class ReceiptsProvider {
     [[ 9, 12, 20], [ 9, 67, 22], [65,  8, 16], [73, 40, 20], [75, 71, 18],],                          // 슈퍼 밀웜 딸기바나나 쉐이크
   ];
 
-  // 메뉴 이름
-  // receipt_title_position = [
-  //   // left top
-  //   [1170, 1479], // 쌍별이 아약 토스트
-  //   [924, 1479], // 벅스 블루베리 크림치즈 토스트
-  //   [1274, 1479], // 장수애 콘치즈
-  //   [1134, 1479], // 수벌번데기 시리얼바
-  //   [1230, 1479], // 노오븐 티라미수
-  //   [1114, 1479], // 비건참치 풀무치 카나페
-  //   [1214, 1479], // 누애 녹차 쉐이크
-  //   [1314, 1479], // 고소애 피자
-  //   [1050, 1479], // 꽃벵이 동충하초 두부샐러드
-  //   [1020, 1479], // 슈퍼 밀웜 딸기바나나 쉐이크
-  // ]
+  sub_recipes = [
+    "건조 쌍별귀뚜라미(가루), 비건 달걀, 식빵, 비건 마네네즈, 설탕",
+    "건조 쌍별귀뚜라미(가루), 비건 달걀, 식빵, 비건 마네네즈, 설탕",
+    "건조 장수애(가루), 비건 마요네즈, 비건 피자치즈,\n스위트콘, 소금, 후추",
+    "건조 수벌번데기(가루), 비건 버터, 다크 초콜릿,\n볶은귀리, 뮤즐리, 아몬드",
+    "건조 메뚜기(가루), 비건 달걀, 비건 크림치즈, 비건 생크림,\n설탕, 카스테라, 인스턴트 커피(카누), 코코아가루",
+    "비건 풀무치(가루), 비건참치, 오이, 양파,\n방울토마토, 비건 마요네즈, 후추",
+    "건조 누에(가루), 오틀리(귀리우유), 녹차가루, 얼음",
+    "건조 밀웜(가루), 밀가루 토르티야, 토마토소스, 통조림콘,\n피망, 양송이 버섯, 올리브, 비건 피자치즈",
+    "건조 흰점박이 꽃무지(가루), 동충하초 발사믹 드레싱,\n두부, 어린채소, 방울토마토",
+    "건조 아메리카 왕거저리(가루), 오틀리(귀리우유),\n바나나나, 딸기, 시럽, 얼음",
+  ]
 
-  /*
-    .recipe1{z-index: 2; left: 783px; top: 473px;}
-    .recipe2{z-index: 2; left: 783px; top: 984px;}
-    .recipe3{z-index: 2; left: 1801.5px; top: 475px;}
-    .recipe4{z-index: 2; left: 1890.5px; top: 800px;}
-    .recipe5{z-index: 2; left: 1784.5px; top: 1114px;}
 
-    .icon0{left: 1254px; top: 546px;}
-
-    .icon1{left: 842px; top: 594px;}
-    .icon2{left: 1052px; top: 1037px;}
-    .icon3{left: 1871px; top: 553px;}
-    .icon4{left: 1911px; top: 811px;}
-    .icon5{left: 1846px; top: 1166px;}
-    .icon5-1{left: 2092px; top: 1192px;}
-  */
 
   constructor(public http: HttpClient) {
     console.log('Hello ReceiptsProvider Provider');
@@ -100,5 +83,10 @@ export class ReceiptsProvider {
     result.push(this.receipt_icons_position[num - 1]);
     // result.push(this.receipt_title_position[num - 1]);
     return result;
+  }
+
+  get_subrecipes(num)
+  {
+    return this.sub_recipes[num - 1];
   }
 }

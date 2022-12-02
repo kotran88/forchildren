@@ -85,6 +85,20 @@ page-receipt {
       display: inline-block;
       background-image: url("../../assets/imgs/대체식품/02_Recipe/00_btn/sub_recipe_bar.png");
       padding: 1% 5%;
+      position: relative;
+
+      span
+      {
+        white-space: pre-line;
+        color: rgb(30, 99, 76);
+        font-size: 30px;
+        font-weight: 600;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+      }
     }
 
     .recipes_div
