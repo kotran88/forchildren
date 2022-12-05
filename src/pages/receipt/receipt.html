@@ -64,7 +64,8 @@
     <img id="induction-arrow" class="induction-arrow" src="{{root_image_path}}aaa.png" alt="">
     <img class="recipe_bar" src="{{root_image_path}}00_btn/Recipe Bar.png" alt="">
     <div id="modal_page">
-      <img src="../../assets/imgs/대체식품/drawpage_default.jpeg" alt="">
+      <img *ngIf="guide_popup_flag == false" src="../../assets/imgs/대체식품/drawpage_default.jpeg" alt="">
+      <img *ngIf="guide_popup_flag == true" src="../../assets/imgs/대체식품/drawpage_default2.jpeg" alt="">
     </div>
   </div>
 </ion-content>
@@ -97,7 +98,7 @@
     <img id="food-popup-bg" class="food-popup-bg" src="assets/imgs/대체식품/03_Planning/01_menu btn/Food Popup_bg.png" alt="">
 
     <div id="food-popup-div" class="food-popup-div">
-      <div *ngFor ="let i of targetList.value; let j = index;" dragula="bag" [(dragulaModel)]="q1" >
+      <div id="food-popup-div-{{j+1}}" *ngFor ="let i of targetList.value; let j = index;" dragula="bag" [(dragulaModel)]="q1" >
         <img id="popup-{{targetList.key}}-{{j + 1}}" class="popup-{{targetList.key}}-{{j + 1}}" src="{{i}}" alt="">
       </div>
     </div>

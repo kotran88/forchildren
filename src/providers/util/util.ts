@@ -88,7 +88,7 @@ export class UtilProvider {
     var root = this.mypicref.child(dir).child(key)
     console.log(root);
 
-    this.present_loading("사진 저장중...");
+    // this.present_loading("사진 저장중...");
     this.encodeImageUri(imageURI, (image64)=>{
       console.log(image64);
       if(imageURI != image64)

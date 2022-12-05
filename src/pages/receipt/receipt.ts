@@ -11,6 +11,7 @@ import { Screenshot } from '@ionic-native/screenshot/ngx';
 import { UtilProvider } from '../../providers/util/util';
 import { ExpansionRecipePage } from '../expansion-recipe/expansion-recipe';
 import * as htmlToImage from 'html-to-image';
+import { C } from '@angular/core/src/render3';
 
 /**
  * Generated class for the ReceiptPage page.
@@ -35,7 +36,7 @@ export class ReceiptPage {
 
   // left_info 이미지 갯수
   left_info_cnt = 1;
-  left_infos = [0, 1, 3, 3, 2, 4, 3, 1, 2, 2, 1];
+  left_infos = [0, 1, 4, 4, 3, 5, 4, 1, 3, 3, 1];
   left_infos_position = []
   left_infos_url_list = [];
 
@@ -102,7 +103,15 @@ export class ReceiptPage {
 
   // 1 레시피 페이지, 2 자작레시피 페이지
   draw_z_index = 0;
+
+  // 가이드팝업 초기에는 false, 닫으면 true
+  guide_popup_flag = false;
   // draw_page_ready_flag = false;
+
+  // canvas 펜 색
+  canvas_col_rgb:string = "0,0,0,"
+  canvas_col_active:string = "black";
+  canvas_col_opacity:string = "1";
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController,
   public recpv: ReceiptsProvider,
@@ -138,32 +147,43 @@ export class ReceiptPage {
   }
 
   // 295.47
+  changing_left_info_flag = false;
   chenage_left_info()
   {
-    if(this.left_infos[this.index] == 1) return;
-    if(this.left_info_cnt < this.left_infos[this.index])
-    {
-      for(var i = 0; i < this.left_infos_position.length; i++)
-      {
-        this.left_infos_position[i] -= 100;
-        document.getElementById('general_material'+(i+1)).style.transition = "0.5s";
-        document.getElementById('general_material'+(i+1)).style.top = this.left_infos_position[i] + "%";
+    if(this.changing_left_info_flag == true) return;
 
-      }
+    this.changing_left_info_flag = true;
+    setTimeout(() => {
+      this.changing_left_info_flag = false;
+    }, 500);
+
+    if(this.left_infos[this.index] == 1) return;
+    for(var i = 0; i < this.left_infos_position.length; i++)
+    {
+      this.left_infos_position[i] -= 100;
+      document.getElementById('general_material'+(i+1)).style.transition = "0.5s";
+      document.getElementById('general_material'+(i+1)).style.top = this.left_infos_position[i] + "%";
+
+    }
+    console.log(this.left_info_cnt, this.left_infos[this.index] - 1)
+    if(this.left_info_cnt < this.left_infos[this.index] - 1){
       this.left_info_cnt++;
     }
     else
     {
-      for(var i = 0; i < this.left_infos_position.length; i++)
-      {
-        this.left_infos_position[i] += 100 * (this.left_infos[this.index] - 1);
-        document.getElementById('general_material'+(i+1)).style.transition = "0.5s";
-        document.getElementById('general_material'+(i+1)).style.top = this.left_infos_position[i] + "%";
-      }
+      setTimeout(() => {
+        for(var i = 0; i < this.left_infos_position.length; i++)
+        {
+          this.left_infos_position[i] += 100 * (this.left_infos[this.index] - 1);
+          document.getElementById('general_material'+(i+1)).style.transition = "0s";
+          document.getElementById('general_material'+(i+1)).style.top = this.left_infos_position[i] + "%";
+        }
+      }, 500);
       this.left_info_cnt = 1;
     }
   }
 
+  induction_arrow_interval;
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReceiptPage');
 
@@ -174,6 +194,15 @@ export class ReceiptPage {
     // .fromTo('transform', 'translateX(-200%)', 'translateX(-100%)');
     this.ready_receipt_page();
     this.ready_draw_page();
+
+    this.induction_arrow_interval = setInterval(()=>{
+      document.getElementById("induction-arrow").style.transition = "1s";
+      document.getElementById("induction-arrow").style.transform = "translate(-150%, -50%)";
+      setTimeout(() => {
+        document.getElementById("induction-arrow").style.transition = "0.0s";
+        document.getElementById("induction-arrow").style.transform = "translate(-100%, -50%)";
+      }, 500);
+    },1000)
   }
 
   ready_receipt_page()
@@ -214,6 +243,17 @@ export class ReceiptPage {
     });
   }
 
+  async append_clone_node(el)
+  {
+    var id = el.id.toString().split('popup-')[1].split('-1')[0];
+    console.log(id);
+    var clone_node = document.getElementById("popup-"+id+'-1').cloneNode(true);
+    if(document.getElementById("food-popup-div-"+id).firstElementChild){
+      await document.getElementById("food-popup-div-"+id).firstElementChild.remove();
+    }
+    document.getElementById("food-popup-div-"+id).append(clone_node);
+  }
+
   ready_draw_page()
   {
     for (let i = 1; i <= 58; i++) { this.q1.push({ value: 'Write new Post', color: 'primary' }); }
@@ -223,7 +263,11 @@ export class ReceiptPage {
       this.dragulaService.drag('bag').subscribe(async ({ name, el, source }) => {
         el.setAttribute('color', 'danger');
         console.log("asdasd");
+
+        // this.append_clone_node(el);
+
         let ingredient = document.getElementById("white-board-ingredient");
+        console.log(ingredient.childNodes.length);
         if(ingredient.childNodes.length > 10)
         {
           alert("최대 10개까지 입니다.")
@@ -241,10 +285,13 @@ export class ReceiptPage {
         })
       });
 
-      this.dropSub = this.dragulaService.dropModel('bag').subscribe(({ item, el }) => {
+      this.dropSub = this.dragulaService.dropModel('bag').subscribe(async ({ item, el }) => {
         console.log("qweqwe");
         console.log(item);
         console.log(el);
+
+        this.append_clone_node(el);
+
         let ingredient = document.getElementById("white-board-ingredient");
         let pressTimer = null;
         let targetClass = el.classList[0];
@@ -323,7 +370,10 @@ export class ReceiptPage {
   back_button()
   {
     if(this.draw_z_index == 0)
+    {
+      clearInterval(this.induction_arrow_interval);
       this.navCtrl.pop();
+    }
     else
     {
       this.draw_z_index = 0;
@@ -552,34 +602,32 @@ export class ReceiptPage {
     document.getElementById("col-green").classList.remove('col-active');
     document.getElementById("col-red").classList.remove('col-active');
     document.getElementById("col-yellow").classList.remove('col-active');
+    this.canvas_col_active = col;
     switch(col)
     {
       case 'black':
-        this.context[0].strokeStyle = '#000000';
-        this.context[1].strokeStyle = '#000000';
+        this.canvas_col_rgb = "0,0,0,";
         document.getElementById("col-black").classList.add('col-active');
         break;
       case 'blue':
-        this.context[0].strokeStyle = '#0000ff';
-        this.context[1].strokeStyle = '#0000ff';
+        this.canvas_col_rgb = "0,0,255,";
         document.getElementById("col-blue").classList.add('col-active');
         break;
       case 'green':
-        this.context[0].strokeStyle = '#00ff00';
-        this.context[1].strokeStyle = '#00ff00';
+        this.canvas_col_rgb = "0,255,0,";
         document.getElementById("col-green").classList.add('col-active');
         break;
       case 'red':
-        this.context[0].strokeStyle = '#ff0000';
-        this.context[1].strokeStyle = '#ff0000';
+        this.canvas_col_rgb = "255,0,0,";
         document.getElementById("col-red").classList.add('col-active');
         break;
       case 'yellow':
-        this.context[0].strokeStyle = '#ffff00';
-        this.context[1].strokeStyle = '#ffff00';
+        this.canvas_col_rgb = "255,255,0,"
         document.getElementById("col-yellow").classList.add('col-active');
         break;
     }
+    this.context[0].strokeStyle =
+    this.context[1].strokeStyle = "rgba(" + this.canvas_col_rgb + this.canvas_col_opacity + ")";
   }
 
   change_pen(pen)
@@ -590,19 +638,25 @@ export class ReceiptPage {
     switch(pen)
     {
       case '01':
+        this.canvas_col_opacity = "1";
         this.context[0].lineWidth = 1;
         this.context[1].lineWidth = 1;
         document.getElementById("pen-01").classList.add('pen-active');
+        this.change_color(this.canvas_col_active)
         break;
       case '02':
+        this.canvas_col_opacity = "1";
         this.context[0].lineWidth = 3;
-        this.context[1].lineWidth = 5;
+        this.context[1].lineWidth = 3;
         document.getElementById("pen-02").classList.add('pen-active');
+        this.change_color(this.canvas_col_active)
         break;
       case '03':
+        this.canvas_col_opacity = "0.05";
         this.context[0].lineWidth = 7;
         this.context[1].lineWidth = 7;
         document.getElementById("pen-03").classList.add('pen-active');
+        this.change_color(this.canvas_col_active)
         break;
     }
   }
@@ -639,6 +693,7 @@ export class ReceiptPage {
     })
     .then((image)=>{
       this.save_modal_close();
+      this.util.present_loading("Saving...");
       this.util.uploadImage("image", new Date().toISOString(), image, (result) => {
         console.log(result);
         if(result)
@@ -703,20 +758,20 @@ export class ReceiptPage {
     doc.style.display = "none";
   }
 
-  async TaskScreenShot() : Promise<void> {
-    // this.save_modal_open();
-    try
-    {
-      let response = await this.screenshot.save();
-      var uri = await this.screenshot.URI();
-      let fileName = response.filePath.split("/")[5];
-      this.util.uploadImage("image", fileName, uri, () => {});
-    }
-    catch(err)
-    {
-      console.log(err);
-    }
-  }
+  // async TaskScreenShot() : Promise<void> {
+  //   // this.save_modal_open();
+  //   try
+  //   {
+  //     let response = await this.screenshot.save();
+  //     var uri = await this.screenshot.URI();
+  //     let fileName = response.filePath.split("/")[5];
+  //     this.util.uploadImage("image", fileName, uri, () => {});
+  //   }
+  //   catch(err)
+  //   {
+  //     console.log(err);
+  //   }
+  // }
 
   /** 팝업 닫는 함수. */
   guidePopueCloseButton() : void {
@@ -728,6 +783,8 @@ export class ReceiptPage {
     guidePopup.style.display = "none";
     guidePopupBg.style.display = "none";
     guidePopupClose.style.display = "none";
+
+    this.guide_popup_flag = true;
   }
 
   open_recipe(item)

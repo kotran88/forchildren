@@ -1,11 +1,17 @@
 page-receipt {
+  @font-face {
+    font-family: 'GongGothicMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
 
   .recipe-content
   {
     z-index: 10;
     .scroll-content
     {
-      overflow-y:  hidden;
+      overflow-y: hidden;
       display: flex;
     }
   }
@@ -135,7 +141,6 @@ page-receipt {
       width: 4%;
       position: absolute;
       top: 50%;
-    // transform: translateY(-50%);
       transform: translate(-100%, -50%);
     }
     div
@@ -337,10 +342,10 @@ page-receipt {
       top: 14%;
       left: 2%;
       text-align: center;
-      img
-      {
-        max-width: 90%;
-      }
+      // img
+      // {
+      //   max-width: 90%;
+      // }
 
       input
       {
@@ -350,6 +355,8 @@ page-receipt {
         font-size: 60px;
         border: none;
         color: rgb(17,96,69);
+        font-family: "GongGothicMedium";
+        font-weight: 600;
       }
     }
 
@@ -407,6 +414,9 @@ page-receipt {
         height: 100%;
         border: none;
         background-color: transparent;
+
+        font-family: "GongGothicMedium";
+        font-weight: 300;
       }
     }
 
@@ -427,6 +437,9 @@ page-receipt {
         height: 100%;
         border: none;
         background-color: transparent;
+
+        font-family: "GongGothicMedium";
+        font-weight: 300;
       }
     }
   }
