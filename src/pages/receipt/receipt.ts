@@ -152,10 +152,12 @@ export class ReceiptPage {
   {
     if(this.changing_left_info_flag == true) return;
 
+    var interval_time = 500;
+
     this.changing_left_info_flag = true;
     setTimeout(() => {
       this.changing_left_info_flag = false;
-    }, 500);
+    }, interval_time);
 
     if(this.left_infos[this.index] == 1) return;
     for(var i = 0; i < this.left_infos_position.length; i++)
@@ -178,12 +180,12 @@ export class ReceiptPage {
           document.getElementById('general_material'+(i+1)).style.transition = "0s";
           document.getElementById('general_material'+(i+1)).style.top = this.left_infos_position[i] + "%";
         }
-      }, 500);
+      }, interval_time);
       this.left_info_cnt = 1;
     }
   }
 
-  induction_arrow_interval;
+  induction_arrow_interval:NodeJS.Timeout;
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReceiptPage');
 
@@ -245,13 +247,37 @@ export class ReceiptPage {
 
   async append_clone_node(el)
   {
-    var id = el.id.toString().split('popup-')[1].split('-1')[0];
+    var ch = el.id.toString().split('popup-')[1].split('-')[0];
+    var id = el.id.toString().split('popup-')[1].split('-')[1];
     console.log(id);
-    var clone_node = document.getElementById("popup-"+id+'-1').cloneNode(true);
-    if(document.getElementById("food-popup-div-"+id).firstElementChild){
-      await document.getElementById("food-popup-div-"+id).firstElementChild.remove();
+    var clone_node = document.getElementById(el.id).cloneNode(true);
+    var items = document.getElementById("food-popup-div").children;
+    console.log(items);
+    for(var i in items)
+    {
+      console.log(items[i].id);
+      console.log(items[i].children)
+      for(var j in items[i].children)
+      {
+        if(items[i].children[j].id == el.id)
+        {
+          items[i].children[j].remove();
+        }
+      }
     }
+
     document.getElementById("food-popup-div-"+id).append(clone_node);
+
+    // if(document.getElementById("food-popup-div-"+id).firstElementChild){
+    //   console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+    //   console.log(document.getElementById("food-popup-div-"+id).firstElementChild);
+    //   // await document.getElementById("food-popup-div-"+id).firstElementChild.remove();
+    // }
+    // else
+    // {
+    //   console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbb');
+    //   document.getElementById("food-popup-div-"+id).append(clone_node);
+    // }
   }
 
   ready_draw_page()
@@ -384,6 +410,7 @@ export class ReceiptPage {
   home_button()
   {
     console.log(this.navCtrl);
+    clearInterval(this.induction_arrow_interval);
     this.navCtrl.setRoot(HomePage);
   }
 
