@@ -201,9 +201,10 @@
 
     <ion-slides class="recipe-slides" #recipe_slides paginationType="bullets"
     pager="false"  centeredSlides="false" slidesPerView="3">
-      <ion-slide class="slide-item" *ngFor="let item of recipe_list" (click)="open_recipe(item)">
+      <ion-slide class="slide-item" *ngFor="let item of recipe_list; let idx = index;" (click)="open_recipe(item)">
         <img class="slide-image" src="{{item.url}}" alt="">
         <span class="slide-name">{{item.name}}</span>
+        <span class="slide-close" (click)="remove_recipe(item, idx)">X</span>
       </ion-slide>
     </ion-slides>
   </div>

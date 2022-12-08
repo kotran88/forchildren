@@ -490,7 +490,7 @@ export class DrawPage {
         console.log(result);
         if(result)
         {
-          this.util.upload_recipe(this.recipe_name, result);
+          // this.util.upload_recipe(this.recipe_name, result);
         }
       });
     })

@@ -27,6 +27,7 @@ export class HomePage {
     this.food_list.push({"active_flag": false, "disable_img": img_root + "btn_menu08_nor.png", "enable_img": img_root + "btn_menu08_sel.png"})
     this.food_list.push({"active_flag": false, "disable_img": img_root + "btn_menu09_nor.png", "enable_img": img_root + "btn_menu09_sel.png"})
     this.food_list.push({"active_flag": false, "disable_img": img_root + "btn_menu10_nor.png", "enable_img": img_root + "btn_menu10_sel.png"})
+
   }
 
   ionViewDidLoad() {

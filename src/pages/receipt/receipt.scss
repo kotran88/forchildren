@@ -705,6 +705,19 @@ page-receipt {
           height: 20%;
           display: block;
         }
+        .slide-close
+        {
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 0;
+          background: #ff6969;
+          color: white;
+          width: 25px;
+          height: 25px;
+          font-size: 20px;
+          border-radius: 5px;
+        }
       }
     }
   }

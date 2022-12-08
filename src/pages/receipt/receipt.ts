@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, Keyboard, ModalCmp, ModalController, NavController, NavParams, Slides, ToastController } from 'ionic-angular';
 // import { Animation, AnimationController } from '@ionic/angular';
-import { DrawPage } from '../draw/draw';
+// import { DrawPage } from '../draw/draw';
 import { HomePage } from '../home/home';
 import * as $ from "jquery";
 import { ReceiptsProvider } from '../../providers/receipts/receipts';
@@ -190,11 +190,6 @@ export class ReceiptPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReceiptPage');
 
-    // this.animationCtrl.create()
-    // .addElement(document.getElementById("induction-arrow"))
-    // .duration(1500)
-    // .iterations(Infinity)
-    // .fromTo('transform', 'translateX(-200%)', 'translateX(-100%)');
     this.ready_receipt_page();
     this.ready_draw_page();
 
@@ -754,7 +749,7 @@ export class ReceiptPage {
   }
 
   recipe_list = [];
-  async get_recipes_from_DB()
+  async get_recipes_from_DB(num)
   {
     var k = (this.recipe_list.length == 0 ? "" :
     this.recipe_list[this.recipe_list.length - 1].key);
@@ -762,7 +757,7 @@ export class ReceiptPage {
     var root = this.firemain.child('recipes').orderByChild('key');
     if(k != "") root = root.endAt(k);
 
-    var snap = await root.limitToLast(6).once('value');
+    var snap = await root.limitToLast(num).once('value');
 
     console.log(snap.val());
     var list = [];
@@ -785,7 +780,7 @@ export class ReceiptPage {
     console.log(this.recipe_slides)
     if(this.recipe_slides.isEnd())
     {
-      this.get_recipes_from_DB();
+      this.get_recipes_from_DB(6);
     }
     else
     {
@@ -796,7 +791,7 @@ export class ReceiptPage {
   open_recipe_board(): void
   {
     this.recipe_list = [];
-    this.get_recipes_from_DB();
+    this.get_recipes_from_DB(6);
     var doc = document.getElementById("other-recipe-board");
     doc.style.display = "";
   }
@@ -851,5 +846,32 @@ export class ReceiptPage {
       }
     })
     modal.present();
+  }
+
+  remove_recipe(item, idx)
+  {
+    console.log(item.key);
+    console.log(idx);
+    this.firemain.child('delete_recipes').child(item.key).update(item);
+    this.firemain.child('recipes').child(item.key).remove()
+    .then(()=>{
+      var num = 6 - this.recipe_list.length;
+      if(num < 1) num = 1;
+      this.get_recipes_from_DB(num);
+    })
+
+    for(var i = idx; i < this.recipe_list.length - 1; i++)
+    {
+      this.recipe_list[i] = this.recipe_list[i + 1];
+    }
+    this.recipe_list.pop();
+
+    // var temp_list = [];
+    // for(var i in this.recipe_list)
+    // {
+    //   if(this.recipe_list[i].key != item.key)
+    //     temp_list.push(this.recipe_list);
+    // }
+    // this.recipe_list = temp_list;
   }
 }
