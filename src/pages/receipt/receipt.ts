@@ -186,6 +186,7 @@ export class ReceiptPage {
   }
 
   induction_arrow_interval:NodeJS.Timeout;
+  // induction_arrow_interval2:NodeJS.Timeout;
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReceiptPage');
 
@@ -201,8 +202,11 @@ export class ReceiptPage {
       document.getElementById("induction-arrow").style.transition = "1s";
       document.getElementById("induction-arrow").style.transform = "translate(-150%, -50%)";
       setTimeout(() => {
-        document.getElementById("induction-arrow").style.transition = "0.0s";
-        document.getElementById("induction-arrow").style.transform = "translate(-100%, -50%)";
+        if(document.getElementById("induction-arrow"))
+        {
+          document.getElementById("induction-arrow").style.transition = "0.0s";
+          document.getElementById("induction-arrow").style.transform = "translate(-100%, -50%)";
+        }
       }, 500);
     },1000)
   }
@@ -398,6 +402,7 @@ export class ReceiptPage {
     if(this.draw_z_index == 0)
     {
       clearInterval(this.induction_arrow_interval);
+      // clearInterval(this.induction_arrow_interval2)
       this.navCtrl.pop();
     }
     else
@@ -411,6 +416,7 @@ export class ReceiptPage {
   {
     console.log(this.navCtrl);
     clearInterval(this.induction_arrow_interval);
+    // clearInterval(this.induction_arrow_interval2)
     this.navCtrl.setRoot(HomePage);
   }
 
@@ -690,9 +696,6 @@ export class ReceiptPage {
 
   save_modal_open(): void
   {
-    // setTimeout(() => {
-    //   this.util.dismiss_loading();
-    // }, 2000);
     this.recipe_name = "";
     var modal = document.getElementById("recipe-save-modal");
     modal.style.display = "";
@@ -712,6 +715,8 @@ export class ReceiptPage {
       document.getElementById("recipe-name").focus();
       return;
     }
+    this.save_modal_close();
+    this.util.present_loading("Saving...");
     htmlToImage.toPng(document.getElementById("white-board"),
     {
       style: {
@@ -719,13 +724,30 @@ export class ReceiptPage {
       }
     })
     .then((image)=>{
-      this.save_modal_close();
-      this.util.present_loading("Saving...");
+      this.util.change_loading(2);
       this.util.uploadImage("image", new Date().toISOString(), image, (result) => {
         console.log(result);
         if(result)
         {
-          this.util.upload_recipe(this.recipe_name, result);
+          this.util.upload_recipe(this.recipe_name, result,(flag)=>{
+            if(flag)
+            {
+              this.util.change_loading(10);
+              setTimeout(() => {
+                this.util.dismiss_loading();
+              }, 500);
+            }
+            else
+            {
+              this.util.dismiss_loading();
+              alert("Error!");
+            }
+          })
+        }
+        else
+        {
+          this.util.dismiss_loading();
+          alert("Error!");
         }
       });
     })

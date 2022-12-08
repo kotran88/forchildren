@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import firebase from 'firebase';
 import { Loading, LoadingController } from 'ionic-angular';
+import { callbackify } from 'util';
 
 /*
   Generated class for the UtilProvider provider.
@@ -35,22 +36,30 @@ export class UtilProvider {
       '<div class="loading-style">' +
       '<span class="loading-text">'+content+'</span>'+
         '<div class="loading-bg">'+
-          '<div class="loading-bar"></div>'+
+          '<div id="loading-bar" class="loading-bar"></div>'+
         '</div>'+
       '</div>',
-      cssClass:"loading-style loading-bar10",
       showBackdrop : false,
       enableBackdropDismiss : false,
-      dismissOnPageChange : false,
+      dismissOnPageChange : true,
     });
     this.lloading.present();
+
+
+    // var idx = 0;
+    // var itv = setInterval(()=>{
+    //   if(idx > 10) { clearInterval(itv); }
+
+    //   this.change_loading(idx++);
+    // },1000)
   }
 
   // 0 ~ 10까지 11개의 단계 0: 0%, 10: 100%
   change_loading(num)
   {
-    if(!this.lloading) return;
-    console.log(num);
+    if(num < 0) num = 0;
+    else if(num > 10) num = 10;
+    document.getElementsByClassName("loading-bar").item(0).className = "loading-bar loading-bar" + num;
   }
 
   dismiss_loading()
@@ -59,7 +68,7 @@ export class UtilProvider {
       this.lloading.dismiss();
   }
 
-  upload_recipe(name, url)
+  upload_recipe(name, url, callback)
   {
     var key = this.firemain.push().key;
 
@@ -69,6 +78,11 @@ export class UtilProvider {
       "url" : url,
       "key" : key,
       "create_date" : new Date().toISOString(),
+    }).then(()=>{
+      callback(true);
+    }).catch((err)=>{
+      console.log(err);
+      callback(false);
     })
   }
 
@@ -90,6 +104,7 @@ export class UtilProvider {
 
     // this.present_loading("사진 저장중...");
     this.encodeImageUri(imageURI, (image64)=>{
+      this.change_loading(4);
       console.log(image64);
       if(imageURI != image64)
       {
@@ -100,26 +115,37 @@ export class UtilProvider {
       {
         console.log(true);
       }
+      var timeout:NodeJS.Timeout;
+      timeout = setTimeout(() => {
+        if(this.lloading)
+        {
+          alert("인터넷 연결을 확인해주세요.");
+          this.dismiss_loading();
+          callback(null);
+        }
+      }, 10000);
       root.putString(image64, 'data_url')
       .then(snapshot => {
+        this.change_loading(6);
         console.log(snapshot);
         this.mypicref.child(dir).child(key).getDownloadURL().then((url)=>{
-
+          clearTimeout(timeout);
           console.log("download url is : "+url);
-          this.dismiss_loading();
+          // this.dismiss_loading();
+          this.change_loading(8);
           callback(url);
 
         }).catch((e)=>{
           console.log('eeeee');
           console.log(e);
-          this.dismiss_loading();
+          // this.dismiss_loading();
           callback(null);
         })
       }).catch((e)=>{
         console.log("error is....")
         window.alert(e);
         console.log(e);
-        this.dismiss_loading();
+        // this.dismiss_loading();
         callback(null);
       })
     })

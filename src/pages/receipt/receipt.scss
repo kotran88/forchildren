@@ -1,10 +1,16 @@
 page-receipt {
-  @font-face {
-    font-family: 'GongGothicMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
+  // @font-face {
+  //   font-family: 'GongGothicMedium';
+  //   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+  //   font-weight: normal;
+  //   font-style: normal;
+  // }
+  // @font-face {
+  //   font-family: 'Cafe24ClassicType-Regular';
+  //   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Cafe24ClassicType-Regular.woff2') format('woff2');
+  //   font-weight: normal;
+  //   font-style: normal;
+  // }
 
   .recipe-content
   {
@@ -49,8 +55,8 @@ page-receipt {
       float: left;
       margin-top: 30%;
       height: 70%;
-      width: 90%;
-      margin-left: 5%;
+      width: 80%;
+      margin-left: 10%;
       overflow: hidden;
       position: relative;
     }
@@ -98,7 +104,8 @@ page-receipt {
         white-space: pre-line;
         color: rgb(30, 99, 76);
         font-size: 30px;
-        font-weight: 600;
+        font-family: "esamanru";
+        font-weight: 900;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -121,11 +128,13 @@ page-receipt {
   {
     position: absolute;
     bottom: 0;
-    border-bottom: solid 5px rgb(17, 96, 69);
-    height: 7%;
-    left: 50%;
-    transform: translateX(-50%);
-    img{height: 100%;}
+    height: 8%;
+    width: 100%;
+    img{
+      height: 100%;
+      border-bottom: solid 5px #116045;
+      margin-left: -2%;
+    }
   }
 
   .receipt_bar_div
@@ -258,7 +267,7 @@ page-receipt {
         position: absolute;
         left: 10%;
         height: 99%;
-        width: 100%;
+        width: 90%;
         padding: 5% 7%;
         // opacity: 0.8;
         overflow-y: scroll;
@@ -267,6 +276,7 @@ page-receipt {
 
     .food-popup-div::-webkit-scrollbar {
       width: 12px;
+      display: none;
     }
 
     .food-popup-div::-webkit-scrollbar-thumb {
@@ -283,7 +293,7 @@ page-receipt {
     .bnt-food-popup-close {
         position: absolute;
         top: 95%;
-        left: 120%;
+        left: 102%;
         width: 30px;
         height: 30px;
         border: 3px solid var(--unnamed-color-000000);
@@ -356,8 +366,8 @@ page-receipt {
         font-size: 60px;
         border: none;
         color: rgb(17,96,69);
-        font-family: "GongGothicMedium";
-        font-weight: 600;
+        font-family: "esamanru";
+        font-weight: 500;
       }
     }
 
@@ -416,7 +426,7 @@ page-receipt {
         border: none;
         background-color: transparent;
 
-        font-family: "GongGothicMedium";
+        font-family: "esamanru";
         font-weight: 300;
       }
     }
@@ -439,7 +449,7 @@ page-receipt {
         border: none;
         background-color: transparent;
 
-        font-family: "GongGothicMedium";
+        font-family: "esamanru";
         font-weight: 300;
       }
     }
@@ -576,8 +586,10 @@ page-receipt {
       display: block;
       margin-top: 7%;
       text-align: center;
+
       font-size: 230%;
-      font-weight: bold;
+      font-weight: 500;
+      font-family: "esamanru";
     }
 
     input
@@ -588,9 +600,11 @@ page-receipt {
       background: #EAF3F9 0% 0% no-repeat padding-box;
       border-radius: 10px 10px 0px 0px;
       opacity: 0.4;
-      font-size: 200%;
       border: none;
       border-bottom: solid 1px black;
+
+      font-size: 200%;
+      font-family: "esamanru";
     }
 
     .modal-cancel
@@ -682,7 +696,7 @@ page-receipt {
         {
           width: 90%;
           background: #FFFFFF 0% 0% no-repeat padding-box;
-          box-shadow: 0px 20px 30px #29404E26;
+          // box-shadow: 0px 20px 30px #29404E26;
           border-radius: 10px;
           opacity: 1;
         }
