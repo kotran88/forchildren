@@ -100,7 +100,7 @@ export class ReceiptPage {
   context : CanvasRenderingContext2D[] = Array();
   painting : boolean = false;
   erase_flag : boolean = false;
-  erase_size : number = 50;
+  erase_size : number = 20;
 
   recipe_name : string = "";
 
@@ -548,6 +548,7 @@ export class ReceiptPage {
         var xx = x - this.erase_size / 2;
         var yy = y - this.erase_size / 2;
 
+        // this.context[1].arc(xx, yy, this.erase_size * 10, 0, 2 * Math.PI, true);
         this.context[1].clearRect(xx, yy, this.erase_size, this.erase_size);
       }
       else
