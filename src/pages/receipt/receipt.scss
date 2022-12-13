@@ -26,7 +26,7 @@ page-receipt {
 
   .left_bar
   {
-    background-image: url("../../assets/imgs/대체식품/02_Recipe/00_btn/left\ bar.png");
+    background-image: url("../../assets/imgs/alternative food/02_Recipe/00_btn/left\ bar.png");
     // width: 24%;
     height: 100%;
     text-align: center;
@@ -82,46 +82,52 @@ page-receipt {
     flex: 76;
     position: relative;
     text-align: center;
-    .recipe_cap
+    img
     {
-      width: 50%;
-      margin-top: 5%;
+      height: 100%;
+      padding-top: 5%;
+      margin-left: -5%;
     }
+    // .recipe_cap
+    // {
+    //   width: 50%;
+    //   margin-top: 5%;
+    // }
 
-    .sub_recipe_div
-    {
-      margin-top: 2%;
-      width: 85%;
-      height: 10%;
-      border-radius: 20px;
-      display: inline-block;
-      background-image: url("../../assets/imgs/대체식품/02_Recipe/00_btn/sub_recipe_bar.png");
-      padding: 1% 5%;
-      position: relative;
+    // .sub_recipe_div
+    // {
+    //   margin-top: 2%;
+    //   width: 85%;
+    //   height: 10%;
+    //   border-radius: 20px;
+    //   display: inline-block;
+    //   background-image: url("../../assets/imgs/alternative food/02_Recipe/00_btn/sub_recipe_bar.png");
+    //   padding: 1% 5%;
+    //   position: relative;
 
-      span
-      {
-        white-space: pre-line;
-        color: rgb(30, 99, 76);
-        font-size: 30px;
-        font-family: "esamanru";
-        font-weight: 900;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
-      }
-    }
+    //   span
+    //   {
+    //     white-space: pre-line;
+    //     color: rgb(30, 99, 76);
+    //     font-size: 30px;
+    //     font-family: "esamanru";
+    //     font-weight: 900;
+    //     position: absolute;
+    //     top: 50%;
+    //     left: 50%;
+    //     transform: translate(-50%, -50%);
+    //     width: 100%;
+    //   }
+    // }
 
-    .recipes_div
-    {
-      position: relative;
-      width: 95%;
-      height: 70%;
-      padding: 2%;
-      img{position: absolute;}
-    }
+    // .recipes_div
+    // {
+    //   position: relative;
+    //   width: 95%;
+    //   height: 70%;
+    //   padding: 2%;
+    //   img{position: absolute;}
+    // }
   }
 
   .title_div
@@ -325,7 +331,7 @@ page-receipt {
     // background: #FFFFFF 0% 0% no-repeat padding-box;
     border-radius: 50px;
     opacity: 1;
-    background-image: url("../../assets/imgs/대체식품/03_Planning/00_basic btn/plan_temp.png");
+    background-image: url("../../assets/imgs/alternative food/03_Planning/00_basic btn/plan_temp.png");
     background-size: cover;
 
     .guide-popup {
@@ -542,7 +548,7 @@ page-receipt {
 
     .pen-control-bar
     {
-      // background-image: url("../../assets/imgs/대체식품/03_Planning/00_basic btn/Pen Control bar.png");
+      // background-image: url("../../assets/imgs/alternative food/03_Planning/00_basic btn/Pen Control bar.png");
       position: absolute;
       background-size: cover;
       top: 70%;

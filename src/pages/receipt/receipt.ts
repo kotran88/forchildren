@@ -29,7 +29,7 @@ export class ReceiptPage {
 
   firemain = firebase.database().ref();
 
-  root_image_path = "assets/imgs/대체식품/02_Recipe/"
+  root_image_path = "assets/imgs/alternative food/02_Recipe/"
   index:any;
   recipe_bar:any;
 
@@ -44,10 +44,13 @@ export class ReceiptPage {
   // 0 : 가운데 큰 음식
   // 1 : 레시피 글
   // 2 : 레시피 아이콘
-  receipts_positions = []
+  // receipts_positions = []
+
+  // 레시피 이미지 데이터
+  recipes_image = "";
 
   // 레시피 재료 텍스트
-  sub_recipe_text = "";
+  // sub_recipe_text = "";
 
   // 슬라이드아이콘 클릭 시작 좌표
   slide_start_x = 0;
@@ -74,15 +77,15 @@ export class ReceiptPage {
    */
   menu_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
   list = {
-    "1" : [ "assets/imgs/대체식품/03_Planning/01_menu btn/01_popup/01_popup_01.png", "assets/imgs/대체식품/03_Planning/01_menu btn/01_popup/01_popup_02.png", "assets/imgs/대체식품/03_Planning/01_menu btn/01_popup/01_popup_03.png", "assets/imgs/대체식품/03_Planning/01_menu btn/01_popup/01_popup_04.png", "assets/imgs/대체식품/03_Planning/01_menu btn/01_popup/01_popup_05.png", "assets/imgs/대체식품/03_Planning/01_menu btn/01_popup/01_popup_06.png", "assets/imgs/대체식품/03_Planning/01_menu btn/01_popup/01_popup_07.png", "assets/imgs/대체식품/03_Planning/01_menu btn/01_popup/01_popup_08.png", "assets/imgs/대체식품/03_Planning/01_menu btn/01_popup/01_popup_09.png", "assets/imgs/대체식품/03_Planning/01_menu btn/01_popup/01_popup_10.png", "" ],
-    "2" : [ "assets/imgs/대체식품/03_Planning/01_menu btn/02_popup/02_popup_01.png", "assets/imgs/대체식품/03_Planning/01_menu btn/02_popup/02_popup_02.png", "assets/imgs/대체식품/03_Planning/01_menu btn/02_popup/02_popup_03.png", "assets/imgs/대체식품/03_Planning/01_menu btn/02_popup/02_popup_04.png", "assets/imgs/대체식품/03_Planning/01_menu btn/02_popup/02_popup_05.png", "assets/imgs/대체식품/03_Planning/01_menu btn/02_popup/02_popup_06.png", "assets/imgs/대체식품/03_Planning/01_menu btn/02_popup/02_popup_07.png", "assets/imgs/대체식품/03_Planning/01_menu btn/02_popup/02_popup_08.png", "assets/imgs/대체식품/03_Planning/01_menu btn/02_popup/02_popup_09.png", "assets/imgs/대체식품/03_Planning/01_menu btn/02_popup/02_popup_10.png", "" ],
-    "3" : [ "assets/imgs/대체식품/03_Planning/01_menu btn/03_popup/03_popup_01.png", "assets/imgs/대체식품/03_Planning/01_menu btn/03_popup/03_popup_02.png", "assets/imgs/대체식품/03_Planning/01_menu btn/03_popup/03_popup_03.png", "assets/imgs/대체식품/03_Planning/01_menu btn/03_popup/03_popup_04.png", "assets/imgs/대체식품/03_Planning/01_menu btn/03_popup/03_popup_05.png", "assets/imgs/대체식품/03_Planning/01_menu btn/03_popup/03_popup_06.png", "assets/imgs/대체식품/03_Planning/01_menu btn/03_popup/03_popup_07.png", "assets/imgs/대체식품/03_Planning/01_menu btn/03_popup/03_popup_08.png", "" ],
-    "4" : [ "assets/imgs/대체식품/03_Planning/01_menu btn/04_popup/04_popup_01.png", "assets/imgs/대체식품/03_Planning/01_menu btn/04_popup/04_popup_02.png", "assets/imgs/대체식품/03_Planning/01_menu btn/04_popup/04_popup_03.png", "assets/imgs/대체식품/03_Planning/01_menu btn/04_popup/04_popup_04.png", "assets/imgs/대체식품/03_Planning/01_menu btn/04_popup/04_popup_05.png", "" ],
-    "5" : [ "assets/imgs/대체식품/03_Planning/01_menu btn/05_popup/05_popup_01.png", "assets/imgs/대체식품/03_Planning/01_menu btn/05_popup/05_popup_02.png", "" ],
-    "6" : [ "assets/imgs/대체식품/03_Planning/01_menu btn/06_popup/06_popup_01.png", "assets/imgs/대체식품/03_Planning/01_menu btn/06_popup/06_popup_02.png", "assets/imgs/대체식품/03_Planning/01_menu btn/06_popup/06_popup_03.png", "assets/imgs/대체식품/03_Planning/01_menu btn/06_popup/06_popup_04.png", "assets/imgs/대체식품/03_Planning/01_menu btn/06_popup/06_popup_05.png", "assets/imgs/대체식품/03_Planning/01_menu btn/06_popup/06_popup_06.png", "" ],
-    "7" : [ "assets/imgs/대체식품/03_Planning/01_menu btn/07_popup/07_popup_01.png", "assets/imgs/대체식품/03_Planning/01_menu btn/07_popup/07_popup_02.png", "assets/imgs/대체식품/03_Planning/01_menu btn/07_popup/07_popup_03.png", "" ],
-    "8" : [ "assets/imgs/대체식품/03_Planning/01_menu btn/08_popup/08_popup_01.png", "assets/imgs/대체식품/03_Planning/01_menu btn/08_popup/08_popup_02.png", "assets/imgs/대체식품/03_Planning/01_menu btn/08_popup/08_popup_03.png", "assets/imgs/대체식품/03_Planning/01_menu btn/08_popup/08_popup_04.png", "assets/imgs/대체식품/03_Planning/01_menu btn/08_popup/08_popup_05.png", "assets/imgs/대체식품/03_Planning/01_menu btn/08_popup/08_popup_06.png", "" ],
-    "9" : [ "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_01.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_02.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_03.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_04.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_05.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_06.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_07.png", "assets/imgs/대체식품/03_Planning/01_menu btn/09_popup/09_popup_08.png", "" ],
+    "1" : [ "assets/imgs/alternative food/03_Planning/01_menu btn/01_popup/01_popup_01.png", "assets/imgs/alternative food/03_Planning/01_menu btn/01_popup/01_popup_02.png", "assets/imgs/alternative food/03_Planning/01_menu btn/01_popup/01_popup_03.png", "assets/imgs/alternative food/03_Planning/01_menu btn/01_popup/01_popup_04.png", "assets/imgs/alternative food/03_Planning/01_menu btn/01_popup/01_popup_05.png", "assets/imgs/alternative food/03_Planning/01_menu btn/01_popup/01_popup_06.png", "assets/imgs/alternative food/03_Planning/01_menu btn/01_popup/01_popup_07.png", "assets/imgs/alternative food/03_Planning/01_menu btn/01_popup/01_popup_08.png", "assets/imgs/alternative food/03_Planning/01_menu btn/01_popup/01_popup_09.png", "assets/imgs/alternative food/03_Planning/01_menu btn/01_popup/01_popup_10.png", "" ],
+    "2" : [ "assets/imgs/alternative food/03_Planning/01_menu btn/02_popup/02_popup_01.png", "assets/imgs/alternative food/03_Planning/01_menu btn/02_popup/02_popup_02.png", "assets/imgs/alternative food/03_Planning/01_menu btn/02_popup/02_popup_03.png", "assets/imgs/alternative food/03_Planning/01_menu btn/02_popup/02_popup_04.png", "assets/imgs/alternative food/03_Planning/01_menu btn/02_popup/02_popup_05.png", "assets/imgs/alternative food/03_Planning/01_menu btn/02_popup/02_popup_06.png", "assets/imgs/alternative food/03_Planning/01_menu btn/02_popup/02_popup_07.png", "assets/imgs/alternative food/03_Planning/01_menu btn/02_popup/02_popup_08.png", "assets/imgs/alternative food/03_Planning/01_menu btn/02_popup/02_popup_09.png", "assets/imgs/alternative food/03_Planning/01_menu btn/02_popup/02_popup_10.png", "" ],
+    "3" : [ "assets/imgs/alternative food/03_Planning/01_menu btn/03_popup/03_popup_01.png", "assets/imgs/alternative food/03_Planning/01_menu btn/03_popup/03_popup_02.png", "assets/imgs/alternative food/03_Planning/01_menu btn/03_popup/03_popup_03.png", "assets/imgs/alternative food/03_Planning/01_menu btn/03_popup/03_popup_04.png", "assets/imgs/alternative food/03_Planning/01_menu btn/03_popup/03_popup_05.png", "assets/imgs/alternative food/03_Planning/01_menu btn/03_popup/03_popup_06.png", "assets/imgs/alternative food/03_Planning/01_menu btn/03_popup/03_popup_07.png", "assets/imgs/alternative food/03_Planning/01_menu btn/03_popup/03_popup_08.png", "" ],
+    "4" : [ "assets/imgs/alternative food/03_Planning/01_menu btn/04_popup/04_popup_01.png", "assets/imgs/alternative food/03_Planning/01_menu btn/04_popup/04_popup_02.png", "assets/imgs/alternative food/03_Planning/01_menu btn/04_popup/04_popup_03.png", "assets/imgs/alternative food/03_Planning/01_menu btn/04_popup/04_popup_04.png", "assets/imgs/alternative food/03_Planning/01_menu btn/04_popup/04_popup_05.png", "" ],
+    "5" : [ "assets/imgs/alternative food/03_Planning/01_menu btn/05_popup/05_popup_01.png", "assets/imgs/alternative food/03_Planning/01_menu btn/05_popup/05_popup_02.png", "" ],
+    "6" : [ "assets/imgs/alternative food/03_Planning/01_menu btn/06_popup/06_popup_01.png", "assets/imgs/alternative food/03_Planning/01_menu btn/06_popup/06_popup_02.png", "assets/imgs/alternative food/03_Planning/01_menu btn/06_popup/06_popup_03.png", "assets/imgs/alternative food/03_Planning/01_menu btn/06_popup/06_popup_04.png", "assets/imgs/alternative food/03_Planning/01_menu btn/06_popup/06_popup_05.png", "assets/imgs/alternative food/03_Planning/01_menu btn/06_popup/06_popup_06.png", "" ],
+    "7" : [ "assets/imgs/alternative food/03_Planning/01_menu btn/07_popup/07_popup_01.png", "assets/imgs/alternative food/03_Planning/01_menu btn/07_popup/07_popup_02.png", "assets/imgs/alternative food/03_Planning/01_menu btn/07_popup/07_popup_03.png", "" ],
+    "8" : [ "assets/imgs/alternative food/03_Planning/01_menu btn/08_popup/08_popup_01.png", "assets/imgs/alternative food/03_Planning/01_menu btn/08_popup/08_popup_02.png", "assets/imgs/alternative food/03_Planning/01_menu btn/08_popup/08_popup_03.png", "assets/imgs/alternative food/03_Planning/01_menu btn/08_popup/08_popup_04.png", "assets/imgs/alternative food/03_Planning/01_menu btn/08_popup/08_popup_05.png", "assets/imgs/alternative food/03_Planning/01_menu btn/08_popup/08_popup_06.png", "" ],
+    "9" : [ "assets/imgs/alternative food/03_Planning/01_menu btn/09_popup/09_popup_01.png", "assets/imgs/alternative food/03_Planning/01_menu btn/09_popup/09_popup_02.png", "assets/imgs/alternative food/03_Planning/01_menu btn/09_popup/09_popup_03.png", "assets/imgs/alternative food/03_Planning/01_menu btn/09_popup/09_popup_04.png", "assets/imgs/alternative food/03_Planning/01_menu btn/09_popup/09_popup_05.png", "assets/imgs/alternative food/03_Planning/01_menu btn/09_popup/09_popup_06.png", "assets/imgs/alternative food/03_Planning/01_menu btn/09_popup/09_popup_07.png", "assets/imgs/alternative food/03_Planning/01_menu btn/09_popup/09_popup_08.png", "" ],
   };
 
   // 요리명 사진
@@ -130,10 +133,12 @@ export class ReceiptPage {
     }
     // console.log(this.left_infos_position)
 
-    this.receipts_positions = recpv.get_receipts_positions(this.index);
-    this.sub_recipe_text = recpv.get_subrecipes(this.index);
-    console.log(this.sub_recipe_text);
-    console.log(this.receipts_positions);
+    this.recipes_image = recpv.get_recipes_image(this.index);
+
+    // this.receipts_positions = recpv.get_receipts_positions(this.index);
+    // this.sub_recipe_text = recpv.get_subrecipes(this.index);
+    // console.log(this.sub_recipe_text);
+    // console.log(this.receipts_positions);
 
   }
 
@@ -333,7 +338,7 @@ export class ReceiptPage {
           clearTimeout(pressTimer);
         });
         let close = document.createElement("img");
-        close.src = "assets/imgs/대체식품/03_Planning/01_menu btn/BNT_Food Popup_Close.png";
+        close.src = "assets/imgs/alternative food/03_Planning/01_menu btn/BNT_Food Popup_Close.png";
         close.style.position = "absolute";
         close.style.zIndex = "5";
         close.style.display = "none";
@@ -427,7 +432,7 @@ export class ReceiptPage {
 
     for (let i : number = 1; i <= 9; i++) {
       document.getElementsByClassName("menu-" + i)[0].setAttribute("style", "background-color: #0E8D66;");
-      document.getElementsByClassName("menu-" + i + "-" + 2)[0].setAttribute("src", "assets/imgs/대체식품/03_Planning/01_menu btn/btn_text0" + i + "_nor.png");
+      document.getElementsByClassName("menu-" + i + "-" + 2)[0].setAttribute("src", "assets/imgs/alternative food/03_Planning/01_menu btn/btn_text0" + i + "_nor.png");
     }
     if(this.targetTopValue == this.topValue[num - 1])
     {
@@ -438,7 +443,7 @@ export class ReceiptPage {
     targetMenu.setAttribute("style", "background-color: white;");
 
     document.getElementsByClassName("menu-" + num + "-" + 2)[0]
-    .setAttribute("src", "assets/imgs/대체식품/03_Planning/01_menu btn/btn_text0" + num + "_sel.png");
+    .setAttribute("src", "assets/imgs/alternative food/03_Planning/01_menu btn/btn_text0" + num + "_sel.png");
 
     // 메뉴바를 가리키는 화살표의 위치값을 바꿈.
     this.targetTopValue = this.topValue[num - 1];
@@ -460,7 +465,7 @@ export class ReceiptPage {
   closeButton() : void {
     for (let i : number = 1; i <= 9; i++) {
       document.getElementsByClassName("menu-" + i)[0].setAttribute("style", "background-color: #0E8D66;");
-      document.getElementsByClassName("menu-" + i + "-" + 2)[0].setAttribute("src", "assets/imgs/대체식품/03_Planning/01_menu btn/btn_text0" + i + "_nor.png");
+      document.getElementsByClassName("menu-" + i + "-" + 2)[0].setAttribute("src", "assets/imgs/alternative food/03_Planning/01_menu btn/btn_text0" + i + "_nor.png");
     }
     // document.getElementById("food-popup-holder").style.display = "none";
     // document.getElementById("food-popup-bg").style.display = "none";

@@ -16,7 +16,7 @@ export class HomePage {
 
   food_list= [];
   constructor(public navCtrl: NavController, public navParams: NavParams, public util:UtilProvider) {
-    var img_root = "assets/imgs/대체식품/01_Main/01_menu/"
+    var img_root = "assets/imgs/alternative food/01_Main/01_menu/"
     this.food_list.push({"active_flag": false, "disable_img": img_root + "btn_menu01_nor.png", "enable_img": img_root + "btn_menu01_sel.png"})
     this.food_list.push({"active_flag": false, "disable_img": img_root + "btn_menu02_nor.png", "enable_img": img_root + "btn_menu02_sel.png"})
     this.food_list.push({"active_flag": false, "disable_img": img_root + "btn_menu03_nor.png", "enable_img": img_root + "btn_menu03_sel.png"})
