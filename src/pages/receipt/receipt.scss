@@ -202,15 +202,17 @@ page-receipt {
   {
     float: right;
     margin: 2%;
-    height: 7%;
+    width: 30%;
     display: flex;
-    img{height: 100%;}
+    // img{height: 100%;}
     .receipe-sel {
       float: left;
       margin-right: 2%;
+      width: 60%;
     }
 
     .save-nor {
+      width: 40%;
       float: left;
     }
   }
@@ -218,7 +220,8 @@ page-receipt {
   .menu-list
   {
     width: 25%;
-    height: 75%;
+    min-height: 75%;
+    height: 560px;
     .menu-div
     {
       height: 11%;
