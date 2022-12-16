@@ -124,30 +124,39 @@ export class UtilProvider {
           callback(null);
         }
       }, 10000);
-      root.putString(image64, 'data_url')
-      .then(snapshot => {
-        this.change_loading(6);
-        console.log(snapshot);
-        this.mypicref.child(dir).child(key).getDownloadURL().then((url)=>{
-          clearTimeout(timeout);
-          console.log("download url is : "+url);
-          // this.dismiss_loading();
-          this.change_loading(8);
-          callback(url);
+      try {
+        root.putString(image64, 'data_url')
+        .then(snapshot => {
+          this.change_loading(6);
+          console.log(snapshot);
+          this.mypicref.child(dir).child(key).getDownloadURL().then((url)=>{
+            clearTimeout(timeout);
+            console.log("download url is : "+url);
+            // this.dismiss_loading();
+            this.change_loading(8);
+            callback(url);
 
+          }).catch((e)=>{
+            console.log('eeeee');
+            console.log(e);
+            // this.dismiss_loading();
+            callback(null);
+          })
         }).catch((e)=>{
-          console.log('eeeee');
+          clearTimeout(timeout);
+          console.log("error is....")
           console.log(e);
+          window.alert(e.message);
           // this.dismiss_loading();
           callback(null);
         })
-      }).catch((e)=>{
-        console.log("error is....")
-        window.alert(e);
-        console.log(e);
-        // this.dismiss_loading();
+      } catch (error) {
+        clearTimeout(timeout);
+        console.log(error);
+        alert(error.message)
         callback(null);
-      })
+      }
+
     })
   }
 

@@ -130,10 +130,12 @@
 
     <!-- textarea -->
     <div id="white-board-ready-textarea-board" class="white-board-ready-textarea-board">
-      <textarea id="white-board-ready-textarea" class="white-board-ready-textarea" cols="50" rows="10"></textarea>
+      <ion-textarea [(ngModel)]="ready_textarea" id="white-board-ready-textarea" class="white-board-ready-textarea"
+      (ionChange)="test('ready', ready_textarea)" wrap="hard" cols="30" rows="5"></ion-textarea>
     </div>
     <div id="white-board-cooking-textarea-board" class="white-board-cooking-textarea-board">
-      <textarea id="white-board-cooking-textarea" class="white-board-cooking-textarea" cols="50" rows="10"></textarea>
+      <ion-textarea [(ngModel)]="cooking_textarea" id="white-board-cooking-textarea" class="white-board-cooking-textarea"
+      (ionChange)="test('cooking', cooking_textarea)" wrap="hard" cols="30" rows="20"></ion-textarea>
     </div>
   </div>
 
@@ -190,7 +192,7 @@
       <ion-slide class="slide-item" *ngFor="let item of recipe_list; let idx = index;" (click)="open_recipe(item)">
         <img class="slide-image" src="{{item.url}}" alt="">
         <span class="slide-name">{{item.name}}</span>
-        <span class="slide-close" (click)="remove_recipe(item, idx)">X</span>
+        <!-- <span class="slide-close" (click)="remove_recipe(item, idx)">X</span> -->
       </ion-slide>
     </ion-slides>
   </div>

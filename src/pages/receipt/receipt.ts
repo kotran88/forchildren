@@ -116,6 +116,10 @@ export class ReceiptPage {
   canvas_col_active:string = "black";
   canvas_col_opacity:string = "1";
 
+  //textarea
+  ready_textarea = "";
+  cooking_textarea = "";
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController,
   public recpv: ReceiptsProvider,
   public dragulaService: DragulaService, public toastController: ToastController,
@@ -879,5 +883,35 @@ export class ReceiptPage {
     //     temp_list.push(this.recipe_list);
     // }
     // this.recipe_list = temp_list;
+  }
+
+  test(mode, text)
+  {
+    console.log(mode);
+    console.log(text.length);
+    if(mode == "ready")
+    {
+      var max = 70;
+      if(text.length > max)
+      {
+        alert("최대 " + max + "자입니다.");
+
+        setTimeout(() => {
+          this.ready_textarea = this.ready_textarea.slice(0,max);
+        }, 100);
+      }
+    }
+    else if(mode == "cooking")
+    {
+      var max = 300;
+      if(text.length > max)
+      {
+        alert("최대 " + max + "자입니다.");
+
+        setTimeout(() => {
+          this.cooking_textarea = this.cooking_textarea.slice(0,max);
+        }, 100);
+      }
+    }
   }
 }
