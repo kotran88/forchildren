@@ -462,115 +462,172 @@ page-receipt {
     }
   }
 
+  .tools-div
+  {
+      width: 5%;
+      position: absolute;
+      right: 2%;
+      top: 73%;
+      z-index: 9;
+      border-radius: 0px 0px 50px 0px;
+      overflow: hidden;
+      img{width: 100%;}
+      div
+      {
+          position: absolute;
+          height: calc(100% / 3);
+          width: 100%;
+      }
+      .pen-button{top: calc(calc(100% / 3) * 0);}
+      .color-button{top: calc(calc(100% / 3) * 1);}
+      .erase-button{top: calc(calc(100% / 3) * 2);}
+  }
+  .pen-tool, .color-tool, .erase-tool
+  {
+      position: absolute;
+      right: 7%;
+      input{margin: 0;}
+      background: white;
+      border: solid 1px black;
+      border-radius: 5px;
+      z-index: 9;
+      text-align: center;
+  }
+
+  .pen-tool
+  {
+      top: 74%;
+      padding: 6px;
+  }
+  .erase-tool
+  {
+      top: 91%;
+      padding: 6px;
+  }
+
+  .color-tool
+  {
+      top: 84%;
+      width: 70px;
+      background: white;
+      border: solid 1px black;
+      border-radius: 10px;
+      ion-input
+      {
+          width: 100%;
+          input{
+              height: 30px;
+          }
+      }
+  }
     .bnt-keypad-nor {
       position: fixed;
       z-index: 9;
-      top: 69%;
+      top: 63%;
       right: 3%;
       width: 6%;
     }
 
-    .bnt-pen-nor {
-      position: fixed;
-      z-index: 9;
-      top: 78%;
-      right: 3%;
-      width: 6%;
-    }
+    // .bnt-pen-nor {
+    //   position: fixed;
+    //   z-index: 9;
+    //   top: 78%;
+    //   right: 3%;
+    //   width: 6%;
+    // }
 
-    .bnt-eraser-nor {
-      position: fixed;
-      z-index: 9;
-      top: 87%;
-      right: 3%;
-      width: 6%;
-    }
+    // .bnt-eraser-nor {
+    //   position: fixed;
+    //   z-index: 9;
+    //   top: 87%;
+    //   right: 3%;
+    //   width: 6%;
+    // }
 
-    .pen-col-bg
-    {
-      position: absolute;
-      background-size: cover;
-      top: 69%;
-      left: 79%;
-      width: 12%;
-      z-index: 9;
-      > img{width: 100%; height: 100%;}
+    // .pen-col-bg
+    // {
+    //   position: absolute;
+    //   background-size: cover;
+    //   top: 69%;
+    //   left: 79%;
+    //   width: 12%;
+    //   z-index: 9;
+    //   > img{width: 100%; height: 100%;}
 
-      .pen-col-div
-      {
-        display: flex;
-        position: absolute;
-        top: 0;
-        left: 0;
-        padding: 3% 10% 3% 3%;
-        height: 100%;
-        width: 100%;
-        .cols
-        {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-        }
-        .pens
-        {
-          flex: 2;
-          display: flex;
-          flex-direction: column;
-        }
+    //   .pen-col-div
+    //   {
+    //     display: flex;
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     padding: 3% 10% 3% 3%;
+    //     height: 100%;
+    //     width: 100%;
+    //     .cols
+    //     {
+    //       flex: 1;
+    //       display: flex;
+    //       flex-direction: column;
+    //     }
+    //     .pens
+    //     {
+    //       flex: 2;
+    //       display: flex;
+    //       flex-direction: column;
+    //     }
 
-        .color
-        {
-          flex: 1;
-          padding: 10%;
-          border-radius: 25px;
-          border: solid 5px transparent;
-        }
+    //     .color
+    //     {
+    //       flex: 1;
+    //       padding: 10%;
+    //       border-radius: 25px;
+    //       border: solid 5px transparent;
+    //     }
 
-        .col-active
-        {
-          padding: 0;
-          margin: 10%;
-          border: solid 5px rgb(143,143,143);
-        }
+    //     .col-active
+    //     {
+    //       padding: 0;
+    //       margin: 10%;
+    //       border: solid 5px rgb(143,143,143);
+    //     }
 
-        .pen
-        {
-          flex: 1;
-          padding: 20px 0;
-          opacity: 0.5;
-        }
+    //     .pen
+    //     {
+    //       flex: 1;
+    //       padding: 20px 0;
+    //       opacity: 0.5;
+    //     }
 
-        .pen-active
-        {
-          opacity: 1;
-        }
-      }
-    }
+    //     .pen-active
+    //     {
+    //       opacity: 1;
+    //     }
+    //   }
+    // }
 
-    .pen-control-bar
-    {
-      // background-image: url("../../assets/imgs/alternative food/03_Planning/00_basic btn/Pen Control bar.png");
-      position: absolute;
-      background-size: cover;
-      top: 70%;
-      left: 84%;
-      width: 7%;
-      display: flex;
-      flex-direction: row;
-      z-index: 9;
+    // .pen-control-bar
+    // {
+    //   position: absolute;
+    //   background-size: cover;
+    //   top: 70%;
+    //   left: 84%;
+    //   width: 7%;
+    //   display: flex;
+    //   flex-direction: row;
+    //   z-index: 9;
 
-      >img{width: 100%; height: 100%;}
+    //   >img{width: 100%; height: 100%;}
 
-      input
-      {
-        -webkit-appearance: slider-vertical;
-        width: 7%;
-        height: 65%;
-        position: absolute;
-        left: 39%;
-        top: 20%;
-      }
-    }
+    //   input
+    //   {
+    //     -webkit-appearance: slider-vertical;
+    //     width: 7%;
+    //     height: 65%;
+    //     position: absolute;
+    //     left: 39%;
+    //     top: 20%;
+    //   }
+    // }
 
   .recipe-save-modal
   {

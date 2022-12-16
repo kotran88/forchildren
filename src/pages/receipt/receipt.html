@@ -135,12 +135,12 @@
     </div>
     <div id="white-board-cooking-textarea-board" class="white-board-cooking-textarea-board">
       <ion-textarea [(ngModel)]="cooking_textarea" id="white-board-cooking-textarea" class="white-board-cooking-textarea"
-      (ionChange)="test('cooking', cooking_textarea)" wrap="hard" cols="30" rows="20"></ion-textarea>
+      (ionChange)="test('cooking', cooking_textarea)" wrap="hard" cols="30" rows="15"></ion-textarea>
     </div>
   </div>
 
   <!-- 연필 -->
-  <div id="pen-col-bg" class="pen-col-bg" style="display: none;">
+  <!-- <div id="pen-col-bg" class="pen-col-bg" style="display: none;">
     <img src="../../assets/imgs/alternative food/03_Planning/00_basic btn/pen_col_bg.png" alt="">
     <div class="pen-col-div">
       <div class="cols">
@@ -157,18 +157,37 @@
         <img class="pen" id="pen-03" (click)="change_pen('03')" src="assets/imgs/alternative food/03_Planning/00_basic btn/pen_03.png" alt="">
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- 지우개 -->
-  <div id="pen-control-bar" class="pen-control-bar" style="display: none;">
+  <!-- <div id="pen-control-bar" class="pen-control-bar" style="display: none;">
     <img src="../../assets/imgs/alternative food/03_Planning/00_basic btn/Pen Control bar.png" alt="">
     <input [(ngModel)]="erase_size" type="range" id="volume" name="volume" min="5" max="300" step="5" orient="vertical">
-  </div>
+  </div> -->
 
   <!-- 오른쪽 하단에 보이는 키보드, 연필, 지우개 -->
   <img id="bnt-keypad-nor" style="opacity: 0.5;" (click)="open_keypad()" class="bnt-keypad-nor" src="assets/imgs/alternative food/03_Planning/00_basic btn/BNT_Keypad_NOR.png" alt="">
+
+  <div class="tools-div">
+    <img src="../../assets/imgs/alternative food/03_Planning/00_basic btn/tools.png" alt="">
+    <div class="pen-button" (click)="open_tool('pen')"></div>
+    <div class="color-button" (click)="open_tool('color')"></div>
+    <div class="erase-button" (click)="open_tool('erase')"></div>
+  </div>
+  <div id="pen-tool" class="pen-tool" style="display: none;">
+    <span>{{pen_width}}</span><br>
+    <input type="range" min="1" max="10" step="1" [(ngModel)]="pen_width"/>
+  </div>
+  <div id="color-tool" class="color-tool" style="display: none;">
+    <input type="color" [(ngModel)]="color_value"/>
+  </div>
+  <div id="erase-tool" class="erase-tool" style="display: none;">
+    <span>{{erase_size}}</span><br>
+    <input type="range" min="5" max="100" step="5" [(ngModel)]="erase_size"/>
+  </div>
+  <!-- <img id="bnt-keypad-nor" style="opacity: 0.5;" (click)="open_keypad()" class="bnt-keypad-nor" src="assets/imgs/alternative food/03_Planning/00_basic btn/BNT_Keypad_NOR.png" alt="">
   <img id="bnt-pen-nor" (click)="open_pen()" class="bnt-pen-nor" src="assets/imgs/alternative food/03_Planning/00_basic btn/BNT_Pen_NOR.png" alt="">
-  <img id="bnt-eraser-nor" (click)="open_eraser()" class="bnt-eraser-nor" src="assets/imgs/alternative food/03_Planning/00_basic btn/BNT_Eraser_NOR.png" alt="">
+  <img id="bnt-eraser-nor" (click)="open_eraser()" class="bnt-eraser-nor" src="assets/imgs/alternative food/03_Planning/00_basic btn/BNT_Eraser_NOR.png" alt=""> -->
 
 
   <div id="recipe-save-modal" class="recipe-save-modal" style="display: none;">

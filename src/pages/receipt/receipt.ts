@@ -100,7 +100,9 @@ export class ReceiptPage {
   context : CanvasRenderingContext2D[] = Array();
   painting : boolean = false;
   erase_flag : boolean = false;
-  erase_size : number = 20;
+  erase_size: number = 20;
+  pen_width: number = 1;
+  color_value = "rgb(0,0,0)";
 
   recipe_name : string = "";
 
@@ -494,7 +496,6 @@ export class ReceiptPage {
     canvas.height = screen.height * 0.85 * 0.26;
 
     this.context.push(canvas.getContext("2d"));
-    this.context[0].lineWidth = 1;
 
     document.getElementById("white-board").append(canvas);
 
@@ -517,6 +518,8 @@ export class ReceiptPage {
     });
     canvas.addEventListener("touchstart", (event) => {
       this.painting = true;
+      this.context[0].lineWidth = this.pen_width;
+      this.context[0].strokeStyle = this.color_value;
       let rect = canvas.getBoundingClientRect();
       let x = event.touches[0].pageX - rect.left;
       let y = event.touches[0].pageY - rect.top;
@@ -539,7 +542,7 @@ export class ReceiptPage {
     canvas.height = screen.height * 0.85 * 0.87;
 
     this.context.push(canvas.getContext("2d"));
-    this.context[1].lineWidth = 1;
+    this.context[1].lineWidth = this.pen_width;
 
     document.getElementById("white-board").append(canvas);
 
@@ -565,6 +568,8 @@ export class ReceiptPage {
     });
     canvas.addEventListener("touchstart", (event) => {
       this.painting = true;
+      this.context[1].lineWidth = this.pen_width;
+      this.context[1].strokeStyle = this.color_value;
       let rect = canvas.getBoundingClientRect();
       let x = event.touches[0].pageX - rect.left;
       let y = event.touches[0].pageY - rect.top;
@@ -590,114 +595,130 @@ export class ReceiptPage {
     if(doc == '8') // 키보드 비활성화
     {
       document.getElementById("bnt-keypad-nor").style.opacity = '0.5';
-      // document.getElementById("keyboard-bg").style.display = "none";
     }
     else // 키보드 활성화
     {
       document.getElementById("bnt-keypad-nor").style.opacity = '1';
-      // document.getElementById("white-board-cooking-textarea").focus();
-      // document.getElementById("keyboard-bg").style.display = "";
     }
-    // this.keyboard.hasFocusedTextInput();
-    document.getElementById("pen-control-bar").style.display = 'none';
-    document.getElementById("pen-col-bg").style.display = 'none';
-  }
-  open_pen()
-  {
-    document.getElementById("white-board-ready-textarea-board").style.zIndex = '0';
-    document.getElementById("white-board-cooking-textarea-board").style.zIndex = '0';
-    document.getElementById("bnt-keypad-nor").style.opacity = '0.5';
-
-    console.log("pen");
-    document.getElementById("pen-control-bar").style.display = 'none';
-
-    var doc = document.getElementById("pen-col-bg").style.display;
-    document.getElementById("pen-col-bg").style.display =
-    doc == 'none' ? "flex" : "none";
-
-    this.erase_flag = false;
-  }
-  open_eraser()
-  {
-    document.getElementById("white-board-ready-textarea-board").style.zIndex = '0';
-    document.getElementById("white-board-cooking-textarea-board").style.zIndex = '0';
-    document.getElementById("bnt-keypad-nor").style.opacity = '0.5';
-
-    console.log("eraser");
-    document.getElementById("pen-col-bg").style.display = 'none';
-
-    var doc = document.getElementById("pen-control-bar").style.display
-    document.getElementById("pen-control-bar").style.display =
-    doc == 'none' ? "flex" : "none";
-
-    this.erase_flag = true;
   }
 
-  change_color(col)
+  open_tool(ch)
   {
-    document.getElementById("col-black").classList.remove('col-active');
-    document.getElementById("col-blue").classList.remove('col-active');
-    document.getElementById("col-green").classList.remove('col-active');
-    document.getElementById("col-red").classList.remove('col-active');
-    document.getElementById("col-yellow").classList.remove('col-active');
-    this.canvas_col_active = col;
-    switch(col)
+    var tool_list = ["pen", "color", "erase"];
+
+    if(ch == "erase") this.erase_flag = true;
+    else this.erase_flag = false;
+
+    for(var i in tool_list)
     {
-      case 'black':
-        this.canvas_col_rgb = "0,0,0,";
-        document.getElementById("col-black").classList.add('col-active');
-        break;
-      case 'blue':
-        this.canvas_col_rgb = "0,0,255,";
-        document.getElementById("col-blue").classList.add('col-active');
-        break;
-      case 'green':
-        this.canvas_col_rgb = "0,255,0,";
-        document.getElementById("col-green").classList.add('col-active');
-        break;
-      case 'red':
-        this.canvas_col_rgb = "255,0,0,";
-        document.getElementById("col-red").classList.add('col-active');
-        break;
-      case 'yellow':
-        this.canvas_col_rgb = "255,255,0,"
-        document.getElementById("col-yellow").classList.add('col-active');
-        break;
+      console.log(ch, tool_list[i]);
+      var display = document.getElementById(tool_list[i] + "-tool").style.display;
+      display = (display == "none")? "" : "none";
+
+      console.log(tool_list[i] == ch);
+      if(tool_list[i] == ch)
+        document.getElementById(tool_list[i] + "-tool").style.display = display;
+      else
+        document.getElementById(tool_list[i] + "-tool").style.display = "none";
     }
-    this.context[0].strokeStyle =
-    this.context[1].strokeStyle = "rgba(" + this.canvas_col_rgb + this.canvas_col_opacity + ")";
   }
 
-  change_pen(pen)
-  {
-    document.getElementById("pen-01").classList.remove('pen-active');
-    document.getElementById("pen-02").classList.remove('pen-active');
-    document.getElementById("pen-03").classList.remove('pen-active');
-    switch(pen)
-    {
-      case '01':
-        this.canvas_col_opacity = "1";
-        this.context[0].lineWidth = 1;
-        this.context[1].lineWidth = 1;
-        document.getElementById("pen-01").classList.add('pen-active');
-        this.change_color(this.canvas_col_active)
-        break;
-      case '02':
-        this.canvas_col_opacity = "1";
-        this.context[0].lineWidth = 3;
-        this.context[1].lineWidth = 3;
-        document.getElementById("pen-02").classList.add('pen-active');
-        this.change_color(this.canvas_col_active)
-        break;
-      case '03':
-        this.canvas_col_opacity = "0.05";
-        this.context[0].lineWidth = 7;
-        this.context[1].lineWidth = 7;
-        document.getElementById("pen-03").classList.add('pen-active');
-        this.change_color(this.canvas_col_active)
-        break;
-    }
-  }
+  // open_pen()
+  // {
+  //   document.getElementById("white-board-ready-textarea-board").style.zIndex = '0';
+  //   document.getElementById("white-board-cooking-textarea-board").style.zIndex = '0';
+  //   document.getElementById("bnt-keypad-nor").style.opacity = '0.5';
+
+  //   console.log("pen");
+  //   document.getElementById("pen-control-bar").style.display = 'none';
+
+  //   var doc = document.getElementById("pen-col-bg").style.display;
+  //   document.getElementById("pen-col-bg").style.display =
+  //   doc == 'none' ? "flex" : "none";
+
+  //   this.erase_flag = false;
+  // }
+  // open_eraser()
+  // {
+  //   document.getElementById("white-board-ready-textarea-board").style.zIndex = '0';
+  //   document.getElementById("white-board-cooking-textarea-board").style.zIndex = '0';
+  //   document.getElementById("bnt-keypad-nor").style.opacity = '0.5';
+
+  //   console.log("eraser");
+  //   document.getElementById("pen-col-bg").style.display = 'none';
+
+  //   var doc = document.getElementById("pen-control-bar").style.display
+  //   document.getElementById("pen-control-bar").style.display =
+  //   doc == 'none' ? "flex" : "none";
+
+  //   this.erase_flag = true;
+  // }
+
+  // change_color(col)
+  // {
+  //   document.getElementById("col-black").classList.remove('col-active');
+  //   document.getElementById("col-blue").classList.remove('col-active');
+  //   document.getElementById("col-green").classList.remove('col-active');
+  //   document.getElementById("col-red").classList.remove('col-active');
+  //   document.getElementById("col-yellow").classList.remove('col-active');
+  //   this.canvas_col_active = col;
+  //   switch(col)
+  //   {
+  //     case 'black':
+  //       this.canvas_col_rgb = "0,0,0,";
+  //       document.getElementById("col-black").classList.add('col-active');
+  //       break;
+  //     case 'blue':
+  //       this.canvas_col_rgb = "0,0,255,";
+  //       document.getElementById("col-blue").classList.add('col-active');
+  //       break;
+  //     case 'green':
+  //       this.canvas_col_rgb = "0,255,0,";
+  //       document.getElementById("col-green").classList.add('col-active');
+  //       break;
+  //     case 'red':
+  //       this.canvas_col_rgb = "255,0,0,";
+  //       document.getElementById("col-red").classList.add('col-active');
+  //       break;
+  //     case 'yellow':
+  //       this.canvas_col_rgb = "255,255,0,"
+  //       document.getElementById("col-yellow").classList.add('col-active');
+  //       break;
+  //   }
+  //   this.context[0].strokeStyle =
+  //   this.context[1].strokeStyle = "rgba(" + this.canvas_col_rgb + this.canvas_col_opacity + ")";
+  // }
+
+  // change_pen(pen)
+  // {
+  //   document.getElementById("pen-01").classList.remove('pen-active');
+  //   document.getElementById("pen-02").classList.remove('pen-active');
+  //   document.getElementById("pen-03").classList.remove('pen-active');
+  //   switch(pen)
+  //   {
+  //     case '01':
+  //       this.canvas_col_opacity = "1";
+  //       this.context[0].lineWidth = 1;
+  //       this.context[1].lineWidth = 1;
+  //       document.getElementById("pen-01").classList.add('pen-active');
+  //       this.change_color(this.canvas_col_active)
+  //       break;
+  //     case '02':
+  //       this.canvas_col_opacity = "1";
+  //       this.context[0].lineWidth = 3;
+  //       this.context[1].lineWidth = 3;
+  //       document.getElementById("pen-02").classList.add('pen-active');
+  //       this.change_color(this.canvas_col_active)
+  //       break;
+  //     case '03':
+  //       this.canvas_col_opacity = "0.05";
+  //       this.context[0].lineWidth = 7;
+  //       this.context[1].lineWidth = 7;
+  //       document.getElementById("pen-03").classList.add('pen-active');
+  //       this.change_color(this.canvas_col_active)
+  //       break;
+  //   }
+  // }
 
   save_modal_open(): void
   {
